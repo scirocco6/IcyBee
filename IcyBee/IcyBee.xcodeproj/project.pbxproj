@@ -14,10 +14,10 @@
 		4F42D1CD14A989BD00FEB062 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1CC14A989BD00FEB062 /* main.m */; };
 		4F42D1D114A989BD00FEB062 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D014A989BD00FEB062 /* AppDelegate.m */; };
 		4F42D1D414A989BD00FEB062 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */; };
-		4F42D1D714A989BD00FEB062 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D614A989BD00FEB062 /* FirstViewController.m */; };
+		4F42D1D714A989BD00FEB062 /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D614A989BD00FEB062 /* ChannelViewController.m */; };
 		4F42D1D914A989BD00FEB062 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1D814A989BD00FEB062 /* first.png */; };
 		4F42D1DB14A989BD00FEB062 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1DA14A989BD00FEB062 /* first@2x.png */; };
-		4F42D1DE14A989BD00FEB062 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1DD14A989BD00FEB062 /* SecondViewController.m */; };
+		4F42D1DE14A989BD00FEB062 /* PrivateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */; };
 		4F42D1E014A989BD00FEB062 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1DF14A989BD00FEB062 /* second.png */; };
 		4F42D1E214A989BD00FEB062 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1E114A989BD00FEB062 /* second@2x.png */; };
 		4F42D1EA14A989BD00FEB062 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1E914A989BD00FEB062 /* SenTestingKit.framework */; };
@@ -26,6 +26,9 @@
 		4F42D1F414A989BD00FEB062 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1F214A989BD00FEB062 /* InfoPlist.strings */; };
 		4F42D1F714A989BD00FEB062 /* IcyBeeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1F614A989BD00FEB062 /* IcyBeeTests.m */; };
 		4F42D20114A98A0000FEB062 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D20014A98A0000FEB062 /* CFNetwork.framework */; };
+		4F42D20414A9964A00FEB062 /* UrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20314A9964A00FEB062 /* UrlViewController.m */; };
+		4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20614A9982000FEB062 /* PeopleViewController.m */; };
+		4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20914A9990800FEB062 /* ChannelsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,12 +53,12 @@
 		4F42D1CF14A989BD00FEB062 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F42D1D014A989BD00FEB062 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4F42D1D314A989BD00FEB062 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		4F42D1D514A989BD00FEB062 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		4F42D1D614A989BD00FEB062 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		4F42D1D514A989BD00FEB062 /* ChannelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelViewController.h; sourceTree = "<group>"; };
+		4F42D1D614A989BD00FEB062 /* ChannelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelViewController.m; sourceTree = "<group>"; };
 		4F42D1D814A989BD00FEB062 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		4F42D1DA14A989BD00FEB062 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		4F42D1DC14A989BD00FEB062 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		4F42D1DD14A989BD00FEB062 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateViewController.h; sourceTree = "<group>"; };
+		4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivateViewController.m; sourceTree = "<group>"; };
 		4F42D1DF14A989BD00FEB062 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		4F42D1E114A989BD00FEB062 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		4F42D1E814A989BD00FEB062 /* IcyBeeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IcyBeeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +68,12 @@
 		4F42D1F514A989BD00FEB062 /* IcyBeeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IcyBeeTests.h; sourceTree = "<group>"; };
 		4F42D1F614A989BD00FEB062 /* IcyBeeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IcyBeeTests.m; sourceTree = "<group>"; };
 		4F42D20014A98A0000FEB062 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		4F42D20214A9964A00FEB062 /* UrlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlViewController.h; sourceTree = "<group>"; };
+		4F42D20314A9964A00FEB062 /* UrlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlViewController.m; sourceTree = "<group>"; };
+		4F42D20514A9982000FEB062 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
+		4F42D20614A9982000FEB062 /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
+		4F42D20814A9990800FEB062 /* ChannelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
+		4F42D20914A9990800FEB062 /* ChannelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,15 +138,21 @@
 				4F42D1CF14A989BD00FEB062 /* AppDelegate.h */,
 				4F42D1D014A989BD00FEB062 /* AppDelegate.m */,
 				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
-				4F42D1D514A989BD00FEB062 /* FirstViewController.h */,
-				4F42D1D614A989BD00FEB062 /* FirstViewController.m */,
+				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
+				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
 				4F42D1D814A989BD00FEB062 /* first.png */,
 				4F42D1DA14A989BD00FEB062 /* first@2x.png */,
-				4F42D1DC14A989BD00FEB062 /* SecondViewController.h */,
-				4F42D1DD14A989BD00FEB062 /* SecondViewController.m */,
+				4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */,
+				4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */,
 				4F42D1DF14A989BD00FEB062 /* second.png */,
 				4F42D1E114A989BD00FEB062 /* second@2x.png */,
+				4F42D20214A9964A00FEB062 /* UrlViewController.h */,
+				4F42D20314A9964A00FEB062 /* UrlViewController.m */,
 				4F42D1C714A989BD00FEB062 /* Supporting Files */,
+				4F42D20514A9982000FEB062 /* PeopleViewController.h */,
+				4F42D20614A9982000FEB062 /* PeopleViewController.m */,
+				4F42D20814A9990800FEB062 /* ChannelsViewController.h */,
+				4F42D20914A9990800FEB062 /* ChannelsViewController.m */,
 			);
 			path = IcyBee;
 			sourceTree = "<group>";
@@ -218,7 +233,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = OnLive;
+				ORGANIZATIONNAME = "The Home for Obsolete Technology";
 			};
 			buildConfigurationList = 4F42D1B614A989BD00FEB062 /* Build configuration list for PBXProject "IcyBee" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -285,8 +300,11 @@
 			files = (
 				4F42D1CD14A989BD00FEB062 /* main.m in Sources */,
 				4F42D1D114A989BD00FEB062 /* AppDelegate.m in Sources */,
-				4F42D1D714A989BD00FEB062 /* FirstViewController.m in Sources */,
-				4F42D1DE14A989BD00FEB062 /* SecondViewController.m in Sources */,
+				4F42D1D714A989BD00FEB062 /* ChannelViewController.m in Sources */,
+				4F42D1DE14A989BD00FEB062 /* PrivateViewController.m in Sources */,
+				4F42D20414A9964A00FEB062 /* UrlViewController.m in Sources */,
+				4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */,
+				4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
