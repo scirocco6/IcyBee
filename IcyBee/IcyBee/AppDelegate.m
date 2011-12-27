@@ -24,6 +24,7 @@
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
     
+    [[IcbConnection sharedInstance] connect];
     return YES;
 }
 							

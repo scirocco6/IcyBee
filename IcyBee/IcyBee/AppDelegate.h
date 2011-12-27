@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbConnection.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

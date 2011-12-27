@@ -30,6 +30,7 @@
 		4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20614A9982000FEB062 /* PeopleViewController.m */; };
 		4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20914A9990800FEB062 /* ChannelsViewController.m */; };
 		4F42D20C14A9A00300FEB062 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D20B14A9A00300FEB062 /* Settings.bundle */; };
+		4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		4F42D20814A9990800FEB062 /* ChannelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelsViewController.h; sourceTree = "<group>"; };
 		4F42D20914A9990800FEB062 /* ChannelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelsViewController.m; sourceTree = "<group>"; };
 		4F42D20B14A9A00300FEB062 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbConnection.h; sourceTree = "<group>"; };
+		4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +153,14 @@
 				4F42D1E114A989BD00FEB062 /* second@2x.png */,
 				4F42D20214A9964A00FEB062 /* UrlViewController.h */,
 				4F42D20314A9964A00FEB062 /* UrlViewController.m */,
-				4F42D1C714A989BD00FEB062 /* Supporting Files */,
 				4F42D20514A9982000FEB062 /* PeopleViewController.h */,
 				4F42D20614A9982000FEB062 /* PeopleViewController.m */,
 				4F42D20814A9990800FEB062 /* ChannelsViewController.h */,
 				4F42D20914A9990800FEB062 /* ChannelsViewController.m */,
+				4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */,
+				4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */,
 				4F42D20B14A9A00300FEB062 /* Settings.bundle */,
+				4F42D1C714A989BD00FEB062 /* Supporting Files */,
 			);
 			path = IcyBee;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				4F42D20414A9964A00FEB062 /* UrlViewController.m in Sources */,
 				4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */,
 				4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */,
+				4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
