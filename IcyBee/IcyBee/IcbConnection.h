@@ -3,7 +3,7 @@
 //  tab_icb
 //
 //  Created by Michelle Six on 4/6/10.
-//  Copyright 2010 dotSix Inc. All rights reserved.
+//  Copyright (c) 2010 The Home for Obsolete Technology. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

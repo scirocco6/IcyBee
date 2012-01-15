@@ -3,14 +3,12 @@
 //  IcyBee
 //
 //  Created by Michelle Six on 12/26/11.
-//  Copyright (c) 2011 OnLive. All rights reserved.
+//  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "IcbConnection.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> 
 
 @property (strong, nonatomic) UIWindow *window;
-
 @end

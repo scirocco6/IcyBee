@@ -3,7 +3,7 @@
 //  IcyBee
 //
 //  Created by Michelle Six on 12/26/11.
-//  Copyright (c) 2011 OnLive. All rights reserved.
+//  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -13,19 +13,17 @@
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // Override point for customization after application launch.
-    // Set the application defaults
     
-    NSUserDefaults  *defaults       = [NSUserDefaults standardUserDefaults];    
-    NSDictionary    *appDefaults    = [NSDictionary dictionaryWithObjectsAndKeys:
+  NSUserDefaults  *defaults       = [NSUserDefaults standardUserDefaults];    
+  NSDictionary    *appDefaults    = [NSDictionary dictionaryWithObjectsAndKeys:
                                        @"server_preference", @"default.icb.net",
                                        @"port_preference", @"7326",
                                        nil];
     
-    [defaults registerDefaults:appDefaults];
-    [defaults synchronize];
+  [defaults registerDefaults:appDefaults];
+  [defaults synchronize];
     
-    [[IcbConnection sharedInstance] connect];
-    return YES;
+  return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application {
