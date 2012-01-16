@@ -1,5 +1,5 @@
 //
-//  TabBarController.h
+//  FirstViewController.h
 //  IcyBee
 //
 //  Created by Michelle Six on 1/15/12.
@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NicknameViewController.h"
 
-@interface TabBarController : UITabBarController
-
+@interface FirstViewController : UIViewController {
+  NicknameViewController *myNicknameViewController;
+}
 @end

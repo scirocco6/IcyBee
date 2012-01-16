@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NicknameViewController : UIViewController {
+@interface NicknameViewController : UIViewController <UITextFieldDelegate> {
   IBOutlet UITextField		*Nickname;
   IBOutlet UITextField		*Password;
   IBOutlet UITextField		*ConfirmPassword;
+  IBOutlet UIScrollView   *scrollView;  
 }
 -(IBAction) joinButtonPressed;
 

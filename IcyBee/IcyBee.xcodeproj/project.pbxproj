@@ -10,6 +10,7 @@
 		4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08E56614C2B63300673ADF /* NicknameViewController.m */; };
 		4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F08E56714C2B63300673ADF /* NicknameViewController.xib */; };
 		4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4014C2DC5D008D90E1 /* TabBarController.m */; };
+		4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4414C38CE6008D90E1 /* FirstViewController.m */; };
 		4F42D1C114A989BD00FEB062 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1C014A989BD00FEB062 /* UIKit.framework */; };
 		4F42D1C314A989BD00FEB062 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1C214A989BD00FEB062 /* Foundation.framework */; };
 		4F42D1C514A989BD00FEB062 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1C414A989BD00FEB062 /* CoreGraphics.framework */; };
@@ -52,6 +53,8 @@
 		4F08E56714C2B63300673ADF /* NicknameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NicknameViewController.xib; sourceTree = "<group>"; };
 		4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		4F30AB4014C2DC5D008D90E1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		4F30AB4314C38CE6008D90E1 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		4F30AB4414C38CE6008D90E1 /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		4F42D1BC14A989BD00FEB062 /* IcyBee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IcyBee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F42D1C014A989BD00FEB062 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F42D1C214A989BD00FEB062 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,12 +151,14 @@
 		4F42D1C614A989BD00FEB062 /* IcyBee */ = {
 			isa = PBXGroup;
 			children = (
+				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
 				4F42D1CF14A989BD00FEB062 /* AppDelegate.h */,
 				4F42D1D014A989BD00FEB062 /* AppDelegate.m */,
-				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
+				4F30AB4314C38CE6008D90E1 /* FirstViewController.h */,
+				4F30AB4414C38CE6008D90E1 /* FirstViewController.m */,
+				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
 				4F08E56514C2B63300673ADF /* NicknameViewController.h */,
 				4F08E56614C2B63300673ADF /* NicknameViewController.m */,
-				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
 				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
 				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
 				4F42D1D814A989BD00FEB062 /* first.png */,
@@ -331,6 +336,7 @@
 				4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */,
 				4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */,
 				4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */,
+				4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

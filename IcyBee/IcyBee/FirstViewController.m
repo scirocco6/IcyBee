@@ -1,15 +1,15 @@
 //
-//  TabBarController.m
+//  FirstViewController.m
 //  IcyBee
 //
 //  Created by Michelle Six on 1/15/12.
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
-#import "TabBarController.h"
+#import "FirstViewController.h"
+#import "IcbConnection.h"
 
-
-@implementation TabBarController
+@implementation FirstViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,7 +45,20 @@
 }
 */
 
-
+- (void) viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
+  [[NSUserDefaults standardUserDefaults] synchronize];
+  if (![[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]) {
+    if (!myNicknameViewController)
+      myNicknameViewController = [[NicknameViewController alloc] init];
+    [self presentViewController:myNicknameViewController animated:NO completion:NULL];
+  }   
+  else {
+    [[IcbConnection sharedInstance] connect];
+    [[self navigationController] performSegueWithIdentifier:@"goTabBar" sender:self];
+  }
+}
 
 - (void)viewDidUnload
 {

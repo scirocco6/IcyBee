@@ -37,7 +37,49 @@
 }
 
 -(IBAction) joinButtonPressed {
-	[self dismissModalViewControllerAnimated:NO];
-  [[IcbConnection sharedInstance] connect];
+  [scrollView setFrame:CGRectMake(0, 0, 0, 0)];
+
+  NSUserDefaults  *defaults       = [NSUserDefaults standardUserDefaults]; 
+  [defaults setObject:[Nickname text] forKey:@"nick_preference"];
+  [defaults synchronize];
+  
+	[self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+  switch (textField.tag) {
+    case 0:
+      [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+      break;
+    case 1:
+      [scrollView setContentOffset:CGPointMake(0, 150) animated:YES];
+      break;
+    case 2:
+      [scrollView setContentOffset:CGPointMake(0, 200) animated:YES];
+      break;
+  }
+  return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+  [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+  return YES;
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField {
+  switch (textField.tag) {
+    case 0:
+      [Password becomeFirstResponder];
+      break;
+    case 1:
+      [ConfirmPassword becomeFirstResponder];
+      break;
+    default:
+      [textField resignFirstResponder];
+      break;
+  }
+  return YES;
+}
+
+
 @end
