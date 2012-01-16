@@ -10,5 +10,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> 
 
+- (void)setupDefaults;
+
 @property (strong, nonatomic) UIWindow *window;
 @end
