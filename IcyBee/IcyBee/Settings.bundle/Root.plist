@@ -91,6 +91,8 @@
 			<string>Starting Channel</string>
 			<key>Key</key>
 			<string>channel_preference</string>
+			<key>DefaultValue</key>
+			<string>wombats</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

@@ -27,23 +27,27 @@
 }
 
 - (void) connect {
-    loggedIn = NO;
-    snarfing = NO;
-    
-	CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (CFStringRef) @"default.icb.net");
-	CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, host, 7326, &myReadStream, &myWriteStream);
+  loggedIn = NO;
+  snarfing = NO;
+  
+  NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
+  NSLog(@"port   setting is %i", [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue]);
+  NSLog(@"Nickname is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]);
+  
+  CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (__bridge_retained CFStringRef) [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
+	CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, host, [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue], &myReadStream, &myWriteStream);
 	
-    inputStream     = (__bridge NSInputStream *)    myReadStream;
-    outputStream    = (__bridge NSOutputStream *)   myWriteStream;
+  inputStream     = (__bridge NSInputStream *)    myReadStream;
+  outputStream    = (__bridge NSOutputStream *)   myWriteStream;
     
-    [inputStream  setDelegate:self];
-    [outputStream setDelegate:self];
+  [inputStream  setDelegate:self];
+  [outputStream setDelegate:self];
     
-    [inputStream  scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+  [inputStream  scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+  [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
-    [inputStream  open];
-    [outputStream open];
+  [inputStream  open];
+  [outputStream open];
     
 }
 
@@ -56,7 +60,12 @@
             switch (loggedIn) {
                 case NO: {
                     NSLog(@"sending login...");
-                    [self assemblePacketOfType:'a', @"ios6", @"ios6", @"wombats", @"login", nil];
+                    [self assemblePacketOfType:'a', 
+                     [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
+                     [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
+                     [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"],
+                     @"login", 
+                     nil];
                     [self sendPacket];
 
                     break;
