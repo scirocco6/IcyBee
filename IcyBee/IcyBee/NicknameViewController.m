@@ -39,9 +39,8 @@
 -(IBAction) joinButtonPressed {
   [scrollView setFrame:CGRectMake(0, 0, 0, 0)];
 
-  NSUserDefaults  *defaults       = [NSUserDefaults standardUserDefaults]; 
-  [defaults setObject:[Nickname text] forKey:@"nick_preference"];
-  [defaults synchronize];
+  [[NSUserDefaults standardUserDefaults] setObject:[Nickname text] forKey:@"nick_preference"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
   
 	[self dismissViewControllerAnimated:YES completion:NULL];
 }
