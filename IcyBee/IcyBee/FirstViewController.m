@@ -48,7 +48,6 @@
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  [[NSUserDefaults standardUserDefaults] synchronize];
   if (![[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]) {
     if (!myNicknameViewController)
       myNicknameViewController = [[NicknameViewController alloc] init];
