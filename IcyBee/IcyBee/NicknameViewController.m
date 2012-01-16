@@ -11,13 +11,6 @@
 
 @implementation NicknameViewController
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
@@ -25,36 +18,57 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 -(IBAction) joinButtonPressed {
-  [scrollView setFrame:CGRectMake(0, 0, 0, 0)];
-
-  [[NSUserDefaults standardUserDefaults] setObject:[Nickname text] forKey:@"nick_preference"];
-  [[NSUserDefaults standardUserDefaults] synchronize];
+  BOOL errors = NO;
   
-	[self dismissViewControllerAnimated:YES completion:NULL];
+//  [scrollView setFrame:CGRectMake(0, 0, 0, 0)];
+  
+  if ([Nickname text].length == 0) {
+    [NicknameLabel setHidden:NO];
+    errors = YES;
+  }
+
+  if ([Password text].length == 0) {
+    [PasswordLabel setHidden:NO];
+    errors = YES;
+  }
+  
+  if ([ConfirmPassword text].length == 0) {
+    [ConfirmPasswordLabel setHidden:NO];
+    errors = YES;
+  }
+  
+  if (![[ConfirmPassword text] isEqualToString:[Password text]]) {
+    [PasswordLabel setHidden:NO];
+    [ConfirmPasswordLabel setHidden:NO];
+    errors = YES;
+  }
+  
+  if(!errors) {
+    [[NSUserDefaults standardUserDefaults] setObject:[Nickname text] forKey:@"nick_preference"];
+    [[NSUserDefaults standardUserDefaults] setObject:[Password text] forKey:@"pass_preference"];
+
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  
+    [self dismissViewControllerAnimated:YES completion:NULL];
+  }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
   switch (textField.tag) {
     case 0:
       [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+      [NicknameLabel setHidden:YES];
       break;
     case 1:
       [scrollView setContentOffset:CGPointMake(0, 150) animated:YES];
+      [PasswordLabel setHidden:YES];
+      [ConfirmPasswordLabel setHidden:YES];
       break;
     case 2:
       [scrollView setContentOffset:CGPointMake(0, 200) animated:YES];
+      [PasswordLabel setHidden:YES];
+      [ConfirmPasswordLabel setHidden:YES];
       break;
   }
   return YES;
@@ -80,5 +94,15 @@
   return YES;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+  // Return YES for supported orientations
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)viewDidUnload {
+  [super viewDidUnload];
+  // Release any retained subviews of the main view.
+  // e.g. self.myOutlet = nil;
+}
 
 @end

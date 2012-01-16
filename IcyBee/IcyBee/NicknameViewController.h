@@ -12,6 +12,9 @@
   IBOutlet UITextField		*Nickname;
   IBOutlet UITextField		*Password;
   IBOutlet UITextField		*ConfirmPassword;
+  IBOutlet UILabel        *NicknameLabel;
+  IBOutlet UILabel        *PasswordLabel;
+  IBOutlet UILabel        *ConfirmPasswordLabel;
   IBOutlet UIScrollView   *scrollView;  
 }
 -(IBAction) joinButtonPressed;
