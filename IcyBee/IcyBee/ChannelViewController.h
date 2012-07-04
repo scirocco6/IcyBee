@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelViewController : UIViewController  {
+@interface ChannelViewController : UITableViewController  {
+  NSMutableArray *messageArray;
 }
 
+@property (nonatomic, retain) NSMutableArray *messageArray;   
 
+- (void) fetchRecords;  
 @end

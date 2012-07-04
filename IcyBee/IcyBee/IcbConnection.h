@@ -10,6 +10,7 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <CFNetwork/CFHost.h>
 #import <CFNetwork/CFSocketStream.h>
+#import "ChatMessage.h"
 
 @interface IcbConnection : NSObject <NSStreamDelegate> {
 	CFReadStreamRef         myReadStream;
