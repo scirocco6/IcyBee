@@ -130,68 +130,60 @@
 }
 
 -(void) handlePacket {
-  switch (loggedIn) {
-    case NO: {
-      if (*readBuffer == 'a') {
-        loggedIn = YES;
-      }
-      else if (*readBuffer == 'e') {
+  if (!loggedIn) {
+    if (*readBuffer == 'a') {
+      loggedIn = YES;
+    }
+    else if (*readBuffer == 'e') {
                 //
                 // TODO: code to display login failure goes here
                 //
-      }
-      break;
     }
+    return;
+  }
         
-    case YES: {
-      // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
-      NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
+  // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
+  NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
 
-      switch (*readBuffer) {                    
-        case 'b': { // an open message to the channel I am in
-          NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
-          break;
-        }
-                    
-        case 'c': { // a personal message from another user to me
-          break;
-        }
-                    
-        case 'd': { // a status message
-          break;
-        }
-                    
-        case 'e': { // an error message
-          break;
-        }
-                    
-        case 'f': { // an important message
-          break;
-        }
-                    
-        case 'g': { // exit
-          break;
-        }
-                    
-        case 'i': { // command output
-          //ico
-          //iec
-          //iwl item in a who listing
-          break;
-        }
-                    
-        case 'k': { //beep
-          break;
-        }
-                
-        case 'n': // a nop packet
-          break;
-
-        default:
-          break;
-      }
+  switch (*readBuffer) {                    
+    case 'b': { // an open message to the channel I am in
+      NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
       break;
     }
+                    
+    case 'c': { // a personal message from another user to me
+      break;
+    }
+                    
+    case 'd': { // a status message
+      break;
+    }
+                    
+    case 'e': { // an error message
+      break;
+    }
+                    
+    case 'f': { // an important message
+      break;
+    }
+                    
+    case 'g': { // exit
+      break;
+    }
+                    
+    case 'i': { // command output
+      //ico
+      //iec
+      //iwl item in a who listing
+      break;
+    }
+                    
+    case 'k': { //beep
+      break;
+    }
+                
+    case 'n': // a nop packet
+      break;
 
     default:
       break;
