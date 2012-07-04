@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "ChannelViewController.h"
 #import "IcbConnection.h"
 
@@ -15,6 +16,20 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void) updateView {
+  [self fetchRecords];  
+  [[self tableView] reloadData];
+  
+  // scroll to bottom
+  //
+  //TODO do not scroll to bottom if the user has scrolled us elsewhere
+  //
+  int lastRowNumber = [[self tableView] numberOfRowsInSection:0] - 1;
+
+  NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+  [[self tableView] scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 - (void)fetchRecords {   
@@ -56,8 +71,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self fetchRecords];  
-  [[self tableView] reloadData];
+  [self updateView];
+  [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates 
   [super viewWillAppear:animated];
 }
 

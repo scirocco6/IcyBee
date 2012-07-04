@@ -9,7 +9,7 @@
 #import "IcbConnection.h"
 
 @implementation IcbConnection
-@synthesize managedObjectContext;   
+@synthesize managedObjectContext, front;   
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
@@ -143,7 +143,7 @@
   }
         
   // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
-  NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
+  NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
 
 
      
@@ -157,7 +157,6 @@
       [event setSender:[parameters objectAtIndex:0]];
       [event setText:[parameters objectAtIndex:1]];
       
-      NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
 
       NSError *error;  
       
@@ -170,6 +169,10 @@
         [alert show];        
       }  
       
+      [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+      
+      NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
+
       break;
     }
                     

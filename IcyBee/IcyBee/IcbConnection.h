@@ -23,9 +23,11 @@
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
+  UIViewController        *front;
 }
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;  
+@property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
+@property (nonatomic, retain) UIViewController        *front;
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;

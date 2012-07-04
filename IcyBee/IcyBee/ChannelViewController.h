@@ -14,5 +14,6 @@
 
 @property (nonatomic, retain) NSMutableArray *messageArray;   
 
+- (void) updateView;
 - (void) fetchRecords;  
 @end

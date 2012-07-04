@@ -21,9 +21,17 @@
 
 #pragma mark - View lifecycle
 
+/*
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+*/
+
 - (void) viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-    
+  
   if (![[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]) {
     if (!myNicknameViewController)
       myNicknameViewController = [[NicknameViewController alloc] init];
