@@ -23,7 +23,6 @@
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
-  NSArray                 *parameters;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;  

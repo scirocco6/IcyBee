@@ -123,79 +123,79 @@
 }
 
 -(void) sendPacket {
-    char icbLength = strlen((char *) writeBuffer) + 1;
+  char icbLength = strlen((char *) writeBuffer) + 1;
     
-    [outputStream write:(const uint8_t *) &icbLength maxLength:(unsigned int) 1];
-    [outputStream write:writeBuffer maxLength:strlen((char *) writeBuffer) + 1];
+  [outputStream write:(const uint8_t *) &icbLength maxLength:(unsigned int) 1];
+  [outputStream write:writeBuffer maxLength:strlen((char *) writeBuffer) + 1];
 }
 
 -(void) handlePacket {
-    switch (loggedIn) {
-        case NO: {
-            if (*readBuffer == 'a') {
-                loggedIn = YES;
-            }
-            else if (*readBuffer == 'e') {
+  switch (loggedIn) {
+    case NO: {
+      if (*readBuffer == 'a') {
+        loggedIn = YES;
+      }
+      else if (*readBuffer == 'e') {
                 //
                 // TODO: code to display login failure goes here
                 //
-            }
-            break;
-        }
-        
-        case YES: {
-            NSString *packet = [[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding];
-            
-            parameters = [packet componentsSeparatedByString:@"\001"];
-
-            switch (*readBuffer) {                    
-                case 'b': { // an open message to the channel I am in
-                    NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
-                    break;
-                }
-                    
-                case 'c': { // a personal message from another user to me
-                    break;
-                }
-                    
-                case 'd': { // a status message
-                    break;
-                }
-                    
-                case 'e': { // an error message
-                    break;
-                }
-                    
-                case 'f': { // an important message
-                    break;
-                }
-                    
-                case 'g': { // exit
-                    break;
-                }
-                    
-                case 'i': { // command output
-                    //ico
-                    //iec
-                    //iwl item in a who listing
-                    break;
-                }
-                    
-                case 'k': { //beep
-                    break;
-                }
-                
-                case 'n': // a nop packet
-                    break;
-
-                default:
-                    break;
-            }
-            break;
-        }
-        default:
-            break;
+      }
+      break;
     }
+        
+    case YES: {
+      // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
+      NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
+
+      switch (*readBuffer) {                    
+        case 'b': { // an open message to the channel I am in
+          NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
+          break;
+        }
+                    
+        case 'c': { // a personal message from another user to me
+          break;
+        }
+                    
+        case 'd': { // a status message
+          break;
+        }
+                    
+        case 'e': { // an error message
+          break;
+        }
+                    
+        case 'f': { // an important message
+          break;
+        }
+                    
+        case 'g': { // exit
+          break;
+        }
+                    
+        case 'i': { // command output
+          //ico
+          //iec
+          //iwl item in a who listing
+          break;
+        }
+                    
+        case 'k': { //beep
+          break;
+        }
+                
+        case 'n': // a nop packet
+          break;
+
+        default:
+          break;
+      }
+      break;
+    }
+
+    default:
+      break;
+  }
 }
 
 @end
