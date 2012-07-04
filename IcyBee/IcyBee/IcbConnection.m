@@ -174,6 +174,12 @@
     }
                     
     case 'e': { // an error message
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
+                                                      message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
+                                                     delegate:nil 
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];  
       break;
     }
                     
