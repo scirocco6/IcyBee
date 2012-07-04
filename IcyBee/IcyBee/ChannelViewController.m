@@ -26,7 +26,7 @@
   [request setEntity:entity];   
   
   // Define how we will sort the records  
-  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:NO];  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:YES];  
   NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];  
   [request setSortDescriptors:sortDescriptors];  
   
@@ -47,8 +47,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  [self fetchRecords];  
-
 }
 
 - (void)viewDidUnload {
@@ -58,6 +56,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  [self fetchRecords];  
+  [[self tableView] reloadData];
   [super viewWillAppear:animated];
 }
 

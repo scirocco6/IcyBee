@@ -145,9 +145,31 @@
   // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
   NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:length encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
 
+
+     
   switch (*readBuffer) {                    
     case 'b': { // an open message to the channel I am in
+      // add the message to the persistent store
+      ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
+      [event setTimeStamp: [NSDate date]];   
+      [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
+      
+      [event setSender:[parameters objectAtIndex:0]];
+      [event setText:[parameters objectAtIndex:1]];
+      
       NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
+
+      NSError *error;  
+      
+      if(![managedObjectContext save:&error]){  
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Process Message" 
+                                                        message:@"Unable to process messages at this time.  Please re-start the app." 
+                                                       delegate:nil 
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];        
+      }  
+      
       break;
     }
                     

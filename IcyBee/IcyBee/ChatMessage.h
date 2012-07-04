@@ -13,7 +13,7 @@
 @interface ChatMessage : NSManagedObject
 
 @property (nonatomic, retain) NSString  *type;
-@property (nonatomic, retain) NSDate    *time;
+@property (nonatomic, retain) NSDate    *timeStamp;
 @property (nonatomic, retain) NSString  *sender;
 @property (nonatomic, retain) NSString  *text;
 

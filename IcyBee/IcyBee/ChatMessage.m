@@ -12,7 +12,7 @@
 @implementation ChatMessage
 
 @dynamic type;
-@dynamic time;
+@dynamic timeStamp;
 @dynamic sender;
 @dynamic text;
 
