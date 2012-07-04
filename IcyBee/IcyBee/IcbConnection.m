@@ -135,9 +135,12 @@
       loggedIn = YES;
     }
     else if (*readBuffer == 'e') {
-                //
-                // TODO: code to display login failure goes here
-                //
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
+                                                      message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
+                                                     delegate:nil 
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];  
     }
     return;
   }
@@ -145,38 +148,24 @@
   // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
   NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
 
-
+  // add the message to the persistent store
+  ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
+  [event setTimeStamp: [NSDate date]];   
+  [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
      
   switch (*readBuffer) {                    
     case 'b': { // an open message to the channel I am in
-      // add the message to the persistent store
-      ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
-      [event setTimeStamp: [NSDate date]];   
-      [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
-      
+
       [event setSender:[parameters objectAtIndex:0]];
       [event setText:[parameters objectAtIndex:1]];
       
-
-      NSError *error;  
-      
-      if(![managedObjectContext save:&error]){  
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Process Message" 
-                                                        message:@"Unable to process messages at this time.  Please re-start the app." 
-                                                       delegate:nil 
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];        
-      }  
-      
-      [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
-      
-      NSLog(@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]);
-
       break;
     }
                     
     case 'c': { // a personal message from another user to me
+      [event setSender:[parameters objectAtIndex:0]];
+      [event setText:[parameters objectAtIndex:1]];
+      
       break;
     }
                     
@@ -204,6 +193,9 @@
     }
                     
     case 'k': { //beep
+      [event setSender:[parameters objectAtIndex:0]];
+      [event setText:@"Beep!"];
+      
       break;
     }
                 
@@ -213,6 +205,19 @@
     default:
       break;
   }
+  
+  NSError *error;  
+  
+  if(![managedObjectContext save:&error]){  
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Process Message" 
+                                                    message:@"Unable to process messages at this time.  Please re-start the app." 
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];        
+  }  
+  
+  [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
 }
 
 @end
