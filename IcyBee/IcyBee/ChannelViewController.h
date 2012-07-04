@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelViewController : UIViewController
+@interface ChannelViewController : UIViewController  {
+}
+
 
 @end

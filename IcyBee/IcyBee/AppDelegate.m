@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "IcbConnection.h"
 
 @implementation AppDelegate
 
@@ -17,7 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // Override point for customization after application launch.
   [self setupDefaults];
-    
+  
+  [[IcbConnection sharedInstance] setManagedObjectContext:self.managedObjectContext];
   return YES;
 }
 

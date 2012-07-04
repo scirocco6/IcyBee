@@ -12,17 +12,20 @@
 #import <CFNetwork/CFSocketStream.h>
 
 @interface IcbConnection : NSObject <NSStreamDelegate> {
-	CFReadStreamRef     myReadStream;
-	CFWriteStreamRef	myWriteStream;
-    NSInputStream       *inputStream;
-    NSOutputStream      *outputStream;
-    Boolean             loggedIn;
-    Boolean             snarfing;
-    int                 length, count;
-    uint8_t             readBuffer[256];
-    uint8_t             writeBuffer[256];
-    NSArray             *parameters;
+	CFReadStreamRef         myReadStream;
+	CFWriteStreamRef        myWriteStream;
+  NSInputStream           *inputStream;
+  NSOutputStream          *outputStream;
+  NSManagedObjectContext  *managedObjectContext;
+  Boolean                 loggedIn;
+  Boolean                 snarfing;
+  int                     length, count;
+  uint8_t                 readBuffer[256];
+  uint8_t                 writeBuffer[256];
+  NSArray                 *parameters;
 }
+
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;  
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;

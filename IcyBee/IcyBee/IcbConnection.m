@@ -9,6 +9,7 @@
 #import "IcbConnection.h"
 
 @implementation IcbConnection
+@synthesize managedObjectContext;   
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
