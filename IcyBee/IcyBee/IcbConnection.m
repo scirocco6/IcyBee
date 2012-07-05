@@ -177,11 +177,19 @@
                                                      delegate:nil 
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
-      [alert show];  
+      [alert show];
+      
       break;
     }
                     
     case 'g': { // exit
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Disconnected"
+                                                      message:@"The server has disconnected"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+      [alert show];
+      
       break;
     }
                     
