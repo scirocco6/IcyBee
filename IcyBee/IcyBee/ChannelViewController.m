@@ -27,19 +27,20 @@
   //TODO do not scroll to bottom if the user has scrolled us elsewhere
   //
   int lastRowNumber = [[self tableView] numberOfRowsInSection:0] - 1;
-
-  NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-  [[self tableView] scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+  if(lastRowNumber > 0) {
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    [[self tableView] scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+  }
 }
 
 - (void)fetchRecords {   
-  // Define our table/entity to use  
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];   
+  NSEntityDescription *entity     = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];   
+  NSFetchRequest      *request    = [[NSFetchRequest alloc] init];  
+  NSPredicate         *predicate  = [NSPredicate predicateWithFormat: @"type IN %@", [NSArray arrayWithObjects:@"b", @"c", @"d", @"f", @"k", nil]];
   
-  // Setup the fetch request  
-  NSFetchRequest *request = [[NSFetchRequest alloc] init];  
-  [request setEntity:entity];   
-  
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+
   // Define how we will sort the records  
   NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:YES];  
   NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];  

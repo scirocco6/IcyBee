@@ -154,25 +154,23 @@
   [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
      
   switch (*readBuffer) {                    
-    case 'b': { // an open message to the channel I am in
-
+    case 'b': // an open message to the channel I am in
+    case 'c': // a personal message from another user to me
+    case 'd': // a status message
+    case 'f': { // an important message
       [event setSender:[parameters objectAtIndex:0]];
       [event setText:[parameters objectAtIndex:1]];
       
       break;
     }
-                    
-    case 'c': { // a personal message from another user to me
+    
+    case 'k': { //beep
       [event setSender:[parameters objectAtIndex:0]];
-      [event setText:[parameters objectAtIndex:1]];
+      [event setText:@"Beep!"];
       
       break;
     }
-                    
-    case 'd': { // a status message
-      break;
-    }
-                    
+      
     case 'e': { // an error message
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
                                                       message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
@@ -180,10 +178,6 @@
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
       [alert show];  
-      break;
-    }
-                    
-    case 'f': { // an important message
       break;
     }
                     
@@ -198,13 +192,6 @@
       break;
     }
                     
-    case 'k': { //beep
-      [event setSender:[parameters objectAtIndex:0]];
-      [event setText:@"Beep!"];
-      
-      break;
-    }
-                
     case 'n': // a nop packet
       break;
 
