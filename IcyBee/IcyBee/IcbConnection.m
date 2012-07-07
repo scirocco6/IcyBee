@@ -53,55 +53,66 @@
 }
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {    
-    switch(eventCode) {
-        case NSStreamEventHasSpaceAvailable: {
-            // we only want to be in the run loop when we are interested in sending
-            [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+  switch(eventCode) {
+    case NSStreamEventErrorOccurred: {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Networking Error"
+                                                      message:@"Unable to connect to server.  Please try again later"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+    }
+    case NSStreamEventHasSpaceAvailable: { // we only want to be in the run loop when we are interested in sending
+      [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
              
-            switch (loggedIn) {
-                case NO: {
-                    NSLog(@"sending login...");
-                    [self assemblePacketOfType:'a', 
-                     [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
-                     [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
-                     [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"],
-                     @"login", 
-                     nil];
-                    [self sendPacket];
+      switch (loggedIn) {
+        case NO: {
+          NSLog(@"sending login...");
+          [self assemblePacketOfType:'a', 
+           [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
+           [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
+           [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"],
+           @"login", 
+           nil];
+          [self sendPacket];
 
-                    break;
-                }
-                case YES: 
-                    break;
-            }
-            break;
-        } // case
-            
-        case NSStreamEventHasBytesAvailable: {
-            switch (snarfing) {
-                case NO: {
-                    if ([(NSInputStream *)stream read:readBuffer maxLength:1]) {
-                        snarfing = YES; // set snarfing to YES until we have received all of the packet
-                        length = *readBuffer; // the first character of a packet is always the length
-                        count = 0;
-                    }
-                }
-                case YES:{
-                    // ask for length packets minus those we already have
-                    // read this into the readBuffer offset by how many bytes we have already read
-                    int len = [(NSInputStream *)stream read:readBuffer + count maxLength:length - count]; 
-                    if (len) {
-                        count += len;
-                        if(count == length) {
-                            snarfing = NO; // now that we have the entire packet we can process it
-                            [self handlePacket];
-                        }
-                    }
-                    break;
-                }
-            }
+          break;
         }
-    } // switch
+        case YES: 
+          break;
+      }
+      break;
+    } // case
+            
+    case NSStreamEventHasBytesAvailable: {
+      switch (snarfing) {
+        case NO: {
+          if ([(NSInputStream *)stream read:readBuffer maxLength:1]) {
+            snarfing = YES; // set snarfing to YES until we have received all of the packet
+            length = *readBuffer; // the first character of a packet is always the length
+            count = 0;
+          }
+        }
+        case YES:{
+          // ask for length packets minus those we already have
+          // read this into the readBuffer offset by how many bytes we have already read
+          int len = [(NSInputStream *)stream read:readBuffer + count maxLength:length - count]; 
+          if (len) {
+            count += len;
+            if(count == length) {
+              snarfing = NO; // now that we have the entire packet we can process it
+              [self handlePacket];
+            }
+          }
+          break;
+        }
+      }
+    }
+  } // switch
+}
+
+- (void) globalWhoList {
+  [self assemblePacketOfType:'h', @"w", nil];
+  [self sendPacket];
 }
 
 - (void) assemblePacketOfType:(char) packetType, ... {
@@ -133,6 +144,8 @@
   if (!loggedIn) {
     if (*readBuffer == 'a') {
       loggedIn = YES;
+      NSLog(@"Login successful");
+      [self globalWhoList];
     }
     else if (*readBuffer == 'e') {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
@@ -194,9 +207,20 @@
     }
                     
     case 'i': { // command output
+      switch (*(readBuffer + 1)) {
+        case 'c': {
+          [event setSender:@"Server"];
+          [event setText:[parameters objectAtIndex:0]];
+          break;
+        }
+        default:
+          break;
+      }
       //ico
       //iec
       //iwl item in a who listing
+      NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
+
       break;
     }
                     
