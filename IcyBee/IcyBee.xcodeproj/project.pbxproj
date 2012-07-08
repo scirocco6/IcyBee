@@ -37,6 +37,8 @@
 		4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20914A9990800FEB062 /* ChannelsViewController.m */; };
 		4F42D20C14A9A00300FEB062 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D20B14A9A00300FEB062 /* Settings.bundle */; };
 		4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */; };
+		4F6B967E15AA24000044EC6E /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B967D15AA24000044EC6E /* Channel.m */; };
+		4F6B968315AA2CCD0044EC6E /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B968215AA2CCD0044EC6E /* Group.m */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,10 @@
 		4F42D20B14A9A00300FEB062 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbConnection.h; sourceTree = "<group>"; };
 		4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbConnection.m; sourceTree = "<group>"; };
+		4F6B967C15AA24000044EC6E /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
+		4F6B967D15AA24000044EC6E /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
+		4F6B968115AA2CCD0044EC6E /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		4F6B968215AA2CCD0044EC6E /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -168,11 +174,8 @@
 				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
 				4F08E56514C2B63300673ADF /* NicknameViewController.h */,
 				4F08E56614C2B63300673ADF /* NicknameViewController.m */,
-				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
-				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
-				4F06546B14C3FC490067C8A2 /* ChatModel.xcdatamodeld */,
-				4F06546F14C3FFDD0067C8A2 /* ChatMessage.h */,
-				4F06547014C3FFDD0067C8A2 /* ChatMessage.m */,
+				4F6B968015AA2C350044EC6E /* Model */,
+				4F6B967F15AA27540044EC6E /* Group Chat View */,
 				4F42D1D814A989BD00FEB062 /* first.png */,
 				4F42D1DA14A989BD00FEB062 /* first@2x.png */,
 				4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */,
@@ -183,8 +186,7 @@
 				4F42D20314A9964A00FEB062 /* UrlViewController.m */,
 				4F42D20514A9982000FEB062 /* PeopleViewController.h */,
 				4F42D20614A9982000FEB062 /* PeopleViewController.m */,
-				4F42D20814A9990800FEB062 /* ChannelsViewController.h */,
-				4F42D20914A9990800FEB062 /* ChannelsViewController.m */,
+				4F6B967B15AA23C90044EC6E /* Groups View */,
 				4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */,
 				4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */,
 				4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */,
@@ -223,6 +225,38 @@
 				4F42D1F214A989BD00FEB062 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F6B967B15AA23C90044EC6E /* Groups View */ = {
+			isa = PBXGroup;
+			children = (
+				4F6B967C15AA24000044EC6E /* Channel.h */,
+				4F6B967D15AA24000044EC6E /* Channel.m */,
+				4F42D20814A9990800FEB062 /* ChannelsViewController.h */,
+				4F42D20914A9990800FEB062 /* ChannelsViewController.m */,
+			);
+			name = "Groups View";
+			sourceTree = "<group>";
+		};
+		4F6B967F15AA27540044EC6E /* Group Chat View */ = {
+			isa = PBXGroup;
+			children = (
+				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
+				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
+			);
+			name = "Group Chat View";
+			sourceTree = "<group>";
+		};
+		4F6B968015AA2C350044EC6E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4F06546B14C3FC490067C8A2 /* ChatModel.xcdatamodeld */,
+				4F06547014C3FFDD0067C8A2 /* ChatMessage.m */,
+				4F06546F14C3FFDD0067C8A2 /* ChatMessage.h */,
+				4F6B968115AA2CCD0044EC6E /* Group.h */,
+				4F6B968215AA2CCD0044EC6E /* Group.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,6 +385,8 @@
 				4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */,
 				4F06546D14C3FC490067C8A2 /* ChatModel.xcdatamodeld in Sources */,
 				4F06547114C3FFDD0067C8A2 /* ChatMessage.m in Sources */,
+				4F6B967E15AA24000044EC6E /* Channel.m in Sources */,
+				4F6B968315AA2CCD0044EC6E /* Group.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

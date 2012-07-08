@@ -10,9 +10,9 @@
 #import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate> {
-  NSManagedObjectModel *managedObjectModel;  
-  NSManagedObjectContext *managedObjectContext;      
-  NSPersistentStoreCoordinator *persistentStoreCoordinator; 
+  NSManagedObjectModel          *managedObjectModel;  
+  NSManagedObjectContext        *managedObjectContext;      
+  NSPersistentStoreCoordinator  *persistentStoreCoordinator; 
 }
 
 @property (strong, nonatomic) UIWindow *window;

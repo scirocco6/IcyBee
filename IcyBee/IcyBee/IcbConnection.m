@@ -118,6 +118,14 @@
 }
 
 - (void) globalWhoList {
+  // delete all entries in the group table
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  [fetch setEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]];
+  NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
+  for (id basket in result)
+    [managedObjectContext deleteObject:basket];
+
+  // send the icb global who command
   [self assemblePacketOfType:'h', @"w", nil];
   [self sendPacket];
 }
@@ -137,7 +145,6 @@
     }
     
     va_end(args);
-    writeBuffer[strlen((char *) writeBuffer)+1] = 0;
 }
 
 -(void) sendPacket {
@@ -152,7 +159,6 @@
     if (*readBuffer == 'a') {
       loggedIn = YES;
       NSLog(@"Login successful");
-      [self globalWhoList];
     }
     else if (*readBuffer == 'e') {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
@@ -167,27 +173,18 @@
         
   // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
   NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
-
-  // add the message to the persistent store
-  ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
-  [event setTimeStamp: [NSDate date]];   
-  [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
      
   switch (*readBuffer) {                    
     case 'b': // an open message to the channel I am in
     case 'c': // a personal message from another user to me
     case 'd': // a status message
     case 'f': { // an important message
-      [event setSender:[parameters objectAtIndex:0]];
-      [event setText:[parameters objectAtIndex:1]];
-      
+      [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
       break;
     }
     
     case 'k': { //beep
-      [event setSender:[parameters objectAtIndex:0]];
-      [event setText:@"Beep!"];
-      
+      [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:@"Beep!"];
       break;
     }
       
@@ -198,7 +195,6 @@
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
       [alert show];
-      
       break;
     }
                     
@@ -209,16 +205,22 @@
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
       [alert show];
-      
       break;
     }
                     
     case 'i': { // command output
       switch (*(readBuffer + 1)) {
         case 'c': {
-          [event setSender:@"Server"];
-          [event setText:[parameters objectAtIndex:0]];
-          break;
+          switch (*(readBuffer + 2)) {
+            case 'o': {
+              
+            }
+              
+            default: {
+              [self addToChatFromSender:@"Server" type:*readBuffer text:[parameters objectAtIndex:0]];
+              break;
+            }
+          }
         }
         default:
           break;
@@ -237,7 +239,34 @@
     default:
       break;
   }
+}
+
+- (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
+  // add the message to the persistent store
+  ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
+  [event setTimeStamp: [NSDate date]];
+  [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
+  //  [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
+
+  [event setSender:sender];   
+  [event setText:text];   
+
   
+  [self saveManagedObjectContext];
+}
+
+- (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic {
+  // add the message to the persistent store
+  Group *event = (Group *)[NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:managedObjectContext];  
+  [event setName: name];   
+  [event setName: moderator];   
+  [event setName: topic];   
+
+  [self saveManagedObjectContext];
+}
+
+
+- (void) saveManagedObjectContext {
   NSError *error;  
   
   if(![managedObjectContext save:&error]){  
@@ -247,8 +276,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];        
-  }  
-  
+  }
   [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
 }
 
