@@ -60,6 +60,7 @@
                                                      delegate:nil
                                             cancelButtonTitle:@"OK"
                                             otherButtonTitles:nil];
+      [alert show];  
     }
     case NSStreamEventHasSpaceAvailable: { // we only want to be in the run loop when we are interested in sending
       [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -107,6 +108,12 @@
         }
       }
     }
+      
+    case NSStreamEventNone:
+    case NSStreamEventOpenCompleted:
+    case NSStreamEventEndEncountered:
+    default:
+      break;
   } // switch
 }
 
