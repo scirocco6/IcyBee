@@ -19,8 +19,7 @@
   NSInputStream           *inputStream;
   NSOutputStream          *outputStream;
   NSManagedObjectContext  *managedObjectContext;
-  Boolean                 loggedIn;
-  Boolean                 snarfing;
+  Boolean                 loggedIn, snarfing, whoing;
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];

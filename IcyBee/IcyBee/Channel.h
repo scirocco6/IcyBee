@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Channel : NSObject
-@property (nonatomic, copy) NSString *groupName;
-@property (nonatomic, copy) NSString *groupModerator;
-@property (nonatomic, copy) NSString *groupTopic;
+@interface Channel : UITableViewCell 
+  @property (nonatomic, strong) IBOutlet UILabel *groupName;
+  @property (nonatomic, strong) IBOutlet UILabel *groupModerator;
+  @property (nonatomic, strong) IBOutlet UILabel *groupTopic;
 
 @end

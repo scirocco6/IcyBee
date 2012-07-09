@@ -21,19 +21,23 @@
 }
 
 - (id) init {
-    loggedIn = NO;
-    snarfing = NO;
+  loggedIn  = NO;
+  snarfing  = NO;
+  whoing    = NO;
     
-    return self;
+  return self;
 }
 
 - (void) connect {
-  loggedIn = NO;
-  snarfing = NO;
+  loggedIn  = NO; // this feel repetitive
+  snarfing  = NO;
+  whoing    = NO;
   
-  NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
-  NSLog(@"port   setting is %i", [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue]);
-  NSLog(@"Nickname is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]);
+  #ifdef DEBUG
+    NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
+    NSLog(@"port   setting is %i", [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue]);
+    NSLog(@"Nickname is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]);
+  #endif
   
   CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (__bridge_retained CFStringRef) [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
 	CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, host, [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue], &myReadStream, &myWriteStream);
@@ -67,7 +71,9 @@
              
       switch (loggedIn) {
         case NO: {
-          NSLog(@"sending login...");
+          #ifdef DEBUG
+            NSLog(@"sending login...");
+          #endif
           [self assemblePacketOfType:'a', 
            [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
            [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
@@ -126,6 +132,7 @@
     [managedObjectContext deleteObject:basket];
 
   // send the icb global who command
+  whoing = YES;
   [self assemblePacketOfType:'h', @"w", nil];
   [self sendPacket];
 }
@@ -158,7 +165,9 @@
   if (!loggedIn) {
     if (*readBuffer == 'a') {
       loggedIn = YES;
-      NSLog(@"Login successful");
+      #ifdef DEBUG
+        NSLog(@"Login successful");
+      #endif
     }
     else if (*readBuffer == 'e') {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
@@ -213,7 +222,35 @@
         case 'c': {
           switch (*(readBuffer + 2)) {
             case 'o': {
-              
+              // let's parse out the group responce.  icb is a messed up little protocol and it pre-formats for printing on a terminal group lines :(
+              NSString *reply = [parameters objectAtIndex:1];
+              if (whoing &&
+                  ! ([reply length] == 1) &&
+                  ! (reply == @"-----------------------------------------------------------------------------")) {
+                if ([reply hasPrefix:@"Total:"])
+                  whoing = NO;
+                else if ([reply hasPrefix:@"Group:"]) {
+                  NSString *name;
+                  NSString *moderator;
+                  NSString *topic;
+                  
+                  NSScanner *whoScanner = [NSScanner scannerWithString:reply];
+                                      
+                  [whoScanner scanUpToString:@"Group:" intoString:nil];
+                  [whoScanner scanUpToString:@" " intoString:nil];
+                  [whoScanner scanUpToString:@" " intoString:&name];
+                    
+                  [whoScanner scanUpToString:@"Mod:" intoString:nil];
+                  [whoScanner scanUpToString:@" " intoString:nil];
+                  [whoScanner scanUpToString:@" " intoString:&moderator];
+                    
+                  [whoScanner scanUpToString:@"Topic:" intoString:nil];
+                  [whoScanner scanUpToString:@" " intoString:nil];                    
+                  [whoScanner scanUpToString:@"\0" intoString:&topic]; // scan till the end of the string since topics can have spaces in them
+                    
+                  [self addGroup:name moderator:moderator topic:topic];                  
+                }
+              }
             }
               
             default: {
@@ -225,11 +262,10 @@
         default:
           break;
       }
-      //ico
-      //iec
-      //iwl item in a who listing
-      NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
-
+      
+      #ifdef DEBUG
+      //  NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
+      #endif
       break;
     }
                     
@@ -258,9 +294,9 @@
 - (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic {
   // add the message to the persistent store
   Group *event = (Group *)[NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:managedObjectContext];  
-  [event setName: name];   
-  [event setName: moderator];   
-  [event setName: topic];   
+  [event setName:       name];   
+  [event setModerator:  moderator];   
+  [event setTopic:      topic];   
 
   [self saveManagedObjectContext];
 }

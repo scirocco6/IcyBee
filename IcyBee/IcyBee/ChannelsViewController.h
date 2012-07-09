@@ -9,16 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-  UITableView *channelTableView;
-
   NSMutableArray *groupArray;
 }
 
-@property (nonatomic, retain) NSMutableArray *groupArray;  
-
-@property (nonatomic, retain) UITableView *channelTableView;
-
+@property (nonatomic, strong) IBOutlet  UITableView     *channelTableView;
+@property (nonatomic, retain)           NSMutableArray  *groupArray;  
 
 -(IBAction) newGroup; 
+- (void) fetchRecords;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ChannelsViewController.h"
 #import "IcbConnection.h"
+#import "Channel.h"
 
 @implementation ChannelsViewController
 @synthesize channelTableView, groupArray;
@@ -28,20 +29,34 @@
 }
 
 - (void) updateView {
-//  [[self tableView] reloadData];
-  
-  // scroll to bottom
-  //
-  //TODO do not scroll to bottom if the user has scrolled us elsewhere
-  //
-//  int lastRowNumber = [[self tableView] numberOfRowsInSection:0] - 1;
-//  if(lastRowNumber > 0) {
-//    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-//    [[self tableView] scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-//  }
-  
-  
+  [self fetchRecords];
+  [channelTableView reloadData];
 }
+
+- (void)fetchRecords {   
+  NSEntityDescription *entity     = [NSEntityDescription entityForName:@"Group" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];   
+  NSFetchRequest      *request    = [[NSFetchRequest alloc] init];  
+  
+  [request setEntity:entity];
+  
+  // Define how we will sort the records  
+  NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];  
+  NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];  
+  [request setSortDescriptors:sortDescriptors];  
+  
+  // Fetch the records and handle an error  
+  NSError *error;  
+  NSMutableArray *mutableFetchResults = [[[[IcbConnection sharedInstance] managedObjectContext] executeFetchRequest:request error:&error] mutableCopy];   
+  
+  if (!mutableFetchResults) {  
+    // Handle the error.  
+    // This is a serious error and should advise the user to restart the application  
+  }   
+  
+  // Save our fetched data to an array  
+  [self setGroupArray: mutableFetchResults];  
+}   
+
 
 -(IBAction) newGroup {
   NSLog(@"New group button pressed");
@@ -62,7 +77,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [self updateView];
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
   [[IcbConnection sharedInstance] globalWhoList];
   [super viewWillAppear:animated];
@@ -83,14 +97,13 @@
   return [groupArray count];  
 }   
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"Cell";  
+- (Channel *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  Channel *cell   = [tableView dequeueReusableCellWithIdentifier:@"group"];
+	Group   *entry  = [groupArray objectAtIndex: [indexPath row]];  
 
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];   
-  
-  if (cell == nil) {  
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];  
-  }   
+  [[cell groupName]       setText: [entry name]];
+  [[cell groupModerator]  setText: [entry moderator]];
+  [[cell groupTopic]      setText: [entry topic]];
   
   return cell;
 }
