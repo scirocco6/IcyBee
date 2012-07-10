@@ -124,10 +124,17 @@
 }
 
 - (void) globalWhoList {
+
   // delete all entries in the group table
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   [fetch setEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]];
   NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
+  for (id basket in result)
+    [managedObjectContext deleteObject:basket];
+  
+  // delete all entries in the people table
+  [fetch setEntity:[NSEntityDescription entityForName:@"People" inManagedObjectContext:managedObjectContext]];
+  result = [managedObjectContext executeFetchRequest:fetch error:nil];
   for (id basket in result)
     [managedObjectContext deleteObject:basket];
 
@@ -236,17 +243,17 @@
                   
                   NSScanner *whoScanner = [NSScanner scannerWithString:reply];
                                       
-                  [whoScanner scanUpToString:@"Group:" intoString:nil];
-                  [whoScanner scanUpToString:@" " intoString:nil];
-                  [whoScanner scanUpToString:@" " intoString:&name];
+                  [whoScanner scanUpToString:@"Group:"  intoString:nil];
+                  [whoScanner scanUpToString:@" "       intoString:nil];
+                  [whoScanner scanUpToString:@" "       intoString:&name];
                     
-                  [whoScanner scanUpToString:@"Mod:" intoString:nil];
-                  [whoScanner scanUpToString:@" " intoString:nil];
-                  [whoScanner scanUpToString:@" " intoString:&moderator];
+                  [whoScanner scanUpToString:@"Mod:"    intoString:nil];
+                  [whoScanner scanUpToString:@" "       intoString:nil];
+                  [whoScanner scanUpToString:@" "       intoString:&moderator];
                     
-                  [whoScanner scanUpToString:@"Topic:" intoString:nil];
-                  [whoScanner scanUpToString:@" " intoString:nil];                    
-                  [whoScanner scanUpToString:@"\0" intoString:&topic]; // scan till the end of the string since topics can have spaces in them
+                  [whoScanner scanUpToString:@"Topic:"  intoString:nil];
+                  [whoScanner scanUpToString:@" "       intoString:nil];                    
+                  [whoScanner scanUpToString:@"\0"      intoString:&topic]; // scan till the end of the string since topics can have spaces in them
                     
                   [self addGroup:name moderator:moderator topic:topic];                  
                 }
@@ -259,12 +266,25 @@
             }
           }
         }
+        
+        case 'w': {
+          switch (*(readBuffer + 2)) {
+            case 'l': { // technically we should check to see if we are whoing however l can never appear except when we are whoing so the check is redundant
+              NSString *accountString = [[NSString alloc] initWithFormat:@"%@@%@", [parameters objectAtIndex:6], [parameters objectAtIndex:7]];
+              [self addPerson:[parameters objectAtIndex:2]
+                         idle:[[NSNumber alloc] initWithInt: [[parameters objectAtIndex:3] intValue]]
+                       signon:[[NSNumber alloc] initWithInt: [[parameters objectAtIndex:5] intValue]]
+                      account:accountString];
+            }
+          }
+        }
+          
         default:
           break;
       }
       
       #ifdef DEBUG
-      //  NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
+        NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
       #endif
       break;
     }
@@ -278,26 +298,31 @@
 }
 
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
-  // add the message to the persistent store
   ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
   [event setTimeStamp: [NSDate date]];
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
-  //  [event setType: [[NSString alloc] initWithBytes:(char *) readBuffer length:1 encoding:NSASCIIStringEncoding]];
-
   [event setSender:sender];   
   [event setText:text];   
-
   
   [self saveManagedObjectContext];
 }
 
 - (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic {
-  // add the message to the persistent store
   Group *event = (Group *)[NSEntityDescription insertNewObjectForEntityForName:@"Group" inManagedObjectContext:managedObjectContext];  
   [event setName:       name];   
   [event setModerator:  moderator];   
   [event setTopic:      topic];   
 
+  [self saveManagedObjectContext];
+}
+
+- (void) addPerson:(NSString *) nickname idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account {
+  People *event = (People *)[NSEntityDescription insertNewObjectForEntityForName:@"People" inManagedObjectContext:managedObjectContext];  
+  [event setNickname: nickname];
+  [event setIdle:     idle];
+  [event setSignon:   signon];
+  [event setAccount:  account];
+  
   [self saveManagedObjectContext];
 }
 

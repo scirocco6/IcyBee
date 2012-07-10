@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeopleViewController : UIViewController
+@interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+  NSMutableArray *groupArray;
+}
+
+@property (nonatomic, strong) IBOutlet  UITableView     *peopleTableView;
+@property (nonatomic, retain)           NSMutableArray  *peopleArray;  
+
+- (void) fetchRecords;
 
 @end

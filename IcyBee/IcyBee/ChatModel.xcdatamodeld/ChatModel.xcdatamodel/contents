@@ -11,8 +11,15 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="topic" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="People" representedClassName="People" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idle" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="signon" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Group" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="People" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>
