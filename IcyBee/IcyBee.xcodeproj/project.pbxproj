@@ -11,6 +11,7 @@
 		4F06547114C3FFDD0067C8A2 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F06547014C3FFDD0067C8A2 /* ChatMessage.m */; };
 		4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08E56614C2B63300673ADF /* NicknameViewController.m */; };
 		4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F08E56714C2B63300673ADF /* NicknameViewController.xib */; };
+		4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E52E515AD245A00DA0629 /* PrivateMessage.m */; };
 		4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4014C2DC5D008D90E1 /* TabBarController.m */; };
 		4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4414C38CE6008D90E1 /* FirstViewController.m */; };
 		4F320BEA15ABE3E0001B7C44 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F320BE915ABE3E0001B7C44 /* People.m */; };
@@ -61,6 +62,8 @@
 		4F08E56514C2B63300673ADF /* NicknameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NicknameViewController.h; sourceTree = "<group>"; };
 		4F08E56614C2B63300673ADF /* NicknameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NicknameViewController.m; sourceTree = "<group>"; };
 		4F08E56714C2B63300673ADF /* NicknameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NicknameViewController.xib; sourceTree = "<group>"; };
+		4F0E52E415AD245A00DA0629 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
+		4F0E52E515AD245A00DA0629 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
 		4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		4F30AB4014C2DC5D008D90E1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		4F30AB4314C38CE6008D90E1 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -137,6 +140,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F0E52E115AD22BF00DA0629 /* First Time */ = {
+			isa = PBXGroup;
+			children = (
+				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
+				4F30AB4314C38CE6008D90E1 /* FirstViewController.h */,
+				4F30AB4414C38CE6008D90E1 /* FirstViewController.m */,
+				4F08E56514C2B63300673ADF /* NicknameViewController.h */,
+				4F08E56614C2B63300673ADF /* NicknameViewController.m */,
+			);
+			name = "First Time";
+			sourceTree = "<group>";
+		};
+		4F0E52E315AD23A200DA0629 /* Private View */ = {
+			isa = PBXGroup;
+			children = (
+				4F0E52E415AD245A00DA0629 /* PrivateMessage.h */,
+				4F0E52E515AD245A00DA0629 /* PrivateMessage.m */,
+				4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */,
+				4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */,
+			);
+			name = "Private View";
+			sourceTree = "<group>";
+		};
 		4F42D1B114A989BD00FEB062 = {
 			isa = PBXGroup;
 			children = (
@@ -175,17 +201,11 @@
 				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
 				4F42D1CF14A989BD00FEB062 /* AppDelegate.h */,
 				4F42D1D014A989BD00FEB062 /* AppDelegate.m */,
-				4F30AB4314C38CE6008D90E1 /* FirstViewController.h */,
-				4F30AB4414C38CE6008D90E1 /* FirstViewController.m */,
-				4F08E56514C2B63300673ADF /* NicknameViewController.h */,
-				4F08E56614C2B63300673ADF /* NicknameViewController.m */,
-				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
-				4F6B968015AA2C350044EC6E /* Model */,
-				4F6B967F15AA27540044EC6E /* Group Chat View */,
+				4F0E52E115AD22BF00DA0629 /* First Time */,
 				4F42D1D814A989BD00FEB062 /* first.png */,
 				4F42D1DA14A989BD00FEB062 /* first@2x.png */,
-				4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */,
-				4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */,
+				4F6B967F15AA27540044EC6E /* Group Chat View */,
+				4F0E52E315AD23A200DA0629 /* Private View */,
 				4F42D1DF14A989BD00FEB062 /* second.png */,
 				4F42D1E114A989BD00FEB062 /* second@2x.png */,
 				4F42D20214A9964A00FEB062 /* UrlViewController.h */,
@@ -196,6 +216,7 @@
 				4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */,
 				4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */,
 				4F30AB4014C2DC5D008D90E1 /* TabBarController.m */,
+				4F6B968015AA2C350044EC6E /* Model */,
 				4F42D20B14A9A00300FEB062 /* Settings.bundle */,
 				4F42D1C714A989BD00FEB062 /* Supporting Files */,
 			);
@@ -407,6 +428,7 @@
 				4F6B968315AA2CCD0044EC6E /* Group.m in Sources */,
 				4FE1251D15ABD50300BECE75 /* Person.m in Sources */,
 				4F320BEA15ABE3E0001B7C44 /* People.m in Sources */,
+				4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

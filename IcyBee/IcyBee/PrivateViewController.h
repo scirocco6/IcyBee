@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PrivateViewController : UIViewController
+@interface PrivateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate> {
+  NSMutableArray *privateArray;
+}
+
+@property (nonatomic, strong) IBOutlet  UITableView     *privateTableView;
+@property (nonatomic, retain)           NSMutableArray  *privateArray;  
+
+- (void) fetchRecords;
 
 @end
