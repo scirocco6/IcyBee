@@ -96,29 +96,40 @@
   int minutes  = seconds / 60;
   seconds -= minutes * 60;
   
-  NSString *idleString = [[NSString alloc] initWithString:@""];
+  NSString *idleString = [[NSString alloc] init];
 
-  if (days > 0)
-    if (days > 1) 
+  if (days > 0) {
+    if (days > 1) {
       idleString = [idleString stringByAppendingFormat:@"%i days, ", days];
-    else
+    }
+    else {
       idleString = [idleString stringByAppendingFormat:@"%i day, ", days];
-  if (hours > 0)
-    if (hours > 1) 
+    }
+  }
+  if (hours > 0) {
+    if (hours > 1) {
       idleString = [idleString stringByAppendingFormat:@"%i hours, ", hours];
-    else
+    }
+    else {
       idleString = [idleString stringByAppendingFormat:@"%i hour, ", hours];
-  if (minutes > 0)
-    if (minutes > 1) 
+    }
+  }
+  if (minutes > 0) {
+    if (minutes > 1) {
       idleString = [idleString stringByAppendingFormat:@"%i minutes, ", minutes];
-    else
+    }
+    else {
       idleString = [idleString stringByAppendingFormat:@"%i minute, ", minutes];
-  if (!days) // there's no room for, and little point in reporting, seconds if the person has been idle over 24 hours 
-    if (seconds > 1) 
+    }
+  }
+  if (!days) { // there's no room for, and little point in reporting, seconds if the person has been idle over 24 hours
+    if (seconds > 1) {
       idleString = [idleString stringByAppendingFormat:@"%i seconds  ", seconds];
-    else
+    }
+    else {
       idleString = [idleString stringByAppendingFormat:@"%i second  ", seconds]; // note 2 spaces on end
-  
+    }
+  }
   idleString = [idleString substringToIndex:[idleString length] - 2 ]; // trim off either a trailing comma and space or trailing two spaces
 
   [[cell nickname]  setText: [entry nickname]];
