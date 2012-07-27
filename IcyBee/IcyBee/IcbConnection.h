@@ -25,10 +25,12 @@
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
+  NSString                *currentChannel;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
 @property (nonatomic, retain) UIViewController        *front;
+@property (nonatomic, retain) NSString                *currentChannel;
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;

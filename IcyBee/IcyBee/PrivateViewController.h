@@ -15,6 +15,6 @@
 @property (nonatomic, strong) IBOutlet  UITableView     *privateTableView;
 @property (nonatomic, retain)           NSMutableArray  *privateArray;  
 
+- (void) updateView;
 - (void) fetchRecords;
-
 @end

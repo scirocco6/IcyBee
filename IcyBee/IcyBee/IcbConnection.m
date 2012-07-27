@@ -9,7 +9,7 @@
 #import "IcbConnection.h"
 
 @implementation IcbConnection
-@synthesize managedObjectContext, front;   
+@synthesize managedObjectContext, front, currentChannel;
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
@@ -74,10 +74,11 @@
           #ifdef DEBUG
             NSLog(@"sending login...");
           #endif
+          currentChannel = [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"];
           [self assemblePacketOfType:'a', 
            [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
            [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
-           [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"],
+           currentChannel,
            @"login", 
            nil];
           [self sendPacket];

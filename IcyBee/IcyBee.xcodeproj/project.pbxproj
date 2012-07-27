@@ -12,6 +12,7 @@
 		4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08E56614C2B63300673ADF /* NicknameViewController.m */; };
 		4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F08E56714C2B63300673ADF /* NicknameViewController.xib */; };
 		4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E52E515AD245A00DA0629 /* PrivateMessage.m */; };
+		4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F24ED7715C2579600D46FB0 /* ChannelMessage.m */; };
 		4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4014C2DC5D008D90E1 /* TabBarController.m */; };
 		4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4414C38CE6008D90E1 /* FirstViewController.m */; };
 		4F320BEA15ABE3E0001B7C44 /* People.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F320BE915ABE3E0001B7C44 /* People.m */; };
@@ -64,6 +65,8 @@
 		4F08E56714C2B63300673ADF /* NicknameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NicknameViewController.xib; sourceTree = "<group>"; };
 		4F0E52E415AD245A00DA0629 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
 		4F0E52E515AD245A00DA0629 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
+		4F24ED7615C2579600D46FB0 /* ChannelMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelMessage.h; sourceTree = "<group>"; };
+		4F24ED7715C2579600D46FB0 /* ChannelMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChannelMessage.m; sourceTree = "<group>"; };
 		4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		4F30AB4014C2DC5D008D90E1 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		4F30AB4314C38CE6008D90E1 /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 		4F6B967F15AA27540044EC6E /* Group Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				4F24ED7615C2579600D46FB0 /* ChannelMessage.h */,
+				4F24ED7715C2579600D46FB0 /* ChannelMessage.m */,
 				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
 				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
 			);
@@ -429,6 +434,7 @@
 				4FE1251D15ABD50300BECE75 /* Person.m in Sources */,
 				4F320BEA15ABE3E0001B7C44 /* People.m in Sources */,
 				4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */,
+				4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
