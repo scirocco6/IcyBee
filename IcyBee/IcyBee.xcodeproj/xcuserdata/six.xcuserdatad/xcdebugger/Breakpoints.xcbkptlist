@@ -8,24 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "IcyBee/IcbConnection.m"
-         timestampString = "365156755.964412"
+         timestampString = "365186765.57592"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "284"
-         endingLineNumber = "284"
-         landmarkName = "-handlePacket"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "IcyBee/IcbConnection.m"
-         timestampString = "365156766.549019"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "213"
-         endingLineNumber = "213"
+         startingLineNumber = "283"
+         endingLineNumber = "283"
          landmarkName = "-handlePacket"
          landmarkType = "5">
       </FileBreakpoint>

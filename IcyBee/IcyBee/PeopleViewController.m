@@ -62,6 +62,7 @@
   
   NSLog(@"Join Group button pressed Row: %i, Nick %@", [sender tag], [entry nickname]);
   [[IcbConnection sharedInstance] joinGroupWithUser:[entry nickname]];
+  [[self tabBarController] setSelectedIndex:2];
 }
 
 -(IBAction) messageUser {

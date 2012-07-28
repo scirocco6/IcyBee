@@ -96,7 +96,7 @@
   
   [[IcbConnection sharedInstance] joinGroup:[entry name]];
   
-  [[self navigationController] performSegueWithIdentifier:@"goChannel" sender:self];
+  [[self tabBarController] setSelectedIndex:2];
 
 }
 
