@@ -79,11 +79,19 @@
   [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
   [dateFormatter setLocale:[NSLocale currentLocale]];
-  
+ 
+  if ([[entry type] compare:@"c"] == NSOrderedSame) {
+    [[cell nickname] setTextColor:[UIColor redColor]];
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@"<i>%@</i>", [entry text]] baseURL:nil];
+  }
+  else {
+    [[cell message] loadHTMLString: [entry text] baseURL:nil];
+  }
   [[cell nickname] setText: [entry sender]];
   [[cell timestamp] setText:[dateFormatter stringFromDate:[entry timeStamp]]];
-  [[cell message] loadHTMLString: [entry text] baseURL:nil];
   [[[cell message] scrollView] setScrollEnabled:NO];
+  
+
   return cell;
 }
 
