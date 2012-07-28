@@ -207,6 +207,20 @@
     case 'd': // a status message
     case 'f': { // an important message
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
+      
+      if (*readBuffer == 'd') {
+        NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
+        if (range.location != NSNotFound) {
+          NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
+          range = [substring rangeOfString:@" "];
+          if (range.location == NSNotFound) {
+            currentChannel = substring;
+          }
+          else {
+            currentChannel = [substring substringToIndex:range.location];
+          }
+        }
+      }
       break;
     }
     
