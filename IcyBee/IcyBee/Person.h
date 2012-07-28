@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface Person : UITableViewCell
-  @property (nonatomic, strong) IBOutlet UILabel *nickname; 
-  @property (nonatomic, strong) IBOutlet UILabel *idle; 
-  @property (nonatomic, strong) IBOutlet UILabel *signon; 
-  @property (nonatomic, strong) IBOutlet UILabel *account;
+  @property (nonatomic, strong) IBOutlet UILabel  *nickname;
+  @property (nonatomic, strong) IBOutlet UILabel  *idle;
+  @property (nonatomic, strong) IBOutlet UILabel  *signon;
+  @property (nonatomic, strong) IBOutlet UILabel  *account;
+  @property (nonatomic, strong) IBOutlet UIButton *joinButton;
+  @property (nonatomic, strong) IBOutlet UIButton *messageButton;
 @end

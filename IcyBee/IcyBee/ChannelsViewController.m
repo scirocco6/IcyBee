@@ -87,6 +87,19 @@
   return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  Group   *entry  = [groupArray objectAtIndex: [indexPath row]];
+  
+  NSLog(@"Selected Row: %i, Group: %@", [indexPath row], [entry name]);
+  
+  [[IcbConnection sharedInstance] joinGroup:[entry name]];
+  
+  [[self navigationController] performSegueWithIdentifier:@"goChannel" sender:self];
+
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -146,19 +159,5 @@
  return YES;
  }
  */
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  // Navigation logic may go here. Create and push another view controller.
-  /*
-   <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-   // ...
-   // Pass the selected object to the new view controller.
-   [self.navigationController pushViewController:detailViewController animated:YES];
-   */
-}
-
-
 
 @end

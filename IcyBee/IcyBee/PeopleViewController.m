@@ -57,8 +57,11 @@
   [self setPeopleArray: mutableFetchResults];  
 }   
 
--(IBAction) joinGroup {
-  NSLog(@"Join Group button pressed");
+-(IBAction) joinGroup:(UIButton *) sender {
+  People *entry  = [peopleArray objectAtIndex: [sender tag]];
+  
+  NSLog(@"Join Group button pressed Row: %i, Nick %@", [sender tag], [entry nickname]);
+  [[IcbConnection sharedInstance] joinGroupWithUser:[entry nickname]];
 }
 
 -(IBAction) messageUser {
@@ -137,6 +140,7 @@
   [[cell signon]    setText: signonString];
   [[cell account]   setText: [entry account]];
   
+  [[cell joinButton] setTag:[indexPath row]];
   return cell;
 }
 

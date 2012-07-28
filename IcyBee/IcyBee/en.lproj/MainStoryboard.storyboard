@@ -109,7 +109,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="joinGroup" destination="rZU-Le-sZ9" eventType="touchUpInside" id="3ei-bF-vNw"/>
+                                                        <action selector="joinGroup:" destination="rZU-Le-sZ9" eventType="touchUpInside" id="4rj-hd-JR9"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -118,6 +118,8 @@
                                         <connections>
                                             <outlet property="account" destination="EGo-Q8-JAf" id="N2W-PB-hw2"/>
                                             <outlet property="idle" destination="hQt-cz-02v" id="W9d-Ln-xT1"/>
+                                            <outlet property="joinButton" destination="lo4-h2-5SW" id="dBE-yl-XdR"/>
+                                            <outlet property="messageButton" destination="FFc-iQ-yd4" id="XlI-So-P8Z"/>
                                             <outlet property="nickname" destination="Tda-RE-Kdr" id="d4h-Wu-aPR"/>
                                             <outlet property="signon" destination="7se-Oc-RPf" id="Drd-y5-44g"/>
                                         </connections>
@@ -534,6 +536,7 @@
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="joinGroup:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
@@ -542,6 +545,8 @@
             <relationships>
                 <relationship kind="outlet" name="account" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="idle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="joinButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="messageButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="nickname" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="signon" candidateClass="UILabel"/>
             </relationships>

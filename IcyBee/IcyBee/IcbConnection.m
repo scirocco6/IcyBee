@@ -145,6 +145,17 @@
   [self sendPacket];
 }
 
+- (void) joinGroup:(NSString *) group {
+  [self assemblePacketOfType:'h', @"g", group, nil];
+  [self sendPacket];
+}
+
+- (void) joinGroupWithUser:(NSString *) user {
+  [self assemblePacketOfType:'h', @"g", [NSString stringWithFormat:@"@%@", user], nil];
+  
+  [self sendPacket];
+}
+
 - (void) assemblePacketOfType:(char) packetType, ... {
     va_list args;
     id  object;

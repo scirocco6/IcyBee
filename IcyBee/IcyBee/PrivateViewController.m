@@ -35,7 +35,7 @@
 - (void)fetchRecords {   
   NSEntityDescription *entity     = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];   
   NSFetchRequest      *request    = [[NSFetchRequest alloc] init];  
-  NSPredicate         *predicate  = [NSPredicate predicateWithFormat: @"type IN %@", [NSArray arrayWithObjects:@"c", @"k", nil]];
+  NSPredicate         *predicate  = [NSPredicate predicateWithFormat: @"type IN %@", @[@"c", @"k"]];
   
   [request setEntity:entity];
   [request setPredicate:predicate];
