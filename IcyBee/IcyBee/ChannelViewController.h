@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate>  {
+@interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate, UITextFieldDelegate>  {
+  IBOutlet UIScrollView   *scrollView;
+
   NSMutableArray *messageArray;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView       *channelTableView;
 @property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
 @property (nonatomic, retain)           NSMutableArray    *messageArray;
+@property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
-
+- (void) keyboardWasShown:(NSNotification *) notification;
+- (void) keyboardWillHide:(NSNotification *) notification;
+- (BOOL) webView:(UIWebView *) webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType;
 - (void) updateView;
 - (void) fetchRecords;  
 @end

@@ -12,7 +12,7 @@
 #import "IcbConnection.h"
 
 @implementation ChannelViewController
-@synthesize messageArray, channelTableView;
+@synthesize messageArray, channelTableView, inputTextField;
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -91,7 +91,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewDidUnload {
@@ -120,13 +122,34 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
-  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+  return YES;
 }
 
 #pragma mark - UIWebViewDelegate
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType {
   if (navigationType == UIWebViewNavigationTypeOther)
     return YES;
   return NO;
 }
+
+#pragma mark - UITextFieldDelegate
+
+-(void)keyboardWasShown:(NSNotification *)notification {
+  NSLog(@"Keyboard opening.");
+  [scrollView setContentOffset:CGPointMake(0, 170) animated:YES];
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification {
+  NSLog(@"Keyboard is closing.");
+  [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+  [inputTextField resignFirstResponder];
+  
+  return YES;
+}
+
+
 @end
