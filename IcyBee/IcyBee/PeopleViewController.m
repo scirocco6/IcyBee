@@ -60,7 +60,6 @@
 -(IBAction) joinGroup:(UIButton *) sender {
   People *entry  = [peopleArray objectAtIndex: [sender tag]];
   
-  NSLog(@"Join Group button pressed Row: %i, Nick %@", [sender tag], [entry nickname]);
   [[IcbConnection sharedInstance] joinGroupWithUser:[entry nickname]];
   [[self tabBarController] setSelectedIndex:2];
 }

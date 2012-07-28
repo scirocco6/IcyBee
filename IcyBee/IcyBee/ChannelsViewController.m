@@ -92,12 +92,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   Group   *entry  = [groupArray objectAtIndex: [indexPath row]];
   
-  NSLog(@"Selected Row: %i, Group: %@", [indexPath row], [entry name]);
-  
   [[IcbConnection sharedInstance] joinGroup:[entry name]];
-  
   [[self tabBarController] setSelectedIndex:2];
-
 }
 
 #pragma mark - Table view data source
