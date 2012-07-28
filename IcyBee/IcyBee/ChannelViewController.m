@@ -154,6 +154,8 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
   [inputTextField resignFirstResponder];
   
+  [[IcbConnection sharedInstance] sendOpenMessage: [inputTextField text]];
+  [inputTextField setText:@""];
   return YES;
 }
 

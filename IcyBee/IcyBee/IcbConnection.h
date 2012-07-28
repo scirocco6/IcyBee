@@ -43,5 +43,6 @@
 - (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account;
 - (void) joinGroup:(NSString *) group;
 - (void) joinGroupWithUser:(NSString *) user;
+- (void) sendOpenMessage:(NSString *) message;
 
 @end

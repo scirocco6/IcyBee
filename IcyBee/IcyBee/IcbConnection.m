@@ -140,7 +140,7 @@
 
   // send the icb global who command
   whoing = YES;
-  [self assemblePacketOfType:'h', @"w", nil];
+  [self assemblePacketOfType:'h', @"w\001", nil];
   [self sendPacket];
 }
 
@@ -151,14 +151,21 @@
 
 - (void) joinGroupWithUser:(NSString *) user {
   [self assemblePacketOfType:'h', @"g", [NSString stringWithFormat:@"@%@", user], nil];
-  
   [self sendPacket];
 }
+
+- (void) sendOpenMessage:(NSString *) message {
+  NSLog(@"Sending open message %@", message);
+
+  [self assemblePacketOfType:'b', message, nil];
+  [self sendPacket];
+}
+
 
 - (void) assemblePacketOfType:(char) packetType, ... {
     va_list args;
     id  object;
-    
+  
     writeBuffer[0] = packetType;
     writeBuffer[1] = 0;
     
@@ -168,8 +175,8 @@
         strcat((char *) writeBuffer, [object cStringUsingEncoding:NSASCIIStringEncoding]);
         strcat((char *) writeBuffer, "\001");
     }
-    
     va_end(args);
+    writeBuffer[strlen((char *) writeBuffer) - 1] = 0;
 }
 
 -(void) sendPacket {
