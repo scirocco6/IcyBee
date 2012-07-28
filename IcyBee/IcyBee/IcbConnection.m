@@ -125,7 +125,6 @@
 }
 
 - (void) globalWhoList {
-
   // delete all entries in the group table
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   [fetch setEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]];
@@ -267,6 +266,7 @@
                   [whoScanner scanUpToString:@" "       intoString:nil];                    
                   [whoScanner scanUpToString:@"\0"      intoString:&topic]; // scan till the end of the string since topics can have spaces in them
                     
+                  whoChannel = name;
                   [self addGroup:name moderator:moderator topic:topic];                  
                 }
               }
@@ -284,6 +284,7 @@
             case 'l': { // technically we should check to see if we are whoing however l can never appear except when we are whoing so the check is redundant
               NSString *accountString = [[NSString alloc] initWithFormat:@"%@@%@", [parameters objectAtIndex:6], [parameters objectAtIndex:7]];
               [self addPerson:[parameters objectAtIndex:2]
+                        group:(NSString *) whoChannel
                          idle:[[NSNumber alloc] initWithInt: [[parameters objectAtIndex:3] intValue]]
                        signon:[[NSNumber alloc] initWithInt: [[parameters objectAtIndex:5] intValue]]
                       account:accountString];
@@ -328,9 +329,10 @@
   [self saveManagedObjectContext];
 }
 
-- (void) addPerson:(NSString *) nickname idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account {
+- (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account {
   People *event = (People *)[NSEntityDescription insertNewObjectForEntityForName:@"People" inManagedObjectContext:managedObjectContext];  
   [event setNickname: nickname];
+  [event setGroup: whoChannel];
   [event setIdle:     idle];
   [event setSignon:   signon];
   [event setAccount:  account];

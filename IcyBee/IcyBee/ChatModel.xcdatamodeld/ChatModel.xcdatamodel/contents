@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES">
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,6 +13,7 @@
     </entity>
     <entity name="People" representedClassName="People" syncable="YES">
         <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="idle" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="signon" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -20,6 +21,6 @@
     <elements>
         <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="Group" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="People" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="People" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

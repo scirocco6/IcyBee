@@ -25,7 +25,7 @@
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
-  NSString                *currentChannel;
+  NSString                *currentChannel, *whoChannel;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
@@ -40,7 +40,7 @@
 - (void) globalWhoList;
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text;
 - (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic;
-- (void) addPerson:(NSString *) nickname idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account;
+- (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account;
 - (void) joinGroup:(NSString *) group;
 - (void) joinGroupWithUser:(NSString *) user;
 

@@ -10,6 +10,7 @@
 
 @interface Person : UITableViewCell
   @property (nonatomic, strong) IBOutlet UILabel  *nickname;
+  @property (nonatomic, strong) IBOutlet UILabel  *group;
   @property (nonatomic, strong) IBOutlet UILabel  *idle;
   @property (nonatomic, strong) IBOutlet UILabel  *signon;
   @property (nonatomic, strong) IBOutlet UILabel  *account;

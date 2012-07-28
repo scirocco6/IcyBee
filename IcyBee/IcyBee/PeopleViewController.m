@@ -136,6 +136,7 @@
   idleString = [idleString substringToIndex:[idleString length] - 2 ]; // trim off either a trailing comma and space or trailing two spaces
 
   [[cell nickname]  setText: [entry nickname]];
+  [[cell group]     setText: [entry group]];
   [[cell idle]      setText: idleString];
   [[cell signon]    setText: signonString];
   [[cell account]   setText: [entry account]];

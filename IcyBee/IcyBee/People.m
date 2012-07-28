@@ -12,6 +12,7 @@
 @implementation People
 
 @dynamic account;
+@dynamic group;
 @dynamic idle;
 @dynamic nickname;
 @dynamic signon;
