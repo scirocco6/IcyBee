@@ -19,8 +19,8 @@
 @property (nonatomic, retain)           NSMutableArray    *messageArray;
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
-- (void) keyboardWasShown:(NSNotification *) notification;
-- (void) keyboardWillHide:(NSNotification *) notification;
+- (void) keyboardWillShow:(NSNotification *) notification;
+- (void) keyboardDidHide:(NSNotification *) notification;
 - (BOOL) webView:(UIWebView *) webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType;
 - (void) updateView;
 - (void) fetchRecords;  

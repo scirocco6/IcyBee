@@ -92,8 +92,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewDidUnload {
@@ -135,13 +135,19 @@
 
 #pragma mark - UITextFieldDelegate
 
--(void)keyboardWasShown:(NSNotification *)notification {
-  NSLog(@"Keyboard opening.");
-  [scrollView setContentOffset:CGPointMake(0, 170) animated:YES];
+- (void)keyboardWillShow:(NSNotification *) notification {  
+  CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+  CGRect aRect = self.view.frame;
+  
+  aRect.size.height -= keyboardSize.height;
+  if (!CGRectContainsPoint(aRect, inputTextField.frame.origin) ) {
+    CGPoint scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - (inputTextField.frame.size.height + 7)));
+    [scrollView setContentOffset:scrollPoint animated:YES];
+  }
 }
 
--(void)keyboardWillHide:(NSNotification *)notification {
-  NSLog(@"Keyboard is closing.");
+- (void) keyboardDidHide:(NSNotification *) notification {
   [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
