@@ -79,18 +79,32 @@
   [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
   [dateFormatter setLocale:[NSLocale currentLocale]];
- 
+  
   if ([[entry type] compare:@"c"] == NSOrderedSame) {
-    [[cell nickname] setTextColor:[UIColor redColor]];
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@"<i>%@</i>", [entry text]] baseURL:nil];
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@""
+                                     "<html>"
+                                       "<body p style='color:white' text=\"#FFFFFF\" face=\"Bookman Old Style, Book Antiqua, Garamond\" size=\"5\">"
+                                         "<div style=\"background-color:#00FF00; float: left; margin-right:5px; text-align: center; height: 70px; width: 70px;\">"
+                                           "<div style='color:#00FF00; margin-top:5px;'>%@</div>%@"
+                                         "</div>"
+                                         "<i style='color: #00FF00'>%@</i>"
+                                       "</body>"
+                                     "</html>",
+                                     [entry sender], [dateFormatter stringFromDate:[entry timeStamp]], [entry text]] baseURL:nil];
   }
   else {
-    [[cell message] loadHTMLString: [entry text] baseURL:nil];
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@""
+                                     "<html>"
+                                       "<body p style='color:white' text=\"#FFFFFF\" face=\"Bookman Old Style, Book Antiqua, Garamond\" size=\"5\">"
+                                         "<div style=\"border:1px solid; float: left; margin-right:5px; text-align: center; height: 70px; width: 70px;\">"
+                                           "<div style='color:#FF00FF; margin-top:5px;'>%@</div>%@"
+                                         "</div>"
+                                         "%@"
+                                       "</body>"
+                                      "</html>",
+                                     [entry sender], [dateFormatter stringFromDate:[entry timeStamp]], [entry text]] baseURL:nil];
   }
-  [[cell nickname] setText: [entry sender]];
-  [[cell timestamp] setText:[dateFormatter stringFromDate:[entry timeStamp]]];
   [[[cell message] scrollView] setScrollEnabled:NO];
-  
 
   return cell;
 }
@@ -141,6 +155,17 @@
   return NO;
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  CGRect frame = [webView frame];
+
+  frame.size.height =1;
+  [webView setFrame: frame];
+
+  frame.size = [webView sizeThatFits:CGSizeZero];
+  frame.size.height += 5;
+  [webView setFrame: frame];
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (void)keyboardWillShow:(NSNotification *) notification {  
@@ -159,7 +184,7 @@
   [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
   [inputTextField resignFirstResponder];
   
   [[IcbConnection sharedInstance] sendOpenMessage: [inputTextField text]];

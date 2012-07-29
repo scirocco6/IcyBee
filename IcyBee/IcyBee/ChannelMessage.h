@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ChannelMessage : UITableViewCell
-  @property (nonatomic, strong) IBOutlet UILabel    *nickname;
   @property (nonatomic, strong) IBOutlet UIWebView  *message;
-  @property (nonatomic, strong) IBOutlet UILabel    *timestamp;
 @end

@@ -44,6 +44,7 @@
 		4F6B968315AA2CCD0044EC6E /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B968215AA2CCD0044EC6E /* Group.m */; };
 		4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BC15C4D60900BEAEB9 /* Default@2x.png */; };
 		4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BE15C4D7ED00BEAEB9 /* Default.png */; };
+		4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
 		4FE1251D15ABD50300BECE75 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1251C15ABD50300BECE75 /* Person.m */; };
 /* End PBXBuildFile section */
@@ -116,6 +117,7 @@
 		4F6B968215AA2CCD0044EC6E /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		4F7089BC15C4D60900BEAEB9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4F7089BE15C4D7ED00BEAEB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Channel@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4FE1251B15ABD50300BECE75 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		4F7089B915C3ACA100BEAEB9 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */,
 				4F7089BE15C4D7ED00BEAEB9 /* Default.png */,
 				4F7089BC15C4D60900BEAEB9 /* Default@2x.png */,
 				4F42D1DF14A989BD00FEB062 /* second.png */,
@@ -406,6 +409,7 @@
 				4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */,
 				4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */,
 				4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */,
+				4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
