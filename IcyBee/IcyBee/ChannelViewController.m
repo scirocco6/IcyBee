@@ -76,9 +76,9 @@
   
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   
-  [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-  [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-  [dateFormatter setLocale:[NSLocale currentLocale]];
+  [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
+  [dateFormatter setDateStyle: NSDateFormatterShortStyle];
+  [dateFormatter setLocale: [NSLocale currentLocale]];
   
   if ([[entry type] compare:@"c"] == NSOrderedSame) {
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
