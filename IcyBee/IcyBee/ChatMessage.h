@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSDate    *timeStamp;
 @property (nonatomic, retain) NSString  *sender;
 @property (nonatomic, retain) NSString  *text;
+@property (nonatomic)         CGFloat   height;
 
 @end

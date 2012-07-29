@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES">
+        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
@@ -19,8 +20,8 @@
         <attribute name="signon" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Group" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="People" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="People" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

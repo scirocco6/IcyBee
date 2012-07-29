@@ -198,10 +198,11 @@
                                             <outlet property="delegate" destination="2" id="F9b-MQ-A4R"/>
                                         </connections>
                                     </textField>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="XmI-eg-sJT">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="XmI-eg-sJT">
                                         <rect key="frame" x="0.0" y="5" width="320" height="341"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <prototypes>
                                             <tableViewCell opaque="NO" autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="qZg-Q2-elY" customClass="ChannelMessage">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="165"/>
@@ -211,12 +212,12 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <webView opaque="NO" contentMode="scaleToFill" id="8oN-Pd-A1E">
-                                                            <rect key="frame" x="0.0" y="5" width="320" height="1"/>
+                                                            <rect key="frame" x="0.0" y="8" width="320" height="127"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.20363473659431258" green="0.42346938775510201" blue="0.25289365382088275" alpha="1" colorSpace="calibratedRGB"/>
                                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
                                                             <connections>
-                                                                <outlet property="delegate" destination="2" id="u30-NE-6fN"/>
+                                                                <outlet property="delegate" destination="qZg-Q2-elY" id="fOn-4d-5ga"/>
                                                             </connections>
                                                         </webView>
                                                     </subviews>

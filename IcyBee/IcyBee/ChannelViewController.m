@@ -34,6 +34,11 @@
   }
 }
 
+- (void) reJiggerCells {
+  [channelTableView beginUpdates];
+  [channelTableView endUpdates];
+}
+
 - (void)fetchRecords {
   NSEntityDescription *entity     = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];
   NSFetchRequest      *request    = [[NSFetchRequest alloc] init];
@@ -70,6 +75,18 @@
   return [messageArray count];
 }
 
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
+  
+  if ([entry height]) {
+    return [entry height];
+  }
+  else {
+    return 100.0f;
+  }
+}
+
 - (ChannelMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   ChannelMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
 	ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
@@ -96,15 +113,14 @@
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
                                      "<html>"
                                        "<body p style='color:white' text=\"#FFFFFF\" face=\"Bookman Old Style, Book Antiqua, Garamond\" size=\"5\">"
-                                         "<div style=\"border:1px solid; float: left; margin-right:5px; text-align: center; height: 70px; width: 70px;\">"
-                                           "<div style='color:#FF00FF; margin-top:5px;'>%@</div>%@"
-                                         "</div>"
+                                         "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
                                          "%@"
                                        "</body>"
                                       "</html>",
-                                     [entry sender], [dateFormatter stringFromDate:[entry timeStamp]], [entry text]] baseURL:nil];
+                                     [entry sender], [entry text]] baseURL:nil];
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
+  [cell setObjectID:[entry objectID]];
 
   return cell;
 }
@@ -145,25 +161,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
   return YES;
-}
-
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType {
-  if (navigationType == UIWebViewNavigationTypeOther)
-    return YES;
-  return NO;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-  CGRect frame = [webView frame];
-
-  frame.size.height =1;
-  [webView setFrame: frame];
-
-  frame.size = [webView sizeThatFits:CGSizeZero];
-  frame.size.height += 5;
-  [webView setFrame: frame];
 }
 
 #pragma mark - UITextFieldDelegate

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate, UITextFieldDelegate>  {
+@interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
 
   NSMutableArray *messageArray;
@@ -21,7 +21,7 @@
 
 - (void) keyboardWillShow:(NSNotification *) notification;
 - (void) keyboardDidHide:(NSNotification *) notification;
-- (BOOL) webView:(UIWebView *) webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType;
 - (void) updateView;
-- (void) fetchRecords;  
+- (void) fetchRecords;
+- (void) reJiggerCells;
 @end
