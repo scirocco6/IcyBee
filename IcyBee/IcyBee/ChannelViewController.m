@@ -71,8 +71,8 @@
 }
 
 - (ChannelMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ChannelMessage *cell   = [tableView dequeueReusableCellWithIdentifier:@"person"];
-	ChatMessage *entry  = [messageArray objectAtIndex: [indexPath row]];
+  ChannelMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
+	ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
   
   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   
