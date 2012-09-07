@@ -21,17 +21,20 @@
 }
 
 - (id) init {
-  loggedIn  = NO;
-  snarfing  = NO;
-  whoing    = NO;
-    
   return self;
 }
 
 - (void) connect {
-  loggedIn  = NO; // this feel repetitive
+  loggedIn  = NO;
   snarfing  = NO;
   whoing    = NO;
+  
+  // delete all entries in the ChatMessage table
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  [fetch setEntity:[NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext]];
+  NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
+  for (id basket in result)
+    [managedObjectContext deleteObject:basket];
   
   #ifdef DEBUG
     NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
