@@ -23,6 +23,7 @@
   [[self navBar] setTitle:[[IcbConnection sharedInstance] currentChannel]];
   [self fetchRecords];
   [channelTableView reloadData];
+
   // scroll to bottom
   //
   //TODO do not scroll to bottom if the user has scrolled us elsewhere
@@ -83,7 +84,7 @@
     return [entry height];
   }
   else {
-    return 100.0f;
+    return 0.0f; // this will get resized once the webview loads and a height is computed
   }
 }
 
@@ -97,24 +98,34 @@
   [dateFormatter setDateStyle: NSDateFormatterShortStyle];
   [dateFormatter setLocale: [NSLocale currentLocale]];
   
-  if ([[entry type] compare:@"c"] == NSOrderedSame) {
+  if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
                                      "<html>"
-                                       "<body p style='color:white' text=\"#FFFFFF\" face=\"Bookman Old Style, Book Antiqua, Garamond\" size=\"5\">"
-                                         "<div style=\"background-color:#00FF00; float: left; margin-right:5px; text-align: center; height: 70px; width: 70px;\">"
-                                           "<div style='color:#00FF00; margin-top:5px;'>%@</div>%@"
-                                         "</div>"
-                                         "<i style='color: #00FF00'>%@</i>"
-                                       "</body>"
+                                     "<head> \n"
+                                     "<style type=\"text/css\">"
+                                     "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
+                                     "span {color:white}"
+                                     "</style>"
+                                     "</head>"
+                                     "<body>"
+                                     "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
+                                     "<span><i style='color: #00FF00'>%@</i></span>"
+                                     "</body>"
                                      "</html>",
-                                     [entry sender], [dateFormatter stringFromDate:[entry timeStamp]], [entry text]] baseURL:nil];
+                                     [entry sender], [entry text]] baseURL:nil];
   }
-  else {
+  else { // open channel message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
                                      "<html>"
-                                       "<body p style='color:white' text=\"#FFFFFF\" face=\"Bookman Old Style, Book Antiqua, Garamond\" size=\"5\">"
+                                     "<head> \n"
+                                     "<style type=\"text/css\">"
+                                     "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
+                                     "span {color:white}"
+                                     "</style>"
+                                     "</head>"
+                                       "<body>"
                                          "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
-                                         "%@"
+                                         "<span>%@</span>"
                                        "</body>"
                                       "</html>",
                                      [entry sender], [entry text]] baseURL:nil];
