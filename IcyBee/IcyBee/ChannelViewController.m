@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
-//#import "AppDelegate.h"
 #import "ChannelViewController.h"
 #import "ChannelMessage.h"
 #import "IcbConnection.h"
@@ -75,7 +74,6 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return [messageArray count];
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
@@ -174,6 +172,13 @@
   return YES;
 }
 
+#pragma mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+  if (navigationType == UIWebViewNavigationTypeOther)
+    return YES;
+  return NO;
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (void)keyboardWillShow:(NSNotification *) notification {  
@@ -199,6 +204,5 @@
   [inputTextField setText:@""];
   return YES;
 }
-
 
 @end

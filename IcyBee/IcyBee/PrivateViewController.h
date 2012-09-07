@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PrivateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIWebViewDelegate> {
+@interface PrivateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
+  IBOutlet UIScrollView   *scrollView;
   NSMutableArray *privateArray;
 }
 
-@property (nonatomic, strong) IBOutlet  UITableView     *privateTableView;
-@property (nonatomic, retain)           NSMutableArray  *privateArray;  
+@property (nonatomic, strong) IBOutlet  UITableView       *privateTableView;
+@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
+@property (nonatomic, retain)           NSMutableArray    *privateArray;
+@property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
+- (void) keyboardWillShow:(NSNotification *) notification;
+- (void) keyboardDidHide:(NSNotification *) notification;
 - (void) updateView;
 - (void) fetchRecords;
+- (void) reJiggerCells;
 @end

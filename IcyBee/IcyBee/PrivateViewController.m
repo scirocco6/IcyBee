@@ -11,7 +11,7 @@
 #import "IcbConnection.h"
 
 @implementation PrivateViewController
-@synthesize privateArray, privateTableView;
+@synthesize privateArray, privateTableView, inputTextField;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -30,6 +30,11 @@
     NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
     [privateTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
   }
+}
+
+- (void) reJiggerCells {
+  [privateTableView beginUpdates];
+  [privateTableView endUpdates];
 }
 
 - (void)fetchRecords {   
@@ -66,7 +71,18 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {  
   return [privateArray count];  
-}   
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  ChatMessage *entry = [privateArray objectAtIndex: [indexPath row]];
+  
+  if ([entry height]) {
+    return [entry height];
+  }
+  else {
+    return 0.0f; // this will get resized once the webview loads and a height is computed
+  }
+}
 
 - (PrivateMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   PrivateMessage *cell   = [tableView dequeueReusableCellWithIdentifier:@"person"];
@@ -78,18 +94,34 @@
   [dateFormatter setDateStyle:NSDateFormatterShortStyle];
   [dateFormatter setLocale:[NSLocale currentLocale]];
 
-  [[cell nickname] setText: [entry sender]];
-  [[cell timestamp] setText:[dateFormatter stringFromDate:[entry timeStamp]]];
+//  [[cell nickname] setText: [entry sender]];
+//  [[cell timestamp] setText:[dateFormatter stringFromDate:[entry timeStamp]]];
   
   if ([[entry type] compare:@"c"] == NSOrderedSame) {
-    [[cell nickname] setTextColor:[UIColor redColor]];
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@"<i>%@</i>", [entry text]] baseURL:nil];
+//    [[cell nickname] setTextColor:[UIColor redColor]];
+//    [[cell message] loadHTMLString: [NSString stringWithFormat:@"<i>%@</i>", [entry text]] baseURL:nil];
+    
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@""
+                                     "<html>"
+                                     "<head> \n"
+                                     "<style type=\"text/css\">"
+                                     "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
+                                     "span {color:white}"
+                                     "</style>"
+                                     "</head>"
+                                     "<body>"
+                                     "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
+                                     "<span><i style='color: #00FF00'>%@</i></span>"
+                                     "</body>"
+                                     "</html>",
+                                     [entry sender], [entry text]] baseURL:nil];
   }
   else {
     [[cell message] loadHTMLString: [entry text] baseURL:nil];
   }
   
   [[[cell message] scrollView] setScrollEnabled:NO];
+  [cell setObjectID:[entry objectID]];
   return cell;
 }
 
@@ -97,13 +129,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+  [super viewDidUnload];
+  // Release any retained subviews of the main view.
+  // e.g. self.myOutlet = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -113,7 +147,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -125,8 +159,8 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+  // Return YES for supported orientations
+  return YES;
 }
 
 #pragma mark - UIWebViewDelegate
@@ -135,4 +169,31 @@
     return YES;
   return NO;
 }
+
+#pragma mark - UITextFieldDelegate
+
+- (void)keyboardWillShow:(NSNotification *) notification {
+  CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+  
+  CGRect aRect = self.view.frame;
+  
+  aRect.size.height -= keyboardSize.height;
+  if (!CGRectContainsPoint(aRect, inputTextField.frame.origin) ) {
+    CGPoint scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - (inputTextField.frame.size.height + 7)));
+    [scrollView setContentOffset:scrollPoint animated:YES];
+  }
+}
+
+- (void) keyboardDidHide:(NSNotification *) notification {
+  [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+  [inputTextField resignFirstResponder];
+  
+  [[IcbConnection sharedInstance] sendOpenMessage: [inputTextField text]];
+  [inputTextField setText:@""];
+  return YES;
+}
+
 @end

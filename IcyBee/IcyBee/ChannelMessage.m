@@ -7,7 +7,6 @@
 //
 
 #import "ChannelMessage.h"
-#import "ChannelMessage.h"
 #import "IcbConnection.h"
 
 @implementation ChannelMessage
