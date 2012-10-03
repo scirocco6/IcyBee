@@ -16,5 +16,5 @@
 @dynamic sender;
 @dynamic text;
 @dynamic height;
-
+@dynamic url;
 @end

@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSString  *sender;
 @property (nonatomic, retain) NSString  *text;
 @property (nonatomic)         CGFloat   height;
+@property (nonatomic)         BOOL      url;
 
 @end

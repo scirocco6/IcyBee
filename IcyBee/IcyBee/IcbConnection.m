@@ -334,12 +334,20 @@
   }
 }
 
+- (BOOL) hasUrl:(NSString *) message {
+  NSError *error = NULL;
+  
+  NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
+  return [detector numberOfMatchesInString:message options:0 range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
+}
+
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
   ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
   [event setTimeStamp: [NSDate date]];
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
-  [event setText:text];   
+  [event setText:text];
+  [event setUrl:[self hasUrl: text]];
   
   [self saveManagedObjectContext];
 }
