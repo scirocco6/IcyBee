@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8wZ-ph-EB3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="8wZ-ph-EB3">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--People View Controller - People-->
         <scene sceneID="ut1-m9-fAx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="47a-jj-PAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="People" id="rZU-Le-sZ9" customClass="PeopleViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="kdW-Bu-Ns1">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -165,13 +164,13 @@
                         <outlet property="peopleTableView" destination="pfK-M5-tBy" id="xEI-RB-hoH"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47a-jj-PAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="118" y="-3"/>
         </scene>
         <!--Channel View Controller - Channel-->
         <scene sceneID="11">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
                 <viewController title="Channel" id="2" customClass="ChannelViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="A2N-b1-RWA">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -253,13 +252,13 @@
                         <outlet property="scrollView" destination="Fe0-Je-vuD" id="5Ig-dZ-fl0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="577" y="-3"/>
         </scene>
         <!--Private View Controller - Private-->
         <scene sceneID="13">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
                 <viewController title="Private" id="3" customClass="PrivateViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="pw5-lA-ZOi">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -341,49 +340,82 @@
                         <outlet property="scrollView" destination="RH8-yb-tJl" id="Ylj-sB-iKW"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1027" y="-3"/>
         </scene>
         <!--Url View Controller - URLs-->
         <scene sceneID="Q6x-E8-VYk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-hq-ad9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="q87-Tt-VmH" customClass="UrlViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E1n-jL-W63">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="cye-eF-x0A">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Urls" id="3Jq-zK-Gae"/>
+                                </items>
+                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="5v0-65-igP">
                                 <rect key="frame" x="0.0" y="33" width="320" height="378"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" id="com-Ag-ygw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="411"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="aVq-Ia-Qb5">
+                                <rect key="frame" x="0.0" y="33" width="320" height="378"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="sKt-y1-Txp">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <items>
-                                            <navigationItem title="URLs" id="fIu-iO-EmC"/>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
+                                <prototypes>
+                                    <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="o0u-8u-qdR" userLabel="Url Message - person" customClass="UrlMessage">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="165"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="164"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <webView opaque="NO" contentMode="scaleToFill" id="EGV-GB-3aO">
+                                                    <rect key="frame" x="5" y="0.0" width="310" height="165"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.27939321880000001" green="0.58494100770000002" blue="0.35129164860000001" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="o0u-8u-qdR" id="1er-Hz-QGs"/>
+                                                    </connections>
+                                                </webView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="message" destination="EGV-GB-3aO" id="sEg-WO-GxT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="q87-Tt-VmH" id="5hN-E6-uiv"/>
+                                    <outlet property="delegate" destination="q87-Tt-VmH" id="lf5-Xx-2uc"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="URLs" id="aDt-g2-0Rv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navBar" destination="3Jq-zK-Gae" id="uXh-jK-HHQ"/>
+                        <outlet property="urlTableView" destination="aVq-Ia-Qb5" id="He0-LT-XH0"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-hq-ad9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1419" y="-3"/>
+            <point key="canvasLocation" x="1378" y="-3"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="N7J-DQ-BOs">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bCf-ke-UI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="U1X-Mv-Qv3" customClass="FirstViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tmg-th-emg">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
@@ -392,13 +424,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="vf6-yx-GdZ"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bCf-ke-UI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="-1074"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
                 <tabBarController id="4" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ks4-jW-2Ml"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -415,13 +447,13 @@
                         <segue destination="q87-Tt-VmH" kind="relationship" relationship="viewControllers" id="XgV-8c-IJM"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="622" y="-714"/>
         </scene>
         <!--Channels View Controller - Channels-->
         <scene sceneID="ckE-Gw-ho1">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="abG-Qu-89g" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Channels" id="tsb-5H-UUk" customClass="ChannelsViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="X7L-LG-IR1">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
@@ -521,13 +553,13 @@
                         <outlet property="channelTableView" destination="fZb-XI-YEH" id="KQT-cP-SRN"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="abG-Qu-89g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-320" y="-3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1MY-8D-Xaa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jqu-I5-SSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController navigationBarHidden="YES" id="8wZ-ph-EB3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qOV-NS-iPR">
@@ -540,6 +572,7 @@
                         <segue destination="U1X-Mv-Qv3" kind="relationship" relationship="rootViewController" id="MiV-0b-SJy"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jqu-I5-SSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-320" y="-714"/>
         </scene>
@@ -549,80 +582,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="Channel" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Channel.h"/>
-            <relationships>
-                <relationship kind="outlet" name="groupModerator" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groupName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groupTopic" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ChannelMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="ChannelViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ChannelsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="newGroup"/>
-                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-        </class>
-        <class className="PeopleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="Person" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Person.h"/>
-            <relationships>
-                <relationship kind="outlet" name="account" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="group" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="idle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="joinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="messageButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="nickname" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="signon" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PrivateMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="PrivateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="privateTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="TabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
-        </class>
-        <class className="UrlViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

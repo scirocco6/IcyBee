@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UrlViewController : UIViewController
+@interface UrlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
+  NSMutableArray *privateArray;
+}
 
+@property (nonatomic, strong) IBOutlet  UITableView       *urlTableView;
+@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
+@property (nonatomic, retain)           NSMutableArray    *urlArray;
+
+- (void) updateView;
+- (void) fetchRecords;
+- (void) reJiggerCells;
 @end

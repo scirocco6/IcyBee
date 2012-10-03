@@ -40,6 +40,7 @@
 		4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20914A9990800FEB062 /* ChannelsViewController.m */; };
 		4F42D20C14A9A00300FEB062 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D20B14A9A00300FEB062 /* Settings.bundle */; };
 		4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */; };
+		4F46BEE9161CFBC7008B0282 /* UrlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F46BEE8161CFBC7008B0282 /* UrlMessage.m */; };
 		4F6B967E15AA24000044EC6E /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B967D15AA24000044EC6E /* Channel.m */; };
 		4F6B968315AA2CCD0044EC6E /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B968215AA2CCD0044EC6E /* Group.m */; };
 		4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BC15C4D60900BEAEB9 /* Default@2x.png */; };
@@ -112,6 +113,8 @@
 		4F42D20B14A9A00300FEB062 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbConnection.h; sourceTree = "<group>"; };
 		4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbConnection.m; sourceTree = "<group>"; };
+		4F46BEE7161CFBC7008B0282 /* UrlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlMessage.h; sourceTree = "<group>"; };
+		4F46BEE8161CFBC7008B0282 /* UrlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlMessage.m; sourceTree = "<group>"; };
 		4F6B967C15AA24000044EC6E /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		4F6B967D15AA24000044EC6E /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		4F6B968115AA2CCD0044EC6E /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -314,6 +317,8 @@
 		4F7089BB15C3ACFC00BEAEB9 /* URL View */ = {
 			isa = PBXGroup;
 			children = (
+				4F46BEE7161CFBC7008B0282 /* UrlMessage.h */,
+				4F46BEE8161CFBC7008B0282 /* UrlMessage.m */,
 				4F42D20214A9964A00FEB062 /* UrlViewController.h */,
 				4F42D20314A9964A00FEB062 /* UrlViewController.m */,
 			);
@@ -467,6 +472,7 @@
 				4F320BEA15ABE3E0001B7C44 /* People.m in Sources */,
 				4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */,
 				4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */,
+				4F46BEE9161CFBC7008B0282 /* UrlMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
