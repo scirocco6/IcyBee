@@ -15,5 +15,6 @@
 @dynamic timeStamp;
 @dynamic sender;
 @dynamic text;
+@dynamic height;
 
 @end

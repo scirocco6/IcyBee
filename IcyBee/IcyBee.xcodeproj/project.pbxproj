@@ -46,6 +46,7 @@
 		4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BE15C4D7ED00BEAEB9 /* Default.png */; };
 		4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
+		4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */; };
 		4FE1251D15ABD50300BECE75 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1251C15ABD50300BECE75 /* Person.m */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		4F7089BE15C4D7ED00BEAEB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Channel@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4FE1251B15ABD50300BECE75 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +177,7 @@
 		4F42D1B114A989BD00FEB062 = {
 			isa = PBXGroup;
 			children = (
+				4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */,
 				4F42D1C614A989BD00FEB062 /* IcyBee */,
 				4F42D1EF14A989BD00FEB062 /* IcyBeeTests */,
 				4F42D1BF14A989BD00FEB062 /* Frameworks */,
@@ -410,6 +413,7 @@
 				4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */,
 				4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */,
 				4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */,
+				4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
