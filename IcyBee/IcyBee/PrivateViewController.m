@@ -129,9 +129,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewDidUnload {
@@ -142,7 +139,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [self updateView];
-  [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates 
+  [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+  
   [super viewWillAppear:animated];
 }
 
@@ -152,6 +153,13 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIKeyboardWillShowNotification
+                                                object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIKeyboardWillHideNotification
+                                                object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

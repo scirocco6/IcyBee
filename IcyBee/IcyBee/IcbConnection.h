@@ -44,6 +44,5 @@
 - (void) joinGroup:(NSString *) group;
 - (void) joinGroupWithUser:(NSString *) user;
 - (void) sendOpenMessage:(NSString *) message;
-//- (void) setFrontWithKeyboard:(UIViewController *) controller;
 
 @end
