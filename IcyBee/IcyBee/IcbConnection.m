@@ -386,4 +386,14 @@
   [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
 }
 
+- (void) setFront:(UIViewController *) controller {
+  
+  [[NSNotificationCenter defaultCenter] removeObserver: front];
+  
+  front = controller;
+
+  [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:controller selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+}
+
 @end

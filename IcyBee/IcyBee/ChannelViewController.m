@@ -139,8 +139,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+
 }
 
 - (void)viewDidUnload {
@@ -152,6 +151,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [self updateView];
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
+  
   [super viewWillAppear:animated];
 }
 
@@ -181,7 +181,8 @@
 
 #pragma mark - UITextFieldDelegate
 
-- (void)keyboardWillShow:(NSNotification *) notification {  
+- (void)keyboardWillShow:(NSNotification *) notification {
+  NSLog(@"keyboard in channel");
   CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
   CGRect aRect = self.view.frame;

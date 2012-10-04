@@ -173,6 +173,8 @@
 #pragma mark - UITextFieldDelegate
 
 - (void)keyboardWillShow:(NSNotification *) notification {
+  NSLog(@"keyboard in private");
+
   CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
   
   CGRect aRect = self.view.frame;
