@@ -165,13 +165,15 @@
         [self sendPrivateMessage:line];
         break;
         
+      case 'b':
+        [self sendBeep:line];
+        break;
+        
       default:
         break;
     }
   }
-  else {
-    [self sendOpenMessage:line];
-  }
+  [self sendOpenMessage:line];
 }
 
 - (void) sendOpenMessage:(NSString *) message {
@@ -186,28 +188,14 @@
 - (void) sendPrivateMessage:(NSString *) command {
   NSLog(@"Processing private message %@", command);
   
-  NSScanner *myScanner = [NSScanner scannerWithString:command];
-  NSString *message;
-  
-  [myScanner scanUpToString:@" "  intoString:nil];
-  [myScanner scanUpToString:@"\0" intoString:&message];
-
-  
-  [self addToChatFromSender:currentNickname type:'c' text:message];
-  
-  [self assemblePacketOfType:'h', @"m", message, nil];
+  [self assemblePacketOfType:'h', @"m", [command substringFromIndex:3], nil];
   [self sendPacket];
 }
 
-- (void) sendBeep:(NSString *) message {
-  NSLog(@"Sending Beep %@", message);
+- (void) sendBeep:(NSString *) command {
+  NSLog(@"Processing beep command %@", command);
   
-  [self addToChatFromSender:currentNickname type:'k' text:@"Beep!"];
-
-  
-  [self addToChatFromSender:currentNickname type:'c' text:message];
-  
-  [self assemblePacketOfType:'h', @"beep", nil];
+  [self assemblePacketOfType:'h', @"beep", [command substringFromIndex:6], nil];
   [self sendPacket];
 }
 
