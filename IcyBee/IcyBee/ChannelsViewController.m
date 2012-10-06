@@ -54,8 +54,11 @@
   }   
   
   // Save our fetched data to an array  
-  [self setGroupArray: mutableFetchResults];  
-}   
+  [self setGroupArray: mutableFetchResults];
+  
+  [activity stopAnimating];
+  [myTableView setHidden:NO];
+}
 
 
 -(IBAction) newGroup {
@@ -77,6 +80,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  [myTableView setHidden:YES];
+  [activity startAnimating];
+  
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
   [[IcbConnection sharedInstance] globalWhoList];
   [super viewWillAppear:animated];
