@@ -166,6 +166,7 @@
                     <tabBarItem key="tabBarItem" title="People" id="bdU-F9-oT4"/>
                     <connections>
                         <outlet property="activity" destination="uGf-yA-Mf7" id="ygG-OY-Li6"/>
+                        <outlet property="myTableView" destination="pfK-M5-tBy" id="wV0-gp-asr"/>
                         <outlet property="peopleTableView" destination="pfK-M5-tBy" id="xEI-RB-hoH"/>
                     </connections>
                 </viewController>
@@ -625,6 +626,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
             </relationships>
         </class>

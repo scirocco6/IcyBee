@@ -24,7 +24,7 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+  
     // Release any cached data, images, etc that aren't in use.
 }
 
@@ -55,7 +55,9 @@
   
   // Save our fetched data to an array  
   [self setPeopleArray: mutableFetchResults];
+  
   [activity stopAnimating];
+  [myTableView setHidden:NO];
 }   
 
 -(IBAction) joinGroup:(UIButton *) sender {
@@ -151,20 +153,19 @@
 
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
+- (void)loadView {
 }
 */
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 */
 
 - (void)viewWillAppear:(BOOL)animated {
+  [myTableView setHidden:YES];
   [activity startAnimating];
   
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
