@@ -230,6 +230,7 @@
           else {
             currentChannel = [substring substringToIndex:range.location];
           }
+          [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
         }
       }
       break;

@@ -40,7 +40,8 @@
 }
 
 - (void)fetchRecords {
-  NSEntityDescription *entity     = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];
+  NSEntityDescription *entity     = [NSEntityDescription entityForName:@"ChatMessage"
+                                                inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];
   NSFetchRequest      *request    = [[NSFetchRequest alloc] init];
   NSPredicate         *predicate  = [NSPredicate predicateWithFormat: @"type IN %@", @[@"b", @"c", @"d", @"f", @"k"]];
   
@@ -138,8 +139,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-
 }
 
 - (void)viewDidUnload {
@@ -149,9 +148,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  NSLog(@"Setting navBar to %@", [[IcbConnection sharedInstance] currentChannel]);
   [self updateView];
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
-  
+
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
   
