@@ -173,14 +173,16 @@
         break;
     }
   }
-  [self sendOpenMessage:line];
+  else {
+    [self sendOpenMessage:line];
+  }
+  
+  [self addToChatFromSender:currentNickname type:'b' text:line];
 }
 
 - (void) sendOpenMessage:(NSString *) message {
   NSLog(@"Sending open message %@", message);
   
-  [self addToChatFromSender:currentNickname type:'b' text:message];
-
   [self assemblePacketOfType:'b', message, nil];
   [self sendPacket];
 }
