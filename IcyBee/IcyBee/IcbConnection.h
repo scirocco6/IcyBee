@@ -25,12 +25,13 @@
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
-  NSString                *currentChannel, *whoChannel;
+  NSString                *currentChannel, *currentNickname, *whoChannel;
 }
 
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
 @property (nonatomic, retain) UIViewController        *front;
 @property (nonatomic, retain) NSString                *currentChannel;
+@property (nonatomic, retain) NSString                *currentNickname;
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;
@@ -43,6 +44,6 @@
 - (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account;
 - (void) joinGroup:(NSString *) group;
 - (void) joinGroupWithUser:(NSString *) user;
-- (void) sendOpenMessage:(NSString *) message;
+- (void) processInput:(NSString *) line;
 
 @end

@@ -9,7 +9,7 @@
 #import "IcbConnection.h"
 
 @implementation IcbConnection
-@synthesize managedObjectContext, front, currentChannel;
+@synthesize managedObjectContext, front, currentChannel, currentNickname;
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
@@ -36,10 +36,14 @@
   for (id basket in result)
     [managedObjectContext deleteObject:basket];
   
+  currentChannel  = [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"];
+  currentNickname = [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"];
+  
   #ifdef DEBUG
     NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
     NSLog(@"port   setting is %i", [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue]);
-    NSLog(@"Nickname is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]);
+    NSLog(@"channel is %@", currentChannel);
+    NSLog(@"Nickname is %@", currentNickname);
   #endif
   
   CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (__bridge_retained CFStringRef) [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
@@ -77,13 +81,8 @@
           #ifdef DEBUG
             NSLog(@"sending login...");
           #endif
-          currentChannel = [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"];
-          [self assemblePacketOfType:'a', 
-           [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
-           [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"],
-           currentChannel,
-           @"login", 
-           nil];
+
+          [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", nil];
           [self sendPacket];
 
           break;
@@ -157,12 +156,58 @@
   [self sendPacket];
 }
 
+- (void) processInput:(NSString *) line {
+  if([line characterAtIndex:0] == '/') {
+    NSLog(@"Command detected: '%@'", line);
+    
+    switch ([line characterAtIndex:1]) {
+      case 'm':
+        [self sendPrivateMessage:line];
+        break;
+        
+      default:
+        break;
+    }
+  }
+  else {
+    [self sendOpenMessage:line];
+  }
+}
+
 - (void) sendOpenMessage:(NSString *) message {
   NSLog(@"Sending open message %@", message);
   
-  [self addToChatFromSender:[[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"] type:'b' text:message];
+  [self addToChatFromSender:currentNickname type:'b' text:message];
 
   [self assemblePacketOfType:'b', message, nil];
+  [self sendPacket];
+}
+
+- (void) sendPrivateMessage:(NSString *) command {
+  NSLog(@"Processing private message %@", command);
+  
+  NSScanner *myScanner = [NSScanner scannerWithString:command];
+  NSString *message;
+  
+  [myScanner scanUpToString:@" "  intoString:nil];
+  [myScanner scanUpToString:@"\0" intoString:&message];
+
+  
+  [self addToChatFromSender:currentNickname type:'c' text:message];
+  
+  [self assemblePacketOfType:'h', @"m", message, nil];
+  [self sendPacket];
+}
+
+- (void) sendBeep:(NSString *) message {
+  NSLog(@"Sending Beep %@", message);
+  
+  [self addToChatFromSender:currentNickname type:'k' text:@"Beep!"];
+
+  
+  [self addToChatFromSender:currentNickname type:'c' text:message];
+  
+  [self assemblePacketOfType:'h', @"beep", nil];
   [self sendPacket];
 }
 
