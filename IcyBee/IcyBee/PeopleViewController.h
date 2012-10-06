@@ -10,6 +10,7 @@
 
 @interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
   NSMutableArray *groupArray;
+  IBOutlet UIActivityIndicatorView *activity;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView     *peopleTableView;

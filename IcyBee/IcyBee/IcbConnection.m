@@ -159,11 +159,12 @@
 
 - (void) sendOpenMessage:(NSString *) message {
   NSLog(@"Sending open message %@", message);
+  
+  [self addToChatFromSender:[[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"] type:'b' text:message];
 
   [self assemblePacketOfType:'b', message, nil];
   [self sendPacket];
 }
-
 
 - (void) assemblePacketOfType:(char) packetType, ... {
     va_list args;
@@ -320,7 +321,7 @@
           break;
       }
       
-      #ifdef DEBUG
+      #ifdef DEBUG       
         NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
       #endif
       break;
@@ -336,9 +337,11 @@
 
 - (BOOL) hasUrl:(NSString *) message {
   NSError *error = NULL;
-  
-  NSDataDetector *detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error];
-  return [detector numberOfMatchesInString:message options:0 range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
+
+  return [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error]
+          numberOfMatchesInString:message
+                          options:0
+                            range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
 }
 
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
@@ -347,7 +350,8 @@
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
   [event setText:text];
-  [event setUrl:[self hasUrl: text]];
+  // only hunt for URLs in open and private messages
+  [event setUrl: (type == 'b' || type == 'c') ? [self hasUrl: text] : NO];
   
   [self saveManagedObjectContext];
 }

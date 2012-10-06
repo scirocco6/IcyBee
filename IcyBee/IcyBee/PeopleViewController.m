@@ -54,7 +54,8 @@
   }   
   
   // Save our fetched data to an array  
-  [self setPeopleArray: mutableFetchResults];  
+  [self setPeopleArray: mutableFetchResults];
+  [activity stopAnimating];
 }   
 
 -(IBAction) joinGroup:(UIButton *) sender {
@@ -164,6 +165,8 @@
 */
 
 - (void)viewWillAppear:(BOOL)animated {
+  [activity startAnimating];
+  
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
   [[IcbConnection sharedInstance] globalWhoList];
   [super viewWillAppear:animated];
