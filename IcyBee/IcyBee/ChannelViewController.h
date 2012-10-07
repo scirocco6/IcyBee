@@ -10,6 +10,7 @@
 
 @interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
+  BOOL                    shouldScrollToBottom;
 
   NSMutableArray *messageArray;
 }

@@ -386,6 +386,7 @@
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
   [event setText:text];
+  [event setHeight:21.0f];
   // only hunt for URLs in open and private messages
   [event setUrl: (type == 'b' || type == 'c') ? [self hasUrl: text] : NO];
   

@@ -22,21 +22,32 @@
   [[self navBar] setTitle:[[IcbConnection sharedInstance] currentChannel]];
   [self fetchRecords];
   [channelTableView reloadData];
-
-  // scroll to bottom
-  //
-  //TODO do not scroll to bottom if the user has scrolled us elsewhere
-  //
-  int lastRowNumber = [channelTableView numberOfRowsInSection:0] - 1;
-  if(lastRowNumber > 0) {
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    [channelTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-  }
+  
+  [self scrollToBottom];
 }
 
 - (void) reJiggerCells {
   [channelTableView beginUpdates];
   [channelTableView endUpdates];
+  
+  [self scrollToBottom];
+}
+
+- (void) scrollToBottom {
+  // scroll to bottom
+
+  if(shouldScrollToBottom == NO)
+    return;
+  
+  int lastRowNumber = [messageArray count] -1;
+ 
+  if(lastRowNumber > 0) {
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    ChatMessage *entry = [messageArray objectAtIndex: [ip row]];
+    
+    if ([entry height] > 0)
+      [channelTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+  }
 }
 
 - (void)fetchRecords {
@@ -65,6 +76,21 @@
   // Save our fetched data to an array
   [self setMessageArray: mutableFetchResults];
 }
+
+- (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
+  if (myScrollView.dragging) { // we only care if the user is dragging us
+    if(self.channelTableView.contentOffset.y<0){ // table view is pulled down like twitter refresh
+      return;
+    }
+    else if(self.channelTableView.contentOffset.y >= (self.channelTableView.contentSize.height - self.channelTableView.bounds.size.height)) {
+      NSLog(@"bottom!");
+      shouldScrollToBottom = YES;
+    }
+    else // user has left the scroll somewhere other than the bottom, don't move it on them
+      shouldScrollToBottom = NO;
+  }
+}
+
 
 #pragma mark - Table view data source
 
@@ -138,6 +164,8 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
+  shouldScrollToBottom = YES;
+  
   [super viewDidLoad];
 }
 
@@ -211,9 +239,11 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
   [inputTextField resignFirstResponder];
   
-//  [[IcbConnection sharedInstance] sendOpenMessage: [inputTextField text]];
-  [[IcbConnection sharedInstance] processInput: [inputTextField text]];
-  [inputTextField setText:@""];
+  if([[inputTextField text] length]) {
+    [[IcbConnection sharedInstance] processInput: [inputTextField text]];
+    [inputTextField setText:@""];
+  }
+  
   return YES;
 }
 
