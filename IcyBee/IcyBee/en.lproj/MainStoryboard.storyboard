@@ -187,7 +187,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47a-jj-PAy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="-3"/>
+            <point key="canvasLocation" x="-954" y="-690"/>
         </scene>
         <!--Channel View Controller - Channel-->
         <scene sceneID="11">
@@ -275,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="-3"/>
+            <point key="canvasLocation" x="-495" y="-690"/>
         </scene>
         <!--Private View Controller - Private-->
         <scene sceneID="13">
@@ -363,7 +363,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1027" y="-3"/>
+            <point key="canvasLocation" x="-45" y="-690"/>
         </scene>
         <!--Url View Controller - URLs-->
         <scene sceneID="Q6x-E8-VYk">
@@ -432,7 +432,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-hq-ad9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1378" y="-3"/>
+            <point key="canvasLocation" x="306" y="-690"/>
         </scene>
         <!--First View Controller-->
         <scene sceneID="N7J-DQ-BOs">
@@ -447,7 +447,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCf-ke-UI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="-1074"/>
+            <point key="canvasLocation" x="-838" y="-1761"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -470,7 +470,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="622" y="-714"/>
+            <point key="canvasLocation" x="-450" y="-1401"/>
         </scene>
         <!--Channels View Controller - Channels-->
         <scene sceneID="ckE-Gw-ho1">
@@ -583,7 +583,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abG-Qu-89g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="-3"/>
+            <point key="canvasLocation" x="-1392" y="-690"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1MY-8D-Xaa">
@@ -602,7 +602,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jqu-I5-SSg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-320" y="-714"/>
+            <point key="canvasLocation" x="-1392" y="-1401"/>
         </scene>
     </scenes>
     <resources>
@@ -610,97 +610,6 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
-    <classes>
-        <class className="Channel" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Channel.h"/>
-            <relationships>
-                <relationship kind="outlet" name="groupModerator" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groupName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="groupTopic" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ChannelMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="ChannelViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="ChannelsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="newGroup"/>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FirstViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
-        </class>
-        <class className="PeopleViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="beepUser:" candidateClass="UIButton"/>
-                <relationship kind="action" name="joinGroup:" candidateClass="UIButton"/>
-                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="Person" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Person.h"/>
-            <relationships>
-                <relationship kind="outlet" name="account" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="group" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="idle" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="joinButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="messageButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="nickname" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="signon" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="PrivateMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="PrivateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="privateTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="TabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
-        </class>
-        <class className="UrlMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="UrlViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="urlTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

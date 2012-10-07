@@ -162,7 +162,7 @@
     
     switch ([line characterAtIndex:1]) {
       case 'm':
-        [self sendPrivateMessage:line];
+        [self sendPrivateMessage:[line substringFromIndex:3]];
         break;
         
       case 'b':
@@ -187,15 +187,15 @@
   [self sendPacket];
 }
 
-- (void) sendPrivateMessage:(NSString *) command {
-  NSLog(@"Processing private message %@", command);
+- (void) sendPrivateMessage:(NSString *) message {
+  NSLog(@"sending private message %@", message);
   
-  [self assemblePacketOfType:'h', @"m", [command substringFromIndex:3], nil];
+  [self assemblePacketOfType:'h', @"m", message, nil];
   [self sendPacket];
 }
 
 - (void) sendBeep:(NSString *) user {
-  NSLog(@"Processing beep command %@", user);
+  NSLog(@"sending beep to %@", user);
   
   [self assemblePacketOfType:'h', @"beep", user, nil];
   [self sendPacket];

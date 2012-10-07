@@ -46,5 +46,6 @@
 - (void) joinGroupWithUser:(NSString *) user;
 - (void) processInput:(NSString *) line;
 - (void) sendBeep:(NSString *) user;
+- (void) sendPrivateMessage:(NSString *) message;
 
 @end

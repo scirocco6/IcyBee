@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
   NSMutableArray *peopleArray;
   IBOutlet UIActivityIndicatorView *activity;
   IBOutlet UITableView *myTableView;

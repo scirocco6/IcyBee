@@ -68,7 +68,15 @@
 }
 
 - (IBAction) messageUser:(UIButton *) sender {
-//  People *entry  = [peopleArray objectAtIndex: [sender tag]];
+  People *entry  = [peopleArray objectAtIndex: [sender tag]];
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[entry nickname]
+                                                  message:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                        otherButtonTitles:@"Send", nil];
+  [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+  [alert show];
 }
 
 - (IBAction) beepUser:(UIButton *) sender {
@@ -82,6 +90,21 @@
                                         cancelButtonTitle:@"OK"
                                         otherButtonTitles:nil];
   [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+
+  NSLog(@"Input length == %i", [inputText length]);
+  return [inputText length] == 0 ? NO : YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if([title isEqualToString:@"Send"])
+    [[IcbConnection sharedInstance] sendPrivateMessage:[NSString stringWithFormat:@"%@ %@", [alertView title], [[alertView textFieldAtIndex:0] text]]];
 }
 
 #pragma mark - Table view data source
