@@ -11,7 +11,7 @@
 #import "IcbConnection.h"
 
 @implementation PeopleViewController
-@synthesize peopleArray, peopleTableView;
+@synthesize peopleTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,7 +54,7 @@
   }   
   
   // Save our fetched data to an array  
-  [self setPeopleArray: mutableFetchResults];
+  peopleArray = mutableFetchResults;
   
   [activity stopAnimating];
   [myTableView setHidden:NO];

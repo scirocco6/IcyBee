@@ -9,13 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-  NSMutableArray *groupArray;
+  NSMutableArray *peopleArray;
   IBOutlet UIActivityIndicatorView *activity;
   IBOutlet UITableView *myTableView;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView     *peopleTableView;
-@property (nonatomic, retain)           NSMutableArray  *peopleArray;  
 
 - (void) fetchRecords;
 
