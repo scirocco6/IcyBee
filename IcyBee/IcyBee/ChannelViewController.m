@@ -6,9 +6,11 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
+#import "Constants.h"
 #import "ChannelViewController.h"
 #import "ChannelMessage.h"
 #import "IcbConnection.h"
+
 
 @implementation ChannelViewController
 @synthesize channelTableView, inputTextField;
@@ -153,23 +155,6 @@
 
 - (void)viewDidLoad {
   shouldScrollToBottom = YES;
-  
-  htmlStart = @""
-  "<html>"
-  "<head> \n"
-  "<style type=\"text/css\">"
-  "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
-  "span {color:white}"
-  "A:link {text-decoration: underline; color: yellow}"
-  "A:visited {text-decoration: underline; color: blue;}"
-  "A:active {text-decoration: underline; color: red;}"
-  "</style>"
-  "</head>"
-  "<body>";
-  
-  htmlFinish = @""
-  "</body>"
-  "</html>";
   
   [super viewDidLoad];
 }

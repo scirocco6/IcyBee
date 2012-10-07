@@ -11,9 +11,7 @@
 @interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
   BOOL                    shouldScrollToBottom;
-
-  NSString                *htmlStart, *htmlFinish;
-  NSMutableArray *messageArray;
+  NSMutableArray          *messageArray;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView       *channelTableView;
