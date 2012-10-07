@@ -11,6 +11,7 @@
 @interface PrivateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
   NSMutableArray *privateArray;
+  BOOL                    shouldScrollToBottom;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView       *privateTableView;

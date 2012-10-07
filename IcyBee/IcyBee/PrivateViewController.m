@@ -21,20 +21,32 @@
 - (void) updateView {
   [self fetchRecords];
   [privateTableView reloadData];
-  // scroll to bottom
-  //
-  //TODO do not scroll to bottom if the user has scrolled us elsewhere
-  //
-  int lastRowNumber = [privateTableView numberOfRowsInSection:0] - 1;
-  if(lastRowNumber > 0) {
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    [privateTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-  }
+
+  [self scrollToBottom];
 }
 
 - (void) reJiggerCells {
   [privateTableView beginUpdates];
   [privateTableView endUpdates];
+  
+  [self scrollToBottom];
+}
+
+- (void) scrollToBottom {
+  // scroll to bottom
+  
+  if(shouldScrollToBottom == NO)
+    return;
+  
+  int lastRowNumber = [privateArray count] -1;
+  
+  if(lastRowNumber > 0) {
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    ChatMessage *entry = [privateArray objectAtIndex: [ip row]];
+    
+    if ([entry height] > 0)
+      [privateTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+  }
 }
 
 - (void)fetchRecords {   
@@ -62,6 +74,19 @@
   // Save our fetched data to an array  
   [self setPrivateArray: mutableFetchResults];  
 }   
+
+- (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
+  if ([myScrollView isDragging]) { // we only care if the user is dragging us
+    if(self.privateTableView.contentOffset.y<0){ // table view is pulled down like twitter refresh
+      return;
+    }
+    else if(self.privateTableView.contentOffset.y >= (self.privateTableView.contentSize.height - self.privateTableView.bounds.size.height)) { // bottom
+      shouldScrollToBottom = YES;
+    }
+    else // user has scrolled somewhere other than the bottom, don't move it on them
+      shouldScrollToBottom = NO;
+  }
+}
 
 #pragma mark - Table view data source
 
@@ -201,7 +226,10 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
   [inputTextField resignFirstResponder];
   
-  [inputTextField setText:@""];
+  if([[inputTextField text] length]) {
+//    [[IcbConnection sharedInstance] processInput: [inputTextField text]];
+    [inputTextField setText:@""];
+  }
   return YES;
 }
 

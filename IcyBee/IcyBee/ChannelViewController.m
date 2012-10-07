@@ -78,15 +78,14 @@
 }
 
 - (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
-  if (myScrollView.dragging) { // we only care if the user is dragging us
+  if ([myScrollView isDragging]) { // we only care if the user is dragging us
     if(self.channelTableView.contentOffset.y<0){ // table view is pulled down like twitter refresh
       return;
     }
-    else if(self.channelTableView.contentOffset.y >= (self.channelTableView.contentSize.height - self.channelTableView.bounds.size.height)) {
-      NSLog(@"bottom!");
+    else if(self.channelTableView.contentOffset.y >= (self.channelTableView.contentSize.height - self.channelTableView.bounds.size.height)) { // bottom
       shouldScrollToBottom = YES;
     }
-    else // user has left the scroll somewhere other than the bottom, don't move it on them
+    else // user has scrolled somewhere other than the bottom, don't move it on them
       shouldScrollToBottom = NO;
   }
 }
