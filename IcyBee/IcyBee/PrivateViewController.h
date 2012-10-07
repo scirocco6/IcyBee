@@ -10,7 +10,7 @@
 
 @interface PrivateViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
-  NSMutableArray *privateArray;
+  NSMutableArray          *privateArray;
   BOOL                    shouldScrollToBottom;
 }
 

@@ -12,7 +12,7 @@
 #import "IcbConnection.h"
 
 @implementation UrlViewController
-@synthesize urlArray, urlTableView;
+@synthesize urlTableView;
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -23,20 +23,31 @@
   [self fetchRecords];
   [urlTableView reloadData];
   
-  // scroll to bottom
-  //
-  //TODO do not scroll to bottom if the user has scrolled us elsewhere
-  //
-  int lastRowNumber = [urlTableView numberOfRowsInSection:0] - 1;
-  if(lastRowNumber > 0) {
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    [urlTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-  }
+  [self scrollToBottom];
 }
 
 - (void) reJiggerCells {
   [urlTableView beginUpdates];
   [urlTableView endUpdates];
+  
+  [self scrollToBottom];
+}
+
+- (void) scrollToBottom {
+  // scroll to bottom
+  
+  if(shouldScrollToBottom == NO)
+    return;
+  
+  int lastRowNumber = [urlArray count] -1;
+  
+  if(lastRowNumber > 0) {
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
+    ChatMessage *entry = [urlArray objectAtIndex: [ip row]];
+    
+    if ([entry height] > 0)
+      [urlTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+  }
 }
 
 - (void)fetchRecords {
@@ -62,7 +73,20 @@
   }
   
   // Save our fetched data to an array
-  [self setUrlArray: mutableFetchResults];
+  urlArray = mutableFetchResults;
+}
+
+- (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
+  if ([myScrollView isDragging]) { // we only care if the user is dragging us
+    if(self.urlTableView.contentOffset.y<0){ // table view is pulled down like twitter refresh
+      return;
+    }
+    else if(self.urlTableView.contentOffset.y >= (self.urlTableView.contentSize.height - self.urlTableView.bounds.size.height)) { // bottom
+      shouldScrollToBottom = YES;
+    }
+    else // user has scrolled somewhere other than the bottom, don't move it on them
+      shouldScrollToBottom = NO;
+  }
 }
 
 #pragma mark - Table view data source
@@ -71,7 +95,7 @@
   return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   return [urlArray count];
 }
 

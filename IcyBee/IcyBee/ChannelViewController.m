@@ -11,7 +11,7 @@
 #import "IcbConnection.h"
 
 @implementation ChannelViewController
-@synthesize messageArray, channelTableView, inputTextField;
+@synthesize channelTableView, inputTextField;
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -74,7 +74,7 @@
   }
   
   // Save our fetched data to an array
-  [self setMessageArray: mutableFetchResults];
+  messageArray = mutableFetchResults;
 }
 
 - (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
@@ -180,7 +180,7 @@
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
 
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:)  name:UIKeyboardDidHideNotification  object:nil];
   
   [super viewWillAppear:animated];
 }

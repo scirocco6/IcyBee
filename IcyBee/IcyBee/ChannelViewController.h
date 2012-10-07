@@ -17,7 +17,7 @@
 
 @property (nonatomic, strong) IBOutlet  UITableView       *channelTableView;
 @property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
-@property (nonatomic, retain)           NSMutableArray    *messageArray;
+//@property (nonatomic, retain)           NSMutableArray    *messageArray;
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
 - (void) keyboardWillShow:(NSNotification *) notification;
