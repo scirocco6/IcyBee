@@ -331,6 +331,9 @@
                   [self addGroup:name moderator:moderator topic:topic];                  
                 }
               }
+              else {
+                [self addToChatFromSender:@"server" type:'o' text:[parameters objectAtIndex:1]];
+              }
             }
               
             default: {
