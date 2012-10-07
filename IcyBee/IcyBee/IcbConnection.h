@@ -45,5 +45,6 @@
 - (void) joinGroup:(NSString *) group;
 - (void) joinGroupWithUser:(NSString *) user;
 - (void) processInput:(NSString *) line;
+- (void) sendBeep:(NSString *) user;
 
 @end

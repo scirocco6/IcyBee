@@ -166,7 +166,7 @@
         break;
         
       case 'b':
-        [self sendBeep:line];
+        [self sendBeep:[line substringFromIndex:6]];
         break;
         
       default:
@@ -194,10 +194,10 @@
   [self sendPacket];
 }
 
-- (void) sendBeep:(NSString *) command {
-  NSLog(@"Processing beep command %@", command);
+- (void) sendBeep:(NSString *) user {
+  NSLog(@"Processing beep command %@", user);
   
-  [self assemblePacketOfType:'h', @"beep", [command substringFromIndex:6], nil];
+  [self assemblePacketOfType:'h', @"beep", user, nil];
   [self sendPacket];
 }
 

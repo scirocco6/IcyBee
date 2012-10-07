@@ -54,7 +54,7 @@
   }   
   
   // Save our fetched data to an array  
-  groupArray: mutableFetchResults;
+  groupArray = mutableFetchResults;
   
   [activity stopAnimating];
   [myTableView setHidden:NO];

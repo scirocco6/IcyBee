@@ -99,7 +99,7 @@
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FFc-iQ-yd4">
-                                                    <rect key="frame" x="164" y="172" width="89" height="37"/>
+                                                    <rect key="frame" x="116" y="173" width="89" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Message">
@@ -110,11 +110,26 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="messageUser" destination="rZU-Le-sZ9" eventType="touchUpInside" id="fzO-UX-A5E"/>
+                                                        <action selector="messageUser:" destination="rZU-Le-sZ9" eventType="touchUpInside" id="sXW-By-xEN"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hlv-h6-e87">
+                                                    <rect key="frame" x="213" y="173" width="89" height="37"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title="Beep">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="beepUser:" destination="rZU-Le-sZ9" eventType="touchUpInside" id="9dz-qt-6tU"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lo4-h2-5SW">
-                                                    <rect key="frame" x="67" y="172" width="89" height="37"/>
+                                                    <rect key="frame" x="19" y="173" width="89" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <state key="normal" title="Join">
@@ -595,6 +610,97 @@
         <image name="first" width="16" height="16"/>
         <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="Channel" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Channel.h"/>
+            <relationships>
+                <relationship kind="outlet" name="groupModerator" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groupName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groupTopic" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ChannelMessage" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelMessage.h"/>
+            <relationships>
+                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="ChannelViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="ChannelsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="newGroup"/>
+                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+        </class>
+        <class className="PeopleViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="beepUser:" candidateClass="UIButton"/>
+                <relationship kind="action" name="joinGroup:" candidateClass="UIButton"/>
+                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="Person" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Person.h"/>
+            <relationships>
+                <relationship kind="outlet" name="account" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="group" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="idle" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="joinButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="messageButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="nickname" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="signon" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="PrivateMessage" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateMessage.h"/>
+            <relationships>
+                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="PrivateViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivateViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="privateTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+        <class className="UrlMessage" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlMessage.h"/>
+            <relationships>
+                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="UrlViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="urlTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

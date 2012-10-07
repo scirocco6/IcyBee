@@ -60,15 +60,28 @@
   [myTableView setHidden:NO];
 }   
 
--(IBAction) joinGroup:(UIButton *) sender {
+- (IBAction) joinGroup:(UIButton *) sender {
   People *entry  = [peopleArray objectAtIndex: [sender tag]];
   
   [[IcbConnection sharedInstance] joinGroupWithUser:[entry nickname]];
   [[self tabBarController] setSelectedIndex:2];
 }
 
--(IBAction) messageUser {
-  NSLog(@"Message User button pressed");
+- (IBAction) messageUser:(UIButton *) sender {
+//  People *entry  = [peopleArray objectAtIndex: [sender tag]];
+}
+
+- (IBAction) beepUser:(UIButton *) sender {
+  People *entry  = [peopleArray objectAtIndex: [sender tag]];
+
+  [[IcbConnection sharedInstance] sendBeep: [entry nickname]];
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Beep!"
+                                                  message:[NSString stringWithFormat:@"You sent %@ a beep", [entry nickname]]
+                                                 delegate:nil
+                                        cancelButtonTitle:@"OK"
+                                        otherButtonTitles:nil];
+  [alert show];
 }
 
 #pragma mark - Table view data source
