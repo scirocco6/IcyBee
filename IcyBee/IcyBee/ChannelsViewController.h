@@ -15,7 +15,6 @@
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView     *channelTableView;
-@property (nonatomic, retain)           NSMutableArray  *groupArray;  
 
 -(IBAction) newGroup; 
 - (void) fetchRecords;

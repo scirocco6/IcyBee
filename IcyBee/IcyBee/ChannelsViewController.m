@@ -11,7 +11,7 @@
 #import "Channel.h"
 
 @implementation ChannelsViewController
-@synthesize channelTableView, groupArray;
+@synthesize channelTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,7 +54,7 @@
   }   
   
   // Save our fetched data to an array  
-  [self setGroupArray: mutableFetchResults];
+  groupArray: mutableFetchResults;
   
   [activity stopAnimating];
   [myTableView setHidden:NO];
