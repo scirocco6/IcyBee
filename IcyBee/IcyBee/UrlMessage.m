@@ -8,9 +8,10 @@
 
 #import "UrlMessage.h"
 #import "IcbConnection.h"
+#import "BrowserViewController.h"
 
 @implementation UrlMessage
-@synthesize navigationController;
+@synthesize urlController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -53,8 +54,9 @@
   if (navigationType == UIWebViewNavigationTypeOther)
     return YES;
   else
-    [[self navigationController] performSegueWithIdentifier:@"goBrowser" sender:self];
-  return NO;
+    [[self urlController] popBrowser];
+    [[BrowserViewController sharedInstance] post:request];
+    return NO;
 }
 
 @end

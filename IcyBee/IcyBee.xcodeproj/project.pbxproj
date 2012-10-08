@@ -48,6 +48,8 @@
 		4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
 		4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */; };
+		4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAE554316227379009E0F40 /* BrowserViewController.m */; };
+		4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FAE554416227379009E0F40 /* BrowserViewController.xib */; };
 		4FE1251D15ABD50300BECE75 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1251C15ABD50300BECE75 /* Person.m */; };
 		4FE1655916214A0300CD0479 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1655816214A0300CD0479 /* Constants.m */; };
 /* End PBXBuildFile section */
@@ -125,6 +127,9 @@
 		4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Channel@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4FAE554216227379009E0F40 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
+		4FAE554316227379009E0F40 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
+		4FAE554416227379009E0F40 /* BrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
 		4FE1251B15ABD50300BECE75 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4FE16557162148B300CD0479 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -232,6 +237,7 @@
 				4FE1251915ABD20100BECE75 /* People View */,
 				4F6B967B15AA23C90044EC6E /* Groups View */,
 				4F7089BB15C3ACFC00BEAEB9 /* URL View */,
+				4FAE554116227348009E0F40 /* Browser View */,
 				4F6B968015AA2C350044EC6E /* Model */,
 				4F42D1C714A989BD00FEB062 /* Supporting Files */,
 				4F7089B915C3ACA100BEAEB9 /* Graphics */,
@@ -330,6 +336,16 @@
 			name = "URL View";
 			sourceTree = "<group>";
 		};
+		4FAE554116227348009E0F40 /* Browser View */ = {
+			isa = PBXGroup;
+			children = (
+				4FAE554216227379009E0F40 /* BrowserViewController.h */,
+				4FAE554316227379009E0F40 /* BrowserViewController.m */,
+				4FAE554416227379009E0F40 /* BrowserViewController.xib */,
+			);
+			name = "Browser View";
+			sourceTree = "<group>";
+		};
 		4FE1251915ABD20100BECE75 /* People View */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +440,7 @@
 				4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */,
 				4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */,
 				4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */,
+				4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +496,7 @@
 				4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */,
 				4F46BEE9161CFBC7008B0282 /* UrlMessage.m in Sources */,
 				4FE1655916214A0300CD0479 /* Constants.m in Sources */,
+				4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

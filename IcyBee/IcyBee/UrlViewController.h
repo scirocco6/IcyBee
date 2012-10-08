@@ -19,4 +19,5 @@
 - (void) updateView;
 - (void) fetchRecords;
 - (void) reJiggerCells;
+- (void) popBrowser;
 @end

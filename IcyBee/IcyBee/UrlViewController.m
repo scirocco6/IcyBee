@@ -8,6 +8,7 @@
 
 
 #import "UrlViewController.h"
+#import "BrowserViewController.h"
 #import "UrlMessage.h"
 #import "IcbConnection.h"
 
@@ -75,6 +76,11 @@
   // Save our fetched data to an array
   urlArray = mutableFetchResults;
 }
+
+- (void) popBrowser {
+  [self presentViewController:[BrowserViewController sharedInstance] animated:YES completion:NULL];
+}
+
 
 - (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
   if ([myScrollView isDragging]) { // we only care if the user is dragging us
@@ -154,7 +160,7 @@
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
   [cell setObjectID:[entry objectID]];
-  [cell setNavigationController:[self navigationController]];
+  [cell setUrlController:self];
   
   return cell;
 }

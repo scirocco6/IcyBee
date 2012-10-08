@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "UrlViewController.h"
 
 @interface UrlMessage : UITableViewCell <UIWebViewDelegate>
 @property (nonatomic, strong) IBOutlet UIWebView              *message;
 @property (nonatomic, strong)          NSManagedObjectID      *objectID;
-@property (nonatomic, strong)          UINavigationController *navigationController;
+@property (nonatomic, strong)          UrlViewController      *urlController;
 @end
