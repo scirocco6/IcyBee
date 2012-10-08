@@ -154,6 +154,7 @@
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
   [cell setObjectID:[entry objectID]];
+  [cell setNavigationController:[self navigationController]];
   
   return cell;
 }
@@ -191,13 +192,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
   return YES;
-}
-
-#pragma mark - UIWebViewDelegate
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-  if (navigationType == UIWebViewNavigationTypeOther)
-    return YES;
-  return NO;
 }
 
 @end

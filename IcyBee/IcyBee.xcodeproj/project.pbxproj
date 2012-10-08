@@ -127,8 +127,8 @@
 		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4FE1251B15ABD50300BECE75 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		4FE16557162148B300CD0479 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = IcyBee/Constants.h; sourceTree = "<group>"; };
-		4FE1655816214A0300CD0479 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = IcyBee/Constants.m; sourceTree = "<group>"; };
+		4FE16557162148B300CD0479 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4FE1655816214A0300CD0479 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,8 +203,6 @@
 		4F42D1BF14A989BD00FEB062 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4FE16557162148B300CD0479 /* Constants.h */,
-				4FE1655816214A0300CD0479 /* Constants.m */,
 				4F42D1C014A989BD00FEB062 /* UIKit.framework */,
 				4F42D1C214A989BD00FEB062 /* Foundation.framework */,
 				4F42D1C414A989BD00FEB062 /* CoreGraphics.framework */,
@@ -218,8 +216,10 @@
 		4F42D1C614A989BD00FEB062 /* IcyBee */ = {
 			isa = PBXGroup;
 			children = (
-				4F42D1CC14A989BD00FEB062 /* main.m */,
 				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
+				4FE16557162148B300CD0479 /* Constants.h */,
+				4FE1655816214A0300CD0479 /* Constants.m */,
+				4F42D1CC14A989BD00FEB062 /* main.m */,
 				4F42D1CF14A989BD00FEB062 /* AppDelegate.h */,
 				4F42D1D014A989BD00FEB062 /* AppDelegate.m */,
 				4F30AB3F14C2DC5D008D90E1 /* TabBarController.h */,

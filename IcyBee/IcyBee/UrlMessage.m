@@ -10,6 +10,7 @@
 #import "IcbConnection.h"
 
 @implementation UrlMessage
+@synthesize navigationController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -26,12 +27,6 @@
 }
 
 #pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *) request navigationType:(UIWebViewNavigationType) navigationType {
-  if (navigationType == UIWebViewNavigationTypeOther)
-    return YES;
-  return NO;
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
   CGRect frame = [webView frame];
@@ -52,6 +47,14 @@
   [message setHeight:frame.size.height + 1];
   
   [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells)];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+  if (navigationType == UIWebViewNavigationTypeOther)
+    return YES;
+  else
+    [[self navigationController] performSegueWithIdentifier:@"goBrowser" sender:self];
+  return NO;
 }
 
 @end
