@@ -7,17 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbTableViewController.h"
 
-@interface UrlViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
-  NSMutableArray *urlArray;
-  BOOL           shouldScrollToBottom;
+@interface UrlViewController : IcbTableViewController  {
 }
 
-@property (nonatomic, strong) IBOutlet  UITableView       *urlTableView;
-@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
-
-- (void) updateView;
-- (void) fetchRecords;
-- (void) reJiggerCells;
-- (void) popBrowser;
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F03126C1624A8C600ABDED1 /* IcbTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03126B1624A8C600ABDED1 /* IcbTableViewController.m */; };
 		4F06546D14C3FC490067C8A2 /* ChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F06546B14C3FC490067C8A2 /* ChatModel.xcdatamodeld */; };
 		4F06547114C3FFDD0067C8A2 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F06547014C3FFDD0067C8A2 /* ChatMessage.m */; };
 		4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08E56614C2B63300673ADF /* NicknameViewController.m */; };
@@ -40,7 +41,7 @@
 		4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20914A9990800FEB062 /* ChannelsViewController.m */; };
 		4F42D20C14A9A00300FEB062 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D20B14A9A00300FEB062 /* Settings.bundle */; };
 		4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */; };
-		4F46BEE9161CFBC7008B0282 /* UrlMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F46BEE8161CFBC7008B0282 /* UrlMessage.m */; };
+		4F46BEE9161CFBC7008B0282 /* IcbMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F46BEE8161CFBC7008B0282 /* IcbMessage.m */; };
 		4F6B967E15AA24000044EC6E /* Channel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B967D15AA24000044EC6E /* Channel.m */; };
 		4F6B968315AA2CCD0044EC6E /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B968215AA2CCD0044EC6E /* Group.m */; };
 		4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BC15C4D60900BEAEB9 /* Default@2x.png */; };
@@ -65,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F03126A1624A8C600ABDED1 /* IcbTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbTableViewController.h; sourceTree = "<group>"; };
+		4F03126B1624A8C600ABDED1 /* IcbTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbTableViewController.m; sourceTree = "<group>"; };
 		4F06546C14C3FC490067C8A2 /* ChatModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatModel.xcdatamodel; sourceTree = "<group>"; };
 		4F06546F14C3FFDD0067C8A2 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		4F06547014C3FFDD0067C8A2 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
@@ -116,8 +119,8 @@
 		4F42D20B14A9A00300FEB062 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbConnection.h; sourceTree = "<group>"; };
 		4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbConnection.m; sourceTree = "<group>"; };
-		4F46BEE7161CFBC7008B0282 /* UrlMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlMessage.h; sourceTree = "<group>"; };
-		4F46BEE8161CFBC7008B0282 /* UrlMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlMessage.m; sourceTree = "<group>"; };
+		4F46BEE7161CFBC7008B0282 /* IcbMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IcbMessage.h; sourceTree = "<group>"; };
+		4F46BEE8161CFBC7008B0282 /* IcbMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IcbMessage.m; sourceTree = "<group>"; };
 		4F6B967C15AA24000044EC6E /* Channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel.h; sourceTree = "<group>"; };
 		4F6B967D15AA24000044EC6E /* Channel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Channel.m; sourceTree = "<group>"; };
 		4F6B968115AA2CCD0044EC6E /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -162,6 +165,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F03126E1624C01500ABDED1 /* Icb Table View */ = {
+			isa = PBXGroup;
+			children = (
+				4F46BEE7161CFBC7008B0282 /* IcbMessage.h */,
+				4F46BEE8161CFBC7008B0282 /* IcbMessage.m */,
+				4F03126A1624A8C600ABDED1 /* IcbTableViewController.h */,
+				4F03126B1624A8C600ABDED1 /* IcbTableViewController.m */,
+			);
+			name = "Icb Table View";
+			sourceTree = "<group>";
+		};
 		4F0E52E115AD22BF00DA0629 /* First Time */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +245,7 @@
 				4F30AB4014C2DC5D008D90E1 /* TabBarController.m */,
 				4F42D20D14A9B0DF00FEB062 /* IcbConnection.h */,
 				4F42D20E14A9B0DF00FEB062 /* IcbConnection.m */,
+				4F03126E1624C01500ABDED1 /* Icb Table View */,
 				4F0E52E115AD22BF00DA0629 /* First Time */,
 				4F6B967F15AA27540044EC6E /* Group Chat View */,
 				4F0E52E315AD23A200DA0629 /* Private View */,
@@ -328,8 +343,6 @@
 		4F7089BB15C3ACFC00BEAEB9 /* URL View */ = {
 			isa = PBXGroup;
 			children = (
-				4F46BEE7161CFBC7008B0282 /* UrlMessage.h */,
-				4F46BEE8161CFBC7008B0282 /* UrlMessage.m */,
 				4F42D20214A9964A00FEB062 /* UrlViewController.h */,
 				4F42D20314A9964A00FEB062 /* UrlViewController.m */,
 			);
@@ -494,9 +507,10 @@
 				4F320BEA15ABE3E0001B7C44 /* People.m in Sources */,
 				4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */,
 				4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */,
-				4F46BEE9161CFBC7008B0282 /* UrlMessage.m in Sources */,
+				4F46BEE9161CFBC7008B0282 /* IcbMessage.m in Sources */,
 				4FE1655916214A0300CD0479 /* Constants.m in Sources */,
 				4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */,
+				4F03126C1624A8C600ABDED1 /* IcbTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

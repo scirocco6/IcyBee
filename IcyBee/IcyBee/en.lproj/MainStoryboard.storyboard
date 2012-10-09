@@ -390,7 +390,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <prototypes>
-                                    <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="o0u-8u-qdR" userLabel="Url Message - person" customClass="UrlMessage">
+                                    <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="o0u-8u-qdR" userLabel="Url Message - person" customClass="IcbMessage">
                                         <rect key="frame" x="0.0" y="22" width="320" height="165"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -426,8 +426,8 @@
                     <tabBarItem key="tabBarItem" title="URLs" id="aDt-g2-0Rv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="dataTableView" destination="aVq-Ia-Qb5" id="HfO-HB-ezs"/>
                         <outlet property="navBar" destination="3Jq-zK-Gae" id="uXh-jK-HHQ"/>
-                        <outlet property="urlTableView" destination="aVq-Ia-Qb5" id="He0-LT-XH0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-hq-ad9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -646,6 +646,9 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
         </class>
+        <class className="IcbTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbTableViewController.h"/>
+        </class>
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
@@ -684,17 +687,11 @@
         <class className="TabBarController" superclassName="UITabBarController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
         </class>
-        <class className="UrlMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="UrlViewController" superclassName="UIViewController">
+        <class className="UrlViewController" superclassName="IcbTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UrlViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="dataTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
-                <relationship kind="outlet" name="urlTableView" candidateClass="UITableView"/>
             </relationships>
         </class>
     </classes>

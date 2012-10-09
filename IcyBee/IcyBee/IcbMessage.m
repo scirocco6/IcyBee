@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
-#import "UrlMessage.h"
+#import "IcbMessage.h"
 #import "IcbConnection.h"
 #import "BrowserViewController.h"
 
-@implementation UrlMessage
-@synthesize urlController;
+@implementation IcbMessage
+@synthesize icbTableController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -54,7 +54,7 @@
   if (navigationType == UIWebViewNavigationTypeOther)
     return YES;
   else
-    [[self urlController] popBrowser];
+    [[self icbTableController] popBrowser];
     [[BrowserViewController sharedInstance] post:request];
     return NO;
 }
