@@ -112,20 +112,8 @@
 - (PrivateMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   PrivateMessage *cell   = [tableView dequeueReusableCellWithIdentifier:@"person"];
 	ChatMessage *entry  = [privateArray objectAtIndex: [indexPath row]];  
-
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   
-  [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-  [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-  [dateFormatter setLocale:[NSLocale currentLocale]];
-
-//  [[cell nickname] setText: [entry sender]];
-//  [[cell timestamp] setText:[dateFormatter stringFromDate:[entry timeStamp]]];
-  
-  if ([[entry type] compare:@"c"] == NSOrderedSame) {
-//    [[cell nickname] setTextColor:[UIColor redColor]];
-//    [[cell message] loadHTMLString: [NSString stringWithFormat:@"<i>%@</i>", [entry text]] baseURL:nil];
-    
+  if ([[entry type] compare:@"c"] == NSOrderedSame) {    
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
                                      "<html>"
                                      "<head> \n"

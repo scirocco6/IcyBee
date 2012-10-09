@@ -96,12 +96,6 @@
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
 	ChatMessage *entry = [dataArray objectAtIndex: [indexPath row]];
   
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  
-  [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
-  [dateFormatter setDateStyle: NSDateFormatterShortStyle];
-  [dateFormatter setLocale: [NSLocale currentLocale]];
-  
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@""
                                      "<html>"

@@ -118,12 +118,6 @@
   ChannelMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
 	ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
   
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  
-  [dateFormatter setTimeStyle: NSDateFormatterShortStyle];
-  [dateFormatter setDateStyle: NSDateFormatterShortStyle];
-  [dateFormatter setLocale: [NSLocale currentLocale]];
-
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                         "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
