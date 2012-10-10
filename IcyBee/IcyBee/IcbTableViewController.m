@@ -145,6 +145,11 @@ NSString const * htmlEnd = @"</body></html>";
 
 #pragma mark - View lifecycle
 
+- (void)viewDidLoad {
+  shouldScrollToBottom = YES;
+  [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [self updateView];
   [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
