@@ -8,7 +8,6 @@
 
 #import "UrlViewController.h"
 
-
 @implementation UrlViewController
 
 - (void)fetchRecords {

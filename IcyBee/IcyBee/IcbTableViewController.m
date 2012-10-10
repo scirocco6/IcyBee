@@ -10,6 +10,21 @@
 #import "IcbMessage.h"
 #import "BrowserViewController.h"
 
+NSString const * htmlBegin = @""
+"<html>"
+"<head>"
+"<style type=\"text/css\">"
+"body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
+"span {color:white}"
+"A:link {text-decoration: underline; color: yellow}"
+"A:visited {text-decoration: underline; color: blue;}"
+"A:active {text-decoration: underline; color: red;}"
+"</style>"
+"</head>"
+"<body>";
+
+NSString const * htmlEnd = @"</body></html>";
+
 @interface IcbTableViewController ()
 
 @end
@@ -18,6 +33,9 @@
 
 @synthesize dataTableView;
 
+- (NSString *) tableIdentifier {
+  return @"baseTable";
+}
 - (void) updateView {
   [self fetchRecords];
   [dataTableView reloadData];
@@ -95,41 +113,31 @@
 - (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
 	ChatMessage *entry = [dataArray objectAtIndex: [indexPath row]];
-  
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@""
-                                     "<html>"
-                                     "<head> \n"
-                                     "<style type=\"text/css\">"
-                                     "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
-                                     "span {color:white}"
-                                     "</style>"
-                                     "</head>"
-                                     "<body>"
+    
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
                                      "<span><i style='color: #00FF00'>%@</i></span>"
-                                     "</body>"
-                                     "</html>",
-                                     [entry sender], [entry text]] baseURL:nil];
+                                     "%@",
+                                     htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
+  }
+  else if ([[entry type] compare:@"o"] == NSOrderedSame) { // server responce from a comand
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
+                                     "<span><i style='color: #FFF0F0'>%@</i></span>"
+                                     "%@",
+                                     htmlBegin, [entry text], htmlEnd] baseURL:nil];
   }
   else { // open channel message
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@""
-                                     "<html>"
-                                     "<head> \n"
-                                     "<style type=\"text/css\">"
-                                     "body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
-                                     "span {color:white}"
-                                     "</style>"
-                                     "</head>"
-                                     "<body>"
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
                                      "<span>%@</span>"
-                                     "</body>"
-                                     "</html>",
-                                     [entry sender], [entry text]] baseURL:nil];
+                                     "%@",
+                                     
+                                     htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
   [cell setObjectID:[entry objectID]];
+
   [cell setIcbTableController:self];
   
   return cell;
