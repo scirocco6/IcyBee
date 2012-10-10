@@ -13,43 +13,12 @@
 
 
 @implementation ChannelViewController
-@synthesize channelTableView, inputTextField;
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Release any cached data, images, etc that aren't in use.
-}
+@synthesize inputTextField;
 
 - (void) updateView {
   [[self navBar] setTitle:[[IcbConnection sharedInstance] currentChannel]];
-  [self fetchRecords];
-  [channelTableView reloadData];
   
-  [self scrollToBottom];
-}
-
-- (void) reJiggerCells {
-  [channelTableView beginUpdates];
-  [channelTableView endUpdates];
-  
-  [self scrollToBottom];
-}
-
-- (void) scrollToBottom {
-  // scroll to bottom
-
-  if(shouldScrollToBottom == NO)
-    return;
-  
-  int lastRowNumber = [messageArray count] -1;
- 
-  if(lastRowNumber > 0) {
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    ChatMessage *entry = [messageArray objectAtIndex: [ip row]];
-    
-    if ([entry height] > 0)
-      [channelTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-  }
+  [super updateView];
 }
 
 - (void)fetchRecords {
@@ -76,22 +45,8 @@
   }
   
   // Save our fetched data to an array
-  messageArray = mutableFetchResults;
+  dataArray = mutableFetchResults;
 }
-
-- (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
-  if ([myScrollView isDragging]) { // we only care if the user is dragging us
-    if(self.channelTableView.contentOffset.y<0){ // table view is pulled down like twitter refresh
-      return;
-    }
-    else if(self.channelTableView.contentOffset.y >= (self.channelTableView.contentSize.height - self.channelTableView.bounds.size.height)) { // bottom
-      shouldScrollToBottom = YES;
-    }
-    else // user has scrolled somewhere other than the bottom, don't move it on them
-      shouldScrollToBottom = NO;
-  }
-}
-
 
 #pragma mark - Table view data source
 
@@ -99,83 +54,16 @@
   return 1;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [messageArray count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
-  
-  if ([entry height]) {
-    return [entry height];
-  }
-  else {
-    return 0.0f; // this will get resized once the webview loads and a height is computed
-  }
-}
-
-- (ChannelMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ChannelMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
-	ChatMessage *entry = [messageArray objectAtIndex: [indexPath row]];
-  
-  if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
-                                        "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
-                                        "<span><i style='color: #00FF00'>%@</i></span>"
-                                     "%@",
-                                     htmlStart, [entry sender], [entry text], htmlFinish] baseURL:nil];
-  }
-  else if ([[entry type] compare:@"o"] == NSOrderedSame) { // server responce from a comand
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
-                                        "<span><i style='color: #FFF0F0'>%@</i></span>"
-                                     "%@",
-                                     htmlStart, [entry text], htmlFinish] baseURL:nil];
-  }
-  else { // open channel message
-    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
-                                         "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
-                                         "<span>%@</span>"
-                                     "%@",
-
-                                     htmlStart, [entry sender], [entry text], htmlFinish] baseURL:nil];
-  }
-  [[[cell message] scrollView] setScrollEnabled:NO];
-  [cell setObjectID:[entry objectID]];
-
-  return cell;
-}
-
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad {
-  shouldScrollToBottom = YES;
-  
-  [super viewDidLoad];
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
-  NSLog(@"Setting navBar to %@", [[IcbConnection sharedInstance] currentChannel]);
-  [self updateView];
-  [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
-
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:)  name:UIKeyboardDidHideNotification  object:nil];
   
   [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
   
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:UIKeyboardWillShowNotification
@@ -183,15 +71,7 @@
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:UIKeyboardWillHideNotification
                                                 object:nil];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
-  return YES;
+  [super viewWillDisappear:animated];
 }
 
 #pragma mark - UITextFieldDelegate

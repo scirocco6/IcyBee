@@ -7,21 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbTableViewController.h"
 
-@interface ChannelViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>  {
+@interface ChannelViewController : IcbTableViewController <UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
-  BOOL                    shouldScrollToBottom;
-  NSMutableArray          *messageArray;
 }
 
-@property (nonatomic, strong) IBOutlet  UITableView       *channelTableView;
 @property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
-//@property (nonatomic, retain)           NSMutableArray    *messageArray;
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
 - (void) keyboardWillShow:(NSNotification *) notification;
 - (void) keyboardDidHide:(NSNotification *) notification;
-- (void) updateView;
-- (void) fetchRecords;
-- (void) reJiggerCells;
+
 @end

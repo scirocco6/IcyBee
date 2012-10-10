@@ -229,7 +229,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <prototypes>
-                                            <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="qZg-Q2-elY" customClass="ChannelMessage">
+                                            <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="qZg-Q2-elY" userLabel="icbMessage" customClass="IcbMessage">
                                                 <rect key="frame" x="0.0" y="22" width="320" height="165"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -267,7 +267,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Group Chat" image="first" id="7"/>
                     <connections>
-                        <outlet property="channelTableView" destination="XmI-eg-sJT" id="pDS-lM-rfQ"/>
+                        <outlet property="dataTableView" destination="XmI-eg-sJT" id="LSY-OL-hys"/>
                         <outlet property="inputTextField" destination="BcA-oR-Xgu" id="SkM-iL-K61"/>
                         <outlet property="navBar" destination="Stx-gT-5bs" id="J2e-Tu-zHf"/>
                         <outlet property="scrollView" destination="Fe0-Je-vuD" id="5Ig-dZ-fl0"/>
@@ -599,16 +599,9 @@
                 <relationship kind="outlet" name="groupTopic" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="ChannelMessage" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelMessage.h"/>
-            <relationships>
-                <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="ChannelViewController" superclassName="UIViewController">
+        <class className="ChannelViewController" superclassName="IcbTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ChannelViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="inputTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
