@@ -89,6 +89,25 @@ NSString const * htmlEnd = @"</body></html>";
   }
 }
 
+
+
+
+
+#pragma mark - UIAlertViewDelegate
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+  
+  NSLog(@"Input length == %i", [inputText length]);
+  return [inputText length] == 0 ? NO : YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if([title isEqualToString:@"Send"])
+    [[IcbConnection sharedInstance] sendPrivateMessage:[NSString stringWithFormat:@"%@ %@", [alertView title], [[alertView textFieldAtIndex:0] text]]];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -146,6 +165,7 @@ NSString const * htmlEnd = @"</body></html>";
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
+  [dataTableView setAllowsSelection:NO];
   shouldScrollToBottom = YES;
   [super viewDidLoad];
 }

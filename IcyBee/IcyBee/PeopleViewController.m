@@ -174,31 +174,21 @@
   }
   idleString = [idleString substringToIndex:[idleString length] - 2 ]; // trim off either a trailing comma and space or trailing two spaces
 
-  [[cell nickname]  setText: [entry nickname]];
-  [[cell group]     setText: [entry group]];
-  [[cell idle]      setText: idleString];
-  [[cell signon]    setText: signonString];
-  [[cell account]   setText: [entry account]];
+  [[cell nickname]      setText: [entry nickname]];
+  [[cell group]         setText: [entry group]];
+  [[cell idle]          setText: idleString];
+  [[cell signon]        setText: signonString];
+  [[cell account]       setText: [entry account]];
   
-  [[cell joinButton] setTag:[indexPath row]];
+  [[cell joinButton]    setTag:  [indexPath row]];
+  [[cell messageButton] setTag:  [indexPath row]];
+  [[cell beepButton]    setTag:  [indexPath row]];
+
   return cell;
 }
 
 
 #pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
 
 - (void)viewWillAppear:(BOOL)animated {
   [myTableView setHidden:YES];

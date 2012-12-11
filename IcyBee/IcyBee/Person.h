@@ -15,5 +15,6 @@
   @property (nonatomic, strong) IBOutlet UILabel  *signon;
   @property (nonatomic, strong) IBOutlet UILabel  *account;
   @property (nonatomic, strong) IBOutlet UIButton *joinButton;
+  @property (nonatomic, strong) IBOutlet UIButton *beepButton;
   @property (nonatomic, strong) IBOutlet UIButton *messageButton;
 @end
