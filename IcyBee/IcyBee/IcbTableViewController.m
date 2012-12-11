@@ -89,7 +89,17 @@ NSString const * htmlEnd = @"</body></html>";
   }
 }
 
-
+- (IBAction) messageUser:(UIButton *) sender {
+  ChatMessage *entry = [dataArray objectAtIndex: [sender tag]];
+  
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[entry sender]
+                                                  message:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                        otherButtonTitles:@"Send", nil];
+  [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+  [alert show];
+}
 
 
 
@@ -156,6 +166,8 @@ NSString const * htmlEnd = @"</body></html>";
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
   [cell setObjectID:[entry objectID]];
+  [[cell messageButton] setTag:  [indexPath row]];
+
 
   [cell setIcbTableController:self];
   

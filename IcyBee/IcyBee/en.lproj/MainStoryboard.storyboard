@@ -246,7 +246,7 @@
                                                                 <outlet property="delegate" destination="qZg-Q2-elY" id="fOn-4d-5ga"/>
                                                             </connections>
                                                         </webView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vPh-A5-HUq">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vPh-A5-HUq" userLabel="message button">
                                                             <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -268,6 +268,7 @@
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 <connections>
                                                     <outlet property="message" destination="8oN-Pd-A1E" id="Ybc-7i-52w"/>
+                                                    <outlet property="messageButton" destination="vPh-A5-HUq" id="7qa-n9-Pr1"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -335,12 +336,29 @@
                                                         <outlet property="delegate" destination="2gm-Dk-3xB" id="DrS-td-zsx"/>
                                                     </connections>
                                                 </webView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eKB-Dr-0l2" userLabel="message button">
+                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title=" ">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="messageUser:" destination="3" eventType="touchUpInside" id="oKG-7K-7FN"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="message" destination="j9e-q4-mkF" id="mmU-MI-D6R"/>
+                                            <outlet property="messageButton" destination="eKB-Dr-0l2" id="kMD-1V-yvK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -403,12 +421,29 @@
                                                         <outlet property="delegate" destination="o0u-8u-qdR" id="1er-Hz-QGs"/>
                                                     </connections>
                                                 </webView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D0A-Eh-ZhW" userLabel="message button">
+                                                    <rect key="frame" x="0.0" y="0.0" width="69" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <state key="normal" title=" ">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="highlighted">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="messageUser:" destination="q87-Tt-VmH" eventType="touchUpInside" id="9dK-C6-h2K"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="message" destination="EGV-GB-3aO" id="sEg-WO-GxT"/>
+                                            <outlet property="messageButton" destination="D0A-Eh-ZhW" id="8Mf-e6-kv4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -640,11 +675,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbMessage.h"/>
             <relationships>
                 <relationship kind="outlet" name="message" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="messageButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="IcbTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbTableViewController.h"/>
             <relationships>
+                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dataTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
             </relationships>
@@ -652,6 +689,9 @@
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
+                <relationship kind="action" name="beepUser:" candidateClass="UIButton"/>
+                <relationship kind="action" name="joinGroup:" candidateClass="UIButton"/>
+                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
