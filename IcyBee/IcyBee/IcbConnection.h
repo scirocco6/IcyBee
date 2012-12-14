@@ -28,6 +28,7 @@
   NSString                *currentChannel, *currentNickname, *whoChannel;
 }
 
+@property (nonatomic, retain) UIApplication           *application;
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
 @property (nonatomic, retain) UIViewController        *front;
 @property (nonatomic, retain) NSString                *currentChannel;

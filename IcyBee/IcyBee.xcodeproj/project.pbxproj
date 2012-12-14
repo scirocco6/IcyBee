@@ -129,7 +129,7 @@
 		4F7089BE15C4D7ED00BEAEB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Channel@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		4FAE554216227379009E0F40 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		4FAE554316227379009E0F40 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		4FAE554416227379009E0F40 /* BrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
@@ -205,7 +205,6 @@
 		4F42D1B114A989BD00FEB062 = {
 			isa = PBXGroup;
 			children = (
-				4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */,
 				4F42D1C614A989BD00FEB062 /* IcyBee */,
 				4F42D1EF14A989BD00FEB062 /* IcyBeeTests */,
 				4F42D1BF14A989BD00FEB062 /* Frameworks */,
@@ -329,6 +328,7 @@
 		4F7089B915C3ACA100BEAEB9 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */,
 				4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */,
 				4F7089BE15C4D7ED00BEAEB9 /* Default.png */,
 				4F7089BC15C4D60900BEAEB9 /* Default@2x.png */,

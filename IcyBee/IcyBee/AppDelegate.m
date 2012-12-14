@@ -17,9 +17,11 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // Override point for customization after application launch.
+//  [application beginIgnoringInteractionEvents];
   [self setupDefaults];
   
   [[IcbConnection sharedInstance] setManagedObjectContext:self.managedObjectContext];
+  [[IcbConnection sharedInstance] setApplication:application];
   return YES;
 }
 
@@ -64,11 +66,11 @@
      */
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+- (void)applicationDidEnterBackground:(UIApplication *)application { // This is where you can do your X Minutes, if >= 10Minutes is okay.
+  BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
+  if (backgroundAccepted) {
+    NSLog(@"VOIP backgrounding accepted");
+  }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -106,6 +108,33 @@
     } 
   }
 }
+
+// if the iOS device allows background execution,
+// this Handler will be called
+- (void)backgroundHandler {
+  
+  NSLog(@"### -->VOIP backgrounding callback");
+  // try to do sth. According to Apple we have ONLY 30 seconds to perform this Task!
+  // Else the Application will be terminated!
+  UIApplication* app = [UIApplication sharedApplication];
+  NSArray*    oldNotifications = [app scheduledLocalNotifications];
+  
+  // Clear out the old notification before scheduling a new one.
+  if ([oldNotifications count] > 0) [app cancelAllLocalNotifications];
+  
+  // Create a new notification
+  UILocalNotification* alarm = [[UILocalNotification alloc] init];
+  if (alarm) {
+    alarm.fireDate = [NSDate date];
+    alarm.timeZone = [NSTimeZone defaultTimeZone];
+    alarm.repeatInterval = 0;
+    alarm.soundName = @"alarmsound.caf";
+    alarm.alertBody = @"Don't Panic! This is just a Push-Notification Test.";
+    
+    [app scheduleLocalNotification:alarm];
+  }
+}
+
 
 #pragma mark - Core Data stack
 

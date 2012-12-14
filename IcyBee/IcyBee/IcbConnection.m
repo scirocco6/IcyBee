@@ -6,10 +6,11 @@
 //  Copyright (c) 2010 The Home for Obsolete Technology. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "IcbConnection.h"
 
 @implementation IcbConnection
-@synthesize managedObjectContext, front, currentChannel, currentNickname;
+@synthesize application, front, managedObjectContext, currentChannel, currentNickname;
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
@@ -22,6 +23,12 @@
 
 - (id) init {
   return self;
+}
+
+- (void)setFront:(UIViewController *)newFront {
+  [application beginIgnoringInteractionEvents];
+  front = newFront;
+  [application endIgnoringInteractionEvents];
 }
 
 - (void) connect {
@@ -51,7 +58,14 @@
 	
   inputStream     = (__bridge NSInputStream *)    myReadStream;
   outputStream    = (__bridge NSOutputStream *)   myWriteStream;
-    
+  
+  if (![inputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType]) {
+    NSLog(@"Could not set VoIP mode to read stream");
+  }
+  if (![outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType]) {
+    NSLog(@"Could not set VoIP mode to write stream");
+  }
+  
   [inputStream  setDelegate:self];
   [outputStream setDelegate:self];
     
@@ -229,6 +243,7 @@
   if (!loggedIn) {
     if (*readBuffer == 'a') {
       loggedIn = YES;
+//      [application endIgnoringInteractionEvents];
       #ifdef DEBUG
         NSLog(@"Login successful");
       #endif
@@ -345,7 +360,7 @@
         
         case 'w': {
           switch (*(readBuffer + 2)) {
-            case 'l': { // technically we should check to see if we are whoing however l can never appear except when we are whoing so the check is redundant
+            case 'l': { // technically we should check to see if we are whoing however 'l' can never appear except when we are whoing so the check is redundant
               NSString *accountString = [[NSString alloc] initWithFormat:@"%@@%@", [parameters objectAtIndex:6], [parameters objectAtIndex:7]];
               [self addPerson:[parameters objectAtIndex:2]
                         group:(NSString *) whoChannel
