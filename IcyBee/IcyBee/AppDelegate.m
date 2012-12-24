@@ -114,6 +114,11 @@
 - (void)backgroundHandler {
   
   NSLog(@"### -->VOIP backgrounding callback");
+  
+  [[IcbConnection sharedInstance] sendNop];
+  
+  
+  /*
   // try to do sth. According to Apple we have ONLY 30 seconds to perform this Task!
   // Else the Application will be terminated!
   UIApplication* app = [UIApplication sharedApplication];
@@ -133,6 +138,7 @@
     
     [app scheduleLocalNotification:alarm];
   }
+   */
 }
 
 

@@ -31,10 +31,14 @@
   [application endIgnoringInteractionEvents];
 }
 
-- (void) connect {
+- (void) setDisconected {
   loggedIn  = NO;
   snarfing  = NO;
   whoing    = NO;
+}
+
+- (void) connect {
+  [self setDisconected];
   
   // delete all entries in the ChatMessage table
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
@@ -77,13 +81,19 @@
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  [self setDisconected];
+  [self connect];
+}
+
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {    
   switch(eventCode) {
     case NSStreamEventErrorOccurred: {
+      [self setDisconected];
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Networking Error"
-                                                      message:@"Unable to connect to server.  Please try again later"
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
+                                                      message:@"Unable to connect to server.  Tap to try again"
+                                                     delegate:self
+                                            cancelButtonTitle:@"retry"
                                             otherButtonTitles:nil];
       [alert show];  
     }
@@ -140,6 +150,30 @@
   } // switch
 }
 
+- (void) processInput:(NSString *) line {
+  if([line characterAtIndex:0] == '/') {
+    NSLog(@"Command detected: '%@'", line);
+    
+    switch ([line characterAtIndex:1]) {
+      case 'm':
+        [self sendPrivateMessage:[line substringFromIndex:3]];
+        break;
+        
+      case 'b':
+        [self sendBeep:[line substringFromIndex:6]];
+        break;
+        
+      default:
+        break;
+    }
+  }
+  else {
+    [self sendOpenMessage:line];
+  }
+  
+  [self addToChatFromSender:currentNickname type:'b' text:line];
+}
+
 - (void) globalWhoList {
   // delete all entries in the group table
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
@@ -165,33 +199,14 @@
   [self sendPacket];
 }
 
-- (void) joinGroupWithUser:(NSString *) user {
-  [self assemblePacketOfType:'h', @"g", [NSString stringWithFormat:@"@%@", user], nil];
+- (void) sendNop {
+  [self assemblePacketOfType:'n',nil];
   [self sendPacket];
 }
 
-- (void) processInput:(NSString *) line {
-  if([line characterAtIndex:0] == '/') {
-    NSLog(@"Command detected: '%@'", line);
-    
-    switch ([line characterAtIndex:1]) {
-      case 'm':
-        [self sendPrivateMessage:[line substringFromIndex:3]];
-        break;
-        
-      case 'b':
-        [self sendBeep:[line substringFromIndex:6]];
-        break;
-        
-      default:
-        break;
-    }
-  }
-  else {
-    [self sendOpenMessage:line];
-  }
-  
-  [self addToChatFromSender:currentNickname type:'b' text:line];
+- (void) joinGroupWithUser:(NSString *) user {
+  [self assemblePacketOfType:'h', @"g", [NSString stringWithFormat:@"@%@", user], nil];
+  [self sendPacket];
 }
 
 - (void) sendOpenMessage:(NSString *) message {

@@ -14,7 +14,7 @@
 #import "Group.h"
 #import "People.h"
 
-@interface IcbConnection : NSObject <NSStreamDelegate> {
+@interface IcbConnection : NSObject <NSStreamDelegate, UIAlertViewDelegate> {
 	CFReadStreamRef         myReadStream;
 	CFWriteStreamRef        myWriteStream;
   NSInputStream           *inputStream;
@@ -47,6 +47,7 @@
 - (void) joinGroupWithUser:(NSString *) user;
 - (void) processInput:(NSString *) line;
 - (void) sendBeep:(NSString *) user;
+- (void) sendNop;
 - (void) sendPrivateMessage:(NSString *) message;
 
 @end

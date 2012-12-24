@@ -32,7 +32,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
   CGRect frame = [webView frame];
   
-  frame.size.height =1;
+  frame.size.height = 1;
   [webView setFrame: frame];
   
   frame.size = [webView sizeThatFits:CGSizeZero];
@@ -43,7 +43,7 @@
   cellFrame.size.height = frame.size.height + 1;
   [self setFrame: cellFrame];
   
-  NSError *error;
+  NSError *error; // prolly should check this error condition sometime
   ChatMessage *message = (ChatMessage *)[[[IcbConnection sharedInstance] managedObjectContext] existingObjectWithID:[self objectID] error:&error];
   [message setHeight:frame.size.height + 1];
   
