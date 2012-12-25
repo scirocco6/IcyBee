@@ -113,9 +113,9 @@
 // this Handler will be called
 - (void)backgroundHandler {
   
-  NSLog(@"### -->VOIP backgrounding callback");
+//  NSLog(@"### -->VOIP backgrounding callback");
   
-  [[IcbConnection sharedInstance] sendNop];
+//  [[IcbConnection sharedInstance] sendNop];
   
   
   /*

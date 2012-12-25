@@ -54,7 +54,7 @@
   }
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
   switch (textField.tag) {
     case 0:
       [scrollView setContentOffset:CGPointMake(0, 100) animated:YES];
@@ -71,7 +71,6 @@
       [ConfirmPasswordLabel setHidden:YES];
       break;
   }
-  return YES;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
