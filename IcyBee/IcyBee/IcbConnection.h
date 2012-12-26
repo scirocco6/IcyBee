@@ -30,9 +30,10 @@
 
 @property (nonatomic, retain) UIApplication           *application;
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
-@property (nonatomic, retain) UIViewController        *front;
+@property (retain)            UIViewController        *front;
 @property (nonatomic, retain) NSString                *currentChannel;
 @property (nonatomic, retain) NSString                *currentNickname;
+@property BOOL                                        inBackground;
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;
@@ -49,5 +50,6 @@
 - (void) sendBeep:(NSString *) user;
 - (void) sendNop;
 - (void) sendPrivateMessage:(NSString *) message;
+- (void) sendSixTheTime;
 
 @end

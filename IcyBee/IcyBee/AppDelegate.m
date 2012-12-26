@@ -70,13 +70,12 @@
   BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
   if (backgroundAccepted) {
     NSLog(@"VOIP backgrounding accepted");
+    [[IcbConnection sharedInstance] setInBackground:YES];
   }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
+  [[IcbConnection sharedInstance] setInBackground:NO];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -113,10 +112,11 @@
 // this Handler will be called
 - (void)backgroundHandler {
   
-//  NSLog(@"### -->VOIP backgrounding callback");
+  NSLog(@"### -->VOIP backgrounding callback");
+  [[IcbConnection sharedInstance] sendSixTheTime];
+
   
 //  [[IcbConnection sharedInstance] sendNop];
-  
   
   /*
   // try to do sth. According to Apple we have ONLY 30 seconds to perform this Task!

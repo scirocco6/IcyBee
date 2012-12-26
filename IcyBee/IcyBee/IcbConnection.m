@@ -25,12 +25,6 @@
   return self;
 }
 
-- (void)setFront:(UIViewController *)newFront {
-  [application beginIgnoringInteractionEvents];
-  front = newFront;
-  [application endIgnoringInteractionEvents];
-}
-
 - (void) setDisconected {
   loggedIn  = NO;
   snarfing  = NO;
@@ -59,23 +53,26 @@
   
   CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (__bridge_retained CFStringRef) [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
 	CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, host, [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue], &myReadStream, &myWriteStream);
+  
+  if (!CFReadStreamSetProperty(myReadStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP)) {
+    NSLog(@"Could not set VoIP mode to read stream");
+  }
+  if (!CFWriteStreamSetProperty(myWriteStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP)) {
+    NSLog(@"Could not set VoIP mode to write stream");
+  }
 	
   inputStream     = (__bridge NSInputStream *)    myReadStream;
   outputStream    = (__bridge NSOutputStream *)   myWriteStream;
-  
-  if (![inputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType]) {
-    NSLog(@"Could not set VoIP mode to read stream");
-  }
-  if (![outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType]) {
-    NSLog(@"Could not set VoIP mode to write stream");
-  }
-  
+
   [inputStream  setDelegate:self];
   [outputStream setDelegate:self];
+  
+  [inputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
+  [outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
     
   [inputStream  scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
   [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    
+  
   [inputStream  open];
   [outputStream open];
     
@@ -216,6 +213,17 @@
   [self sendPacket];
 }
 
+- (void) sendSixTheTime {
+  NSDate *date = [NSDate date];
+  
+  NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+  [dateFormat setDateFormat:@"HH:mm:ss zzz"];
+  NSString *dateString = [dateFormat stringFromDate:date];
+  
+  [self assemblePacketOfType:'h', @"m", [NSString stringWithFormat:@"six %@", dateString]];
+  [self sendPacket];
+}
+
 - (void) sendPrivateMessage:(NSString *) message {
   NSLog(@"sending private message %@", message);
   
@@ -283,8 +291,21 @@
     case 'd': // a status message
     case 'f': { // an important message
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
-      
-      if (*readBuffer == 'd') {
+      if (*readBuffer == 'c') {
+        if ([self inBackground]) {
+          UILocalNotification* alarm = [[UILocalNotification alloc] init];
+          if (alarm) {
+            alarm.fireDate = [NSDate date];
+            alarm.timeZone = [NSTimeZone defaultTimeZone];
+            alarm.repeatInterval = 0;
+            alarm.soundName = @"alarmsound.caf";
+            alarm.alertBody = [NSString stringWithFormat:@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]];
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
+          }
+        }
+      }
+      else if (*readBuffer == 'd') {
         NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
         if (range.location != NSNotFound) {
           NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
@@ -303,6 +324,18 @@
     
     case 'k': { //beep
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:@"Beep!"];
+      if ([self inBackground]) {
+        UILocalNotification* alarm = [[UILocalNotification alloc] init];
+        if (alarm) {
+          alarm.fireDate = [NSDate date];
+          alarm.timeZone = [NSTimeZone defaultTimeZone];
+          alarm.repeatInterval = 0;
+          alarm.soundName = @"alarmsound.caf";
+          alarm.alertBody = [NSString stringWithFormat:@"%@ has sent you a beep", [parameters objectAtIndex:0]];
+          
+          [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
+        }
+      }
       break;
     }
       
