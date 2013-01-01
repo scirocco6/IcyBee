@@ -111,34 +111,8 @@
 // if the iOS device allows background execution,
 // this Handler will be called
 - (void)backgroundHandler {
-  
   NSLog(@"### -->VOIP backgrounding callback");
-  [[IcbConnection sharedInstance] sendSixTheTime];
-
-  
-//  [[IcbConnection sharedInstance] sendNop];
-  
-  /*
-  // try to do sth. According to Apple we have ONLY 30 seconds to perform this Task!
-  // Else the Application will be terminated!
-  UIApplication* app = [UIApplication sharedApplication];
-  NSArray*    oldNotifications = [app scheduledLocalNotifications];
-  
-  // Clear out the old notification before scheduling a new one.
-  if ([oldNotifications count] > 0) [app cancelAllLocalNotifications];
-  
-  // Create a new notification
-  UILocalNotification* alarm = [[UILocalNotification alloc] init];
-  if (alarm) {
-    alarm.fireDate = [NSDate date];
-    alarm.timeZone = [NSTimeZone defaultTimeZone];
-    alarm.repeatInterval = 0;
-    alarm.soundName = @"alarmsound.caf";
-    alarm.alertBody = @"Don't Panic! This is just a Push-Notification Test.";
-    
-    [app scheduleLocalNotification:alarm];
-  }
-   */
+//  [[IcbConnection sharedInstance] sendSixTheTime];
 }
 
 

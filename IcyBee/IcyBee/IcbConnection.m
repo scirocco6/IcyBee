@@ -67,7 +67,7 @@
   [inputStream  setDelegate:self];
   [outputStream setDelegate:self];
   
-  [inputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
+  [inputStream  setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
   [outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
     
   [inputStream  scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -214,14 +214,15 @@
 }
 
 - (void) sendSixTheTime {
-  NSDate *date = [NSDate date];
+  if (loggedIn) {
+    NSDate *date = [NSDate date];
   
-  NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-  [dateFormat setDateFormat:@"HH:mm:ss zzz"];
-  NSString *dateString = [dateFormat stringFromDate:date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
+    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
+    NSString *dateString = [dateFormat stringFromDate:date];
   
-  [self assemblePacketOfType:'h', @"m", [NSString stringWithFormat:@"six %@", dateString]];
-  [self sendPacket];
+    [self sendPrivateMessage:[NSString stringWithFormat:@"six %@", dateString]];
+  }
 }
 
 - (void) sendPrivateMessage:(NSString *) message {

@@ -156,12 +156,18 @@ NSString const * htmlEnd = @"</body></html>";
                                      "%@",
                                      htmlBegin, [entry text], htmlEnd] baseURL:nil];
   }
+  else if ([[entry type] compare:@"d"] == NSOrderedSame) { // server responce from a comand
+    [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
+                                     "<span style='color:#FFAAAA; margin-right:5px;'>&lt%@&gt</span>"
+                                     "<span>%@</span>"
+                                     "%@",
+                                     htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
+  }
   else { // open channel message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
                                      "<span>%@</span>"
                                      "%@",
-                                     
                                      htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
   }
   [[[cell message] scrollView] setScrollEnabled:NO];
