@@ -194,6 +194,11 @@ NSString const * htmlEnd = @"</body></html>";
   [super viewWillAppear:animated];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+  // cleanup datastructures from who and people views
+  [[IcbConnection sharedInstance] deletePeopleEntries];
+  [[IcbConnection sharedInstance] deleteWhoEntries];
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   // Return YES for supported orientations
   return YES;

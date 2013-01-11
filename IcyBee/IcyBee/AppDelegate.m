@@ -12,8 +12,8 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize managedObjectContext = __managedObjectContext;
-@synthesize managedObjectModel = __managedObjectModel;
+@synthesize managedObjectContext       = __managedObjectContext;
+@synthesize managedObjectModel         = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions { // Override point for customization after application launch.
@@ -40,11 +40,8 @@
   
   //for each preference item, set its default if there is no value set
   for(NSDictionary *item in preferencesArray) {
-    
-    //get the item key, if there is no key then we can skip it
-    NSString *key = [item objectForKey:@"Key"];
+    NSString *key = [item objectForKey:@"Key"]; //get the item key, if there is no key then we can skip it
     if (key) {
-      
       //check to see if the value and default value are set
       //if a default value exists and the value is not set, use the default
       id value = [defaults objectForKey:key];
@@ -55,8 +52,7 @@
     }
   }
   
-  //write the changes to disk
-  [defaults synchronize];
+  [defaults synchronize]; //write the changes to disk
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -66,7 +62,7 @@
      */
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application { // This is where you can do your X Minutes, if >= 10Minutes is okay.
+- (void)applicationDidEnterBackground:(UIApplication *)application { // This is where you can do your X Minutes, Where X must be >= 10.
   BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
   if (backgroundAccepted) {
     NSLog(@"VOIP backgrounding accepted");
@@ -85,11 +81,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
+  [[IcbConnection sharedInstance] deleteAllTables];
 }
 
 - (void)saveContext {

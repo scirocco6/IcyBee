@@ -22,6 +22,10 @@
 }
 
 - (id) init {
+  lastGroupMesaage = 0;
+  lastPrivateMesaage = 0;
+  lastUrlMesaage = 0;
+  
   return self;
 }
 
@@ -31,15 +35,41 @@
   whoing    = NO;
 }
 
-- (void) connect {
-  [self setDisconected];
-  
-  // delete all entries in the ChatMessage table
+- (void) deleteChatEntries { // delete all entries in the ChatMessage table
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  
   [fetch setEntity:[NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext]];
   NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
   for (id basket in result)
     [managedObjectContext deleteObject:basket];
+}
+
+- (void) deleteWhoEntries { // delete all entries in the group table
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  
+  [fetch setEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]];
+  NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
+  for (id basket in result)
+    [managedObjectContext deleteObject:basket];
+}
+
+- (void) deletePeopleEntries { // delete all entries in the people table
+  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
+  
+  [fetch setEntity:[NSEntityDescription entityForName:@"People" inManagedObjectContext:managedObjectContext]];
+  NSArray *result = [managedObjectContext executeFetchRequest:fetch error:nil];
+  for (id basket in result)
+    [managedObjectContext deleteObject:basket];
+}
+
+- (void) deleteAllTables {
+  [self deleteChatEntries];
+  [self deleteWhoEntries];
+  [self deletePeopleEntries];
+}
+
+- (void) connect {
+  [self setDisconected];
   
   currentChannel  = [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"];
   currentNickname = [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"];
@@ -79,7 +109,6 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  [self setDisconected];
   [self connect];
 }
 
@@ -94,6 +123,7 @@
                                             otherButtonTitles:nil];
       [alert show];  
     }
+
     case NSStreamEventHasSpaceAvailable: { // we only want to be in the run loop when we are interested in sending
       [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
              
@@ -172,18 +202,8 @@
 }
 
 - (void) globalWhoList {
-  // delete all entries in the group table
-  NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-  [fetch setEntity:[NSEntityDescription entityForName:@"Group" inManagedObjectContext:managedObjectContext]];
-  NSArray * result = [managedObjectContext executeFetchRequest:fetch error:nil];
-  for (id basket in result)
-    [managedObjectContext deleteObject:basket];
-  
-  // delete all entries in the people table
-  [fetch setEntity:[NSEntityDescription entityForName:@"People" inManagedObjectContext:managedObjectContext]];
-  result = [managedObjectContext executeFetchRequest:fetch error:nil];
-  for (id basket in result)
-    [managedObjectContext deleteObject:basket];
+  [self deleteWhoEntries];
+  [self deletePeopleEntries];
 
   // send the icb global who command
   whoing = YES;

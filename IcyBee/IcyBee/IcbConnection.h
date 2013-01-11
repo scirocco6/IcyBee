@@ -26,6 +26,9 @@
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
   NSString                *currentChannel, *currentNickname, *whoChannel;
+  int                     lastGroupMesaage;
+  int                     lastPrivateMesaage;
+  int                     lastUrlMesaage;
 }
 
 @property (nonatomic, retain) UIApplication           *application;
@@ -51,5 +54,8 @@
 - (void) sendNop;
 - (void) sendPrivateMessage:(NSString *) message;
 - (void) sendSixTheTime;
+- (void) deleteAllTables;
+- (void) deleteWhoEntries;
+- (void) deletePeopleEntries;
 
 @end

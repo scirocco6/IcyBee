@@ -17,4 +17,7 @@
 @dynamic text;
 @dynamic height;
 @dynamic url;
+@dynamic groupIndex;
+@dynamic privateIndex;
+@dynamic urlIndex;
 @end
