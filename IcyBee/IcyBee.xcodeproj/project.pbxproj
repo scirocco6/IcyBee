@@ -49,12 +49,16 @@
 		4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BC15C4D60900BEAEB9 /* Default@2x.png */; };
 		4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089BE15C4D7ED00BEAEB9 /* Default.png */; };
 		4F7089C115C4E3C300BEAEB9 /* Channel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */; };
+		4F7EB0F0169FD26D003B511F /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EB0EE169FD26D003B511F /* bee.png */; };
+		4F7EB0F1169FD26D003B511F /* bee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EB0EF169FD26D003B511F /* bee@2x.png */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
 		4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */; };
 		4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAE554316227379009E0F40 /* BrowserViewController.m */; };
 		4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FAE554416227379009E0F40 /* BrowserViewController.xib */; };
 		4FE1251D15ABD50300BECE75 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1251C15ABD50300BECE75 /* Person.m */; };
 		4FE1655916214A0300CD0479 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1655816214A0300CD0479 /* Constants.m */; };
+		4FF29099169FDEDB007F0BB8 /* hive.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF29097169FDEDB007F0BB8 /* hive.png */; };
+		4FF2909A169FDEDB007F0BB8 /* hive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF29098169FDEDB007F0BB8 /* hive@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +136,8 @@
 		4F7089BC15C4D60900BEAEB9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4F7089BE15C4D7ED00BEAEB9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4F7089C015C4E3C300BEAEB9 /* Channel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Channel@2x.png"; sourceTree = "<group>"; };
+		4F7EB0EE169FD26D003B511F /* bee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bee.png; sourceTree = "<group>"; };
+		4F7EB0EF169FD26D003B511F /* bee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bee@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		4FAE554216227379009E0F40 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
@@ -141,6 +147,8 @@
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4FE16557162148B300CD0479 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4FE1655816214A0300CD0479 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		4FF29097169FDEDB007F0BB8 /* hive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hive.png; sourceTree = "<group>"; };
+		4FF29098169FDEDB007F0BB8 /* hive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hive@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +340,10 @@
 		4F7089B915C3ACA100BEAEB9 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				4FF29097169FDEDB007F0BB8 /* hive.png */,
+				4FF29098169FDEDB007F0BB8 /* hive@2x.png */,
+				4F7EB0EE169FD26D003B511F /* bee.png */,
+				4F7EB0EF169FD26D003B511F /* bee@2x.png */,
 				4F4DEDAD169FC0130096B3C6 /* Icon@2x.png */,
 				4F4DEDAE169FC0130096B3C6 /* Icon.png */,
 				4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */,
@@ -462,6 +474,10 @@
 				4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */,
 				4F4DEDAF169FC0130096B3C6 /* Icon@2x.png in Resources */,
 				4F4DEDB0169FC0130096B3C6 /* Icon.png in Resources */,
+				4F7EB0F0169FD26D003B511F /* bee.png in Resources */,
+				4F7EB0F1169FD26D003B511F /* bee@2x.png in Resources */,
+				4FF29099169FDEDB007F0BB8 /* hive.png in Resources */,
+				4FF2909A169FDEDB007F0BB8 /* hive@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
