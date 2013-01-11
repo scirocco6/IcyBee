@@ -36,6 +36,7 @@ NSString const * htmlEnd = @"</body></html>";
 - (NSString *) tableIdentifier {
   return @"baseTable";
 }
+
 - (void) updateView {
   [self fetchRecords];
   [dataTableView reloadData];
@@ -100,8 +101,6 @@ NSString const * htmlEnd = @"</body></html>";
   [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
   [alert show];
 }
-
-
 
 #pragma mark - UIAlertViewDelegate
 
