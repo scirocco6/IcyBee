@@ -179,7 +179,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.27939321880000001" green="0.58494100770000002" blue="0.35129164860000001" alpha="0.0" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="People" id="bdU-F9-oT4"/>
+                    <tabBarItem key="tabBarItem" title="People" image="jar.png" id="bdU-F9-oT4"/>
                     <connections>
                         <outlet property="activity" destination="uGf-yA-Mf7" id="ygG-OY-Li6"/>
                         <outlet property="myTableView" destination="pfK-M5-tBy" id="wV0-gp-asr"/>
@@ -370,7 +370,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Private" image="second" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Private" image="flower.png" id="6"/>
                     <connections>
                         <outlet property="dataTableView" destination="eWP-fp-ENH" id="9cJ-g3-sPa"/>
                         <outlet property="navBar" destination="n0V-rt-iZr" id="Tgb-Yz-qgo"/>
@@ -455,7 +455,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="URLs" id="aDt-g2-0Rv"/>
+                    <tabBarItem key="tabBarItem" title="URLs" image="comb.png" id="aDt-g2-0Rv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dataTableView" destination="aVq-Ia-Qb5" id="HfO-HB-ezs"/>
@@ -640,8 +640,10 @@
     <resources>
         <image name="Channel@2x.png" width="640" height="960"/>
         <image name="bee.png" width="30" height="30"/>
+        <image name="comb.png" width="30" height="30"/>
+        <image name="flower.png" width="30" height="30"/>
         <image name="hive.png" width="30" height="30"/>
-        <image name="second" width="16" height="16"/>
+        <image name="jar.png" width="30" height="30"/>
     </resources>
     <classes>
         <class className="Channel" superclassName="UITableViewCell">

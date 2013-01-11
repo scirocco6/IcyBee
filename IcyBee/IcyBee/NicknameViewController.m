@@ -18,6 +18,10 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+  [DefaultGroup  setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"]];
+}
+
 -(IBAction) joinButtonPressed {
   BOOL errors = NO;
   
@@ -44,9 +48,15 @@
     errors = YES;
   }
   
+  if([DefaultGroup text].length == 0) {
+    [DefaultGroupLabel setHidden:NO];
+    errors = YES;
+  }
+  
   if(!errors) {
-    [[NSUserDefaults standardUserDefaults] setObject:[Nickname text] forKey:@"nick_preference"];
-    [[NSUserDefaults standardUserDefaults] setObject:[Password text] forKey:@"pass_preference"];
+    [[NSUserDefaults standardUserDefaults] setObject:[Nickname text]          forKey:@"nick_preference"];
+    [[NSUserDefaults standardUserDefaults] setObject:[Password text]          forKey:@"pass_preference"];
+    [[NSUserDefaults standardUserDefaults] setObject:[DefaultGroup text] forKey:@"channel_preference"];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
   
