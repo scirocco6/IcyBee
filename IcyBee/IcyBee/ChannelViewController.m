@@ -48,13 +48,13 @@
   dataArray = mutableFetchResults;
 }
 
-#pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
 
 #pragma mark - View lifecycle
+- (void) viewDidLoad {
+  viewType = 'c';
+  [super viewDidLoad];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];

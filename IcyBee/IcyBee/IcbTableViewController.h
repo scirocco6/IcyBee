@@ -10,8 +10,11 @@
 #import "IcbConnection.h"
 
 @interface IcbTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
-  NSMutableArray *dataArray;
-  BOOL           shouldScrollToBottom;
+  NSMutableArray      *dataArray;
+  BOOL                shouldScrollToBottom;
+  char                viewType;
+  NSEntityDescription *entity;
+  NSFetchRequest      *request;
 }
 
 @property (nonatomic, strong) IBOutlet  UITableView       *dataTableView;

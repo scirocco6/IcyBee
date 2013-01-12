@@ -36,4 +36,10 @@
   dataArray = mutableFetchResults;
 }
 
+#pragma mark - View lifecycle
+- (void) viewDidLoad {
+  viewType = 'u';
+  [super viewDidLoad];
+}
+
 @end

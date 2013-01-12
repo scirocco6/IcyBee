@@ -22,6 +22,8 @@
   
   [[IcbConnection sharedInstance] setManagedObjectContext:self.managedObjectContext];
   [[IcbConnection sharedInstance] setApplication:application];
+  [[IcbConnection sharedInstance] deleteAllTables]; // remove any messages left over from last run
+
   return YES;
 }
 

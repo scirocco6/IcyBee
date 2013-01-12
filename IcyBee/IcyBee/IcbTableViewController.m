@@ -140,7 +140,37 @@ NSString const * htmlEnd = @"</body></html>";
 
 - (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
-	ChatMessage *entry = [dataArray objectAtIndex: [indexPath row]];
+    
+  NSPredicate *predicate;
+  switch (viewType) {
+    case 'c': {
+      predicate = [NSPredicate predicateWithFormat: @"groupIndex == %i", [indexPath row]];
+      break;
+    }
+    case 'p': {
+      predicate = [NSPredicate predicateWithFormat: @"privateIndex == %i", [indexPath row]];
+      break;
+    }
+    case 'u': {
+      predicate = [NSPredicate predicateWithFormat: @"urlIndex == %i", [indexPath row]];
+      break;
+    }
+  }
+  
+  [request setEntity:entity];
+  [request setPredicate:predicate];
+  // Fetch the records and handle an error
+  NSError *error;
+  NSMutableArray *fetchResults = [[[[IcbConnection sharedInstance] managedObjectContext] executeFetchRequest:request error:&error] mutableCopy];
+  
+  if (!fetchResults) {
+    // Handle the error.
+    // This is a serious error and should advise the user to restart the application
+  }
+  
+  
+  ChatMessage *entry = [fetchResults objectAtIndex:0];
+  
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
     
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
@@ -173,7 +203,6 @@ NSString const * htmlEnd = @"</body></html>";
   [cell setObjectID:[entry objectID]];
   [[cell messageButton] setTag:  [indexPath row]];
 
-
   [cell setIcbTableController:self];
   
   return cell;
@@ -183,7 +212,9 @@ NSString const * htmlEnd = @"</body></html>";
 
 - (void)viewDidLoad {
   [dataTableView setAllowsSelection:NO];
-  shouldScrollToBottom = YES;
+  shouldScrollToBottom  = YES;
+  entity                = [NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext: [[IcbConnection sharedInstance] managedObjectContext]];
+  request               = [[NSFetchRequest alloc] init]; 
   [super viewDidLoad];
 }
 

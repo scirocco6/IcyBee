@@ -22,9 +22,9 @@
 }
 
 - (id) init {
-  lastGroupMesaage = 0;
-  lastPrivateMesaage = 0;
-  lastUrlMesaage = 0;
+  lastGroupMessage = 0;
+  lastPrivateMessage = 0;
+  lastUrlMessage = 0;
   
   return self;
 }
@@ -36,6 +36,10 @@
 }
 
 - (void) deleteChatEntries { // delete all entries in the ChatMessage table
+  lastGroupMessage = 0;
+  lastPrivateMessage = 0;
+  lastUrlMessage = 0;
+
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   
   [fetch setEntity:[NSEntityDescription entityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext]];
@@ -312,21 +316,8 @@
     case 'd': // a status message
     case 'f': { // an important message
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
-      if (*readBuffer == 'c') {
-        if ([self inBackground]) {
-          UILocalNotification* alarm = [[UILocalNotification alloc] init];
-          if (alarm) {
-            alarm.fireDate = [NSDate date];
-            alarm.timeZone = [NSTimeZone defaultTimeZone];
-            alarm.repeatInterval = 0;
-            alarm.soundName = @"alarmsound.caf";
-            alarm.alertBody = [NSString stringWithFormat:@"<%@> %@", [parameters objectAtIndex:0], [parameters objectAtIndex:1]];
-            
-            [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
-          }
-        }
-      }
-      else if (*readBuffer == 'd') {
+
+      if (*readBuffer == 'd') {
         NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
         if (range.location != NSNotFound) {
           NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
@@ -345,18 +336,6 @@
     
     case 'k': { //beep
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:@"Beep!"];
-      if ([self inBackground]) {
-        UILocalNotification* alarm = [[UILocalNotification alloc] init];
-        if (alarm) {
-          alarm.fireDate = [NSDate date];
-          alarm.timeZone = [NSTimeZone defaultTimeZone];
-          alarm.repeatInterval = 0;
-          alarm.soundName = @"alarmsound.caf";
-          alarm.alertBody = [NSString stringWithFormat:@"%@ has sent you a beep", [parameters objectAtIndex:0]];
-          
-          [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
-        }
-      }
       break;
     }
       
@@ -418,6 +397,7 @@
               else {
                 [self addToChatFromSender:@"server" type:'o' text:[parameters objectAtIndex:1]];
               }
+              break;
             }
               
             default: {
@@ -474,10 +454,46 @@
   [event setSender:sender];   
   [event setText:text];
   [event setHeight:21.0f];
-  // only hunt for URLs in open and private messages
-  [event setUrl: (type == 'b' || type == 'c') ? [self hasUrl: text] : NO];
+  [event setGroupIndex:lastGroupMessage++];
+  
+  if (type == 'c' || type == 'k')
+    [event setPrivateIndex:lastPrivateMessage++];
+  
+  if ((type == 'b' || type == 'c') && [self hasUrl: text]) {
+    [event setUrl:YES];
+    [event setUrlIndex:lastUrlMessage++];
+  }
+  else
+    [event setUrl:NO];
   
   [self saveManagedObjectContext];
+
+  if (![self inBackground])
+    return;
+  
+  UILocalNotification* alarm = [[UILocalNotification alloc] init];
+  if (!alarm)
+    return;
+    
+  switch (type) {
+    case 'c': {
+      alarm.alertBody = [NSString stringWithFormat:@"<%@> %@", sender, text];
+      break;
+    }
+        
+    case 'b': {
+      alarm.alertBody = [NSString stringWithFormat:@"%@ has sent you a beep", sender];
+      break;
+    }
+    default: // by default we do NOT post an alert
+      return;
+  }
+    
+  alarm.fireDate = [NSDate date];
+  alarm.timeZone = [NSTimeZone defaultTimeZone];
+  alarm.repeatInterval = 0;
+  alarm.soundName = @"alarmsound.caf";
+  [[UIApplication sharedApplication] scheduleLocalNotification:alarm];
 }
 
 - (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic {

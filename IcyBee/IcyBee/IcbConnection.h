@@ -26,9 +26,9 @@
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
   NSString                *currentChannel, *currentNickname, *whoChannel;
-  int                     lastGroupMesaage;
-  int                     lastPrivateMesaage;
-  int                     lastUrlMesaage;
+  int                     lastGroupMessage;
+  int                     lastPrivateMessage;
+  int                     lastUrlMessage;
 }
 
 @property (nonatomic, retain) UIApplication           *application;
