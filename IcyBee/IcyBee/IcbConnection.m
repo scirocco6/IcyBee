@@ -220,7 +220,6 @@
   
   whoing = YES;
   [self sendPrivateMessage:@"server w -g"]; 
-  [self sendPacket];
 }
 
 - (void) joinGroup:(NSString *) group {
@@ -289,6 +288,10 @@
 }
 
 -(void) sendPacket {
+#ifdef DEBUG
+  NSLog(@"Sending packet of type %c", *writeBuffer);
+#endif
+  
   char icbLength = strlen((char *) writeBuffer) + 1;
     
   [outputStream write:(const uint8_t *) &icbLength maxLength:(unsigned int) 1];
@@ -400,21 +403,22 @@
                     
                   whoChannel = name;
                   [self addGroup:name moderator:moderator topic:topic];                  
-                }
-              }
-              else {
+                } //else if
+              } // if
+              else if(!whoing) {
                 [self addToChatFromSender:@"server" type:'o' text:[parameters objectAtIndex:1]];
               }
               break;
-            }
+            } // case
               
             default: {
               [self addToChatFromSender:@"Server" type:*readBuffer text:[parameters objectAtIndex:0]];
               break;
             }
-          }
-        }
-        
+          } // switch
+          break;
+        } // case 'c'
+      
         case 'w': {
           switch (*(readBuffer + 2)) {
             case 'l': { // technically we should check to see if we are whoing however 'l' can never appear except when we are whoing so the check is redundant
@@ -426,17 +430,13 @@
                       account:accountString];
             }
           }
-        }
+        } // case 'w'
           
         default:
           break;
-      }
-      
-      #ifdef DEBUG       
-        NSLog(@"%@", [[NSString alloc] initWithBytes:(char *) readBuffer length:length encoding:NSASCIIStringEncoding]);
-      #endif
+      } // switch
       break;
-    }
+    } // case 'i'
                     
     case 'n': // a nop packet
       break;
@@ -455,8 +455,8 @@
                             range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
 }
 
-- (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
-  ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];  
+- (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {  
+  ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];
   [event setTimeStamp: [NSDate date]];
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
