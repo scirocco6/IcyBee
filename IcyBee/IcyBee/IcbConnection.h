@@ -44,6 +44,7 @@
 - (void) assemblePacketOfType:(char) packetType, ...;
 - (void) sendPacket;
 - (void) globalWhoList;
+- (void) globalGroupList;
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text;
 - (void) addGroup:(NSString *) name moderator:(NSString *) moderator topic:(NSString *) topic;
 - (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account;

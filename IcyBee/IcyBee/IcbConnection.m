@@ -215,6 +215,14 @@
   [self sendPacket];
 }
 
+- (void) globalGroupList {
+  [self deleteWhoEntries];
+  
+  whoing = YES;
+  [self sendPrivateMessage:@"server w -g"]; 
+  [self sendPacket];
+}
+
 - (void) joinGroup:(NSString *) group {
   [self assemblePacketOfType:'h', @"g", group, nil];
   [self sendPacket];
