@@ -37,8 +37,26 @@ NSString const * htmlEnd = @"</body></html>";
   return @"baseTable";
 }
 
+- (int) rowCount {
+  switch (viewType) {
+    case 'c': {
+      return [[IcbConnection sharedInstance] lastGroupMessage];
+      break;
+    }
+    case 'p': {
+      return [[IcbConnection sharedInstance] lastPrivateMessage];
+      break;
+    }
+    case 'u': {
+      return [[IcbConnection sharedInstance] lastUrlMessage];
+      break;
+    }
+    default:    // this should never ever happen
+      return 0;
+  }
+}
+
 - (void) updateView {
-  [self fetchRecords];
   [dataTableView reloadData];
   
   [self scrollToBottom];
@@ -52,30 +70,20 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (void) scrollToBottom {
-  // scroll to bottom
-  
   if(shouldScrollToBottom == NO)
     return;
   
-  int lastRowNumber = [dataArray count] -1;
+  int lastRowNumber = [self rowCount] -1;
   
-  if(lastRowNumber > 0) {
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:lastRowNumber inSection:0];
-    ChatMessage *entry = [dataArray objectAtIndex: [ip row]];
-    
-    if ([entry height] > 0)
-      [dataTableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-  }
-}
-
-- (void)fetchRecords {
-  // STUB must be implemented by each actual view class
+  if(lastRowNumber > 0)
+    [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastRowNumber inSection:0]
+                         atScrollPosition:UITableViewScrollPositionBottom
+                                 animated:YES];
 }
 
 - (void) popBrowser {
   [self presentViewController:[BrowserViewController sharedInstance] animated:YES completion:NULL];
 }
-
 
 - (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
   if ([myScrollView isDragging]) { // we only care if the user is dragging us
@@ -91,7 +99,7 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (IBAction) messageUser:(UIButton *) sender {
-  ChatMessage *entry = [dataArray objectAtIndex: [sender tag]];
+  ChatMessage *entry = [self messageForIndex: [sender tag]];
   
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[entry sender]
                                                   message:nil
@@ -124,55 +132,52 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [dataArray count];
+  return([self rowCount]);
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ChatMessage *entry = [dataArray objectAtIndex: [indexPath row]];
-  
-  if ([entry height]) {
-    return [entry height];
-  }
-  else {
-    return 0.0f; // this will get resized once the webview loads and a height is computed
-  }
-}
 
-- (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
-    
+- (ChatMessage *) messageForIndex:(int) index {
   NSPredicate *predicate;
   switch (viewType) {
     case 'c': {
-      predicate = [NSPredicate predicateWithFormat: @"groupIndex == %i", [indexPath row]];
+      predicate = [NSPredicate predicateWithFormat: @"groupIndex == %i", index];
       break;
     }
     case 'p': {
-      predicate = [NSPredicate predicateWithFormat: @"privateIndex == %i", [indexPath row]];
+      predicate = [NSPredicate predicateWithFormat: @"privateIndex == %i", index];
       break;
     }
     case 'u': {
-      predicate = [NSPredicate predicateWithFormat: @"urlIndex == %i", [indexPath row]];
+      predicate = [NSPredicate predicateWithFormat: @"urlIndex == %i", index];
       break;
     }
   }
   
   [request setEntity:entity];
   [request setPredicate:predicate];
-  // Fetch the records and handle an error
+
   NSError *error;
   NSMutableArray *fetchResults = [[[[IcbConnection sharedInstance] managedObjectContext] executeFetchRequest:request error:&error] mutableCopy];
   
-  if (!fetchResults) {
-    // Handle the error.
-    // This is a serious error and should advise the user to restart the application
-  }
+  assert(fetchResults);
   
+  return([fetchResults objectAtIndex:0]);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  ChatMessage *entry = [self messageForIndex: [indexPath row]];
   
-  ChatMessage *entry = [fetchResults objectAtIndex:0];
-  
+  if ([entry height]) 
+    return [entry height];
+  else
+    return 0.0f; // this will get resized once the webview loads and a height is computed
+}
+
+- (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
+  ChatMessage *entry = [self messageForIndex:[indexPath row]];
+
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
-    
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
                                      "<span><i style='color: #00FF00'>%@</i></span>"
@@ -199,10 +204,10 @@ NSString const * htmlEnd = @"</body></html>";
                                      "%@",
                                      htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
   }
-  [[[cell message] scrollView] setScrollEnabled:NO];
+  
   [cell setObjectID:[entry objectID]];
+  [[[cell message] scrollView] setScrollEnabled:NO];
   [[cell messageButton] setTag:  [indexPath row]];
-
   [cell setIcbTableController:self];
   
   return cell;

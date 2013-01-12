@@ -21,7 +21,6 @@
 @property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
 
 - (void) updateView;
-- (void) fetchRecords;
 - (void) reJiggerCells;
 - (void) popBrowser;
 

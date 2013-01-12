@@ -10,7 +10,7 @@
 #import "IcbConnection.h"
 
 @implementation IcbConnection
-@synthesize application, front, managedObjectContext, currentChannel, currentNickname;
+@synthesize application, front, managedObjectContext, currentChannel, currentNickname, lastGroupMessage, lastPrivateMessage, lastUrlMessage;
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;

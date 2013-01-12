@@ -26,9 +26,6 @@
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
   NSString                *currentChannel, *currentNickname, *whoChannel;
-  int                     lastGroupMessage;
-  int                     lastPrivateMessage;
-  int                     lastUrlMessage;
 }
 
 @property (nonatomic, retain) UIApplication           *application;
@@ -37,6 +34,9 @@
 @property (nonatomic, retain) NSString                *currentChannel;
 @property (nonatomic, retain) NSString                *currentNickname;
 @property BOOL                                        inBackground;
+@property int                                         lastGroupMessage;
+@property int                                         lastPrivateMessage;
+@property int                                         lastUrlMessage;
 
 + (IcbConnection *)	sharedInstance;
 - (void) connect;
