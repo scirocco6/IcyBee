@@ -234,8 +234,5 @@ NSString const * htmlEnd = @"</body></html>";
   [[IcbConnection sharedInstance] deletePeopleEntries];
   [[IcbConnection sharedInstance] deleteWhoEntries];
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-  // Return YES for supported orientations
-  return YES;
-}
+
 @end

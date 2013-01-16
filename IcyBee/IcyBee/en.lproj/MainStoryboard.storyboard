@@ -487,6 +487,7 @@
                 <tabBarController id="4" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ks4-jW-2Ml"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -684,6 +685,7 @@
         <class className="IcbTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbTableViewController.h"/>
             <relationships>
+                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="dataTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
             </relationships>
