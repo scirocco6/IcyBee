@@ -209,9 +209,8 @@
   [self deleteWhoEntries];
   [self deletePeopleEntries];
 
-  // send the icb global who command
   whoing = YES;
-  [self assemblePacketOfType:'h', @"w\001", nil];
+  [self assemblePacketOfType:'h', @"w\001", nil]; // send the icb global who command
   [self sendPacket];
 }
 
@@ -219,7 +218,7 @@
   [self deleteWhoEntries];
   
   whoing = YES;
-  [self sendPrivateMessage:@"server w -g"]; 
+  [self sendPrivateMessage:@"server w -g"]; // there is no protocol group list but there is a server command
 }
 
 - (void) joinGroup:(NSString *) group {
@@ -483,19 +482,12 @@
   if (!alarm)
     return;
     
-  switch (type) {
-    case 'c': {
-      alarm.alertBody = [NSString stringWithFormat:@"<%@> %@", sender, text];
-      break;
-    }
-        
-    case 'b': {
-      alarm.alertBody = [NSString stringWithFormat:@"%@ has sent you a beep", sender];
-      break;
-    }
-    default: // by default we do NOT post an alert
-      return;
-  }
+  if (type == 'c')
+    alarm.alertBody = [NSString stringWithFormat:@"<%@> %@", sender, text];
+  else if (type == 'k')
+    alarm.alertBody = [NSString stringWithFormat:@"%@ has sent you a beep", sender];
+  else
+    return;
     
   alarm.fireDate = [NSDate date];
   alarm.timeZone = [NSTimeZone defaultTimeZone];
