@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NicknameViewController.h"
 
-@interface FirstViewController : UIViewController {
-  NicknameViewController *myNicknameViewController;
+@interface FirstViewController : UIViewController <UITextFieldDelegate> {
+  IBOutlet UITextField		*Nickname;
+  IBOutlet UITextField		*Password;
+  IBOutlet UITextField		*ConfirmPassword;
+  IBOutlet UITextField    *DefaultGroup;
+  IBOutlet UILabel        *NicknameLabel;
+  IBOutlet UILabel        *PasswordLabel;
+  IBOutlet UILabel        *ConfirmPasswordLabel;
+  IBOutlet UILabel        *DefaultGroupLabel;
+  IBOutlet UIScrollView   *scrollView;
 }
+-(IBAction) joinButtonPressed;
+
+@property (nonatomic, strong) IBOutlet  UIImageView     *backgroundImageView;
+
 @end

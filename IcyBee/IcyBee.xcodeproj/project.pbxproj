@@ -10,8 +10,6 @@
 		4F03126C1624A8C600ABDED1 /* IcbTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03126B1624A8C600ABDED1 /* IcbTableViewController.m */; };
 		4F06546D14C3FC490067C8A2 /* ChatModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F06546B14C3FC490067C8A2 /* ChatModel.xcdatamodeld */; };
 		4F06547114C3FFDD0067C8A2 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F06547014C3FFDD0067C8A2 /* ChatMessage.m */; };
-		4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F08E56614C2B63300673ADF /* NicknameViewController.m */; };
-		4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F08E56714C2B63300673ADF /* NicknameViewController.xib */; };
 		4F0E52E615AD245A00DA0629 /* PrivateMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0E52E515AD245A00DA0629 /* PrivateMessage.m */; };
 		4F24ED7815C2579600D46FB0 /* ChannelMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F24ED7715C2579600D46FB0 /* ChannelMessage.m */; };
 		4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30AB4014C2DC5D008D90E1 /* TabBarController.m */; };
@@ -81,9 +79,6 @@
 		4F06546C14C3FC490067C8A2 /* ChatModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatModel.xcdatamodel; sourceTree = "<group>"; };
 		4F06546F14C3FFDD0067C8A2 /* ChatMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		4F06547014C3FFDD0067C8A2 /* ChatMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
-		4F08E56514C2B63300673ADF /* NicknameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NicknameViewController.h; sourceTree = "<group>"; };
-		4F08E56614C2B63300673ADF /* NicknameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NicknameViewController.m; sourceTree = "<group>"; };
-		4F08E56714C2B63300673ADF /* NicknameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NicknameViewController.xib; sourceTree = "<group>"; };
 		4F0E52E415AD245A00DA0629 /* PrivateMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessage.h; sourceTree = "<group>"; };
 		4F0E52E515AD245A00DA0629 /* PrivateMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessage.m; sourceTree = "<group>"; };
 		4F24ED7615C2579600D46FB0 /* ChannelMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChannelMessage.h; sourceTree = "<group>"; };
@@ -202,11 +197,8 @@
 		4F0E52E115AD22BF00DA0629 /* First Time */ = {
 			isa = PBXGroup;
 			children = (
-				4F08E56714C2B63300673ADF /* NicknameViewController.xib */,
 				4F30AB4314C38CE6008D90E1 /* FirstViewController.h */,
 				4F30AB4414C38CE6008D90E1 /* FirstViewController.m */,
-				4F08E56514C2B63300673ADF /* NicknameViewController.h */,
-				4F08E56614C2B63300673ADF /* NicknameViewController.m */,
 			);
 			name = "First Time";
 			sourceTree = "<group>";
@@ -474,7 +466,6 @@
 				4F42D1CB14A989BD00FEB062 /* InfoPlist.strings in Resources */,
 				4F42D1D414A989BD00FEB062 /* MainStoryboard.storyboard in Resources */,
 				4F42D20C14A9A00300FEB062 /* Settings.bundle in Resources */,
-				4F08E56914C2B63300673ADF /* NicknameViewController.xib in Resources */,
 				4F7089BD15C4D60900BEAEB9 /* Default@2x.png in Resources */,
 				4F7089BF15C4D7ED00BEAEB9 /* Default.png in Resources */,
 				4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */,
@@ -536,7 +527,6 @@
 				4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */,
 				4F42D20A14A9990800FEB062 /* ChannelsViewController.m in Sources */,
 				4F42D20F14A9B0E000FEB062 /* IcbConnection.m in Sources */,
-				4F08E56814C2B63300673ADF /* NicknameViewController.m in Sources */,
 				4F30AB4114C2DC5E008D90E1 /* TabBarController.m in Sources */,
 				4F30AB4514C38CE6008D90E1 /* FirstViewController.m in Sources */,
 				4F06546D14C3FC490067C8A2 /* ChatModel.xcdatamodeld in Sources */,
