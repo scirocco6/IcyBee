@@ -55,7 +55,11 @@
   
   aRect.size.height -= keyboardSize.height;
   if (!CGRectContainsPoint(aRect, inputTextField.frame.origin) ) {
-    CGPoint scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - (inputTextField.frame.size.height + 7)));
+    CGPoint scrollPoint;
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+      scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - inputTextField.frame.size.height + 70));
+    else
+      scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - (inputTextField.frame.size.height + 7)));
     [scrollView setContentOffset:scrollPoint animated:YES];
   }
 }
