@@ -135,7 +135,6 @@ NSString const * htmlEnd = @"</body></html>";
   return([self rowCount]);
 }
 
-
 - (ChatMessage *) messageForIndex:(int) index {
   NSPredicate *predicate;
   switch (viewType) {
