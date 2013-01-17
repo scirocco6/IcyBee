@@ -11,15 +11,20 @@
 
 @implementation FirstViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+-(void) connect {
+  [[IcbConnection sharedInstance] connect];
+  [[self navigationController] performSegueWithIdentifier:@"goTabBar" sender:self];
 }
 
 #pragma mark - View lifecycle
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    // Custom initialization
+  }
+  return self;
+}
 
 - (void)viewDidLoad {
   if ([[UIScreen mainScreen] bounds].size.height == 568)
@@ -31,19 +36,12 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {  
-  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"]) {
-    [[IcbConnection sharedInstance] connect];
-    [[self navigationController] performSegueWithIdentifier:@"goTabBar" sender:self];
-    return;
+  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"])
+    [self connect];
+  else {
+    [scrollView setHidden:NO];
+    [DefaultGroup  setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"]];
   }
-//  if (!myNicknameViewController)
-//    myNicknameViewController = [[NicknameViewController alloc] init];
-//
-//  [self presentViewController:myNicknameViewController animated:NO completion:NULL];
-}
-
--(void) viewDidAppear:(BOOL)animated {
-  [DefaultGroup  setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"]];
 }
 
 - (void)viewDidUnload {
@@ -56,9 +54,7 @@
 
 -(IBAction) joinButtonPressed {
   BOOL errors = NO;
-  
-  //  [scrollView setFrame:CGRectMake(0, 0, 0, 0)];
-  
+    
   if ([Nickname text].length == 0) {
     [NicknameLabel setHidden:NO];
     errors = YES;
@@ -92,7 +88,7 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self connect];
   }
 }
 

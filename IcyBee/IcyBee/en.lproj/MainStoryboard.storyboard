@@ -482,7 +482,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view opaque="NO" contentMode="scaleToFill" id="g1B-hK-RtA" customClass="UIScrollView">
+                            <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="g1B-hK-RtA" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -858,7 +858,6 @@
         <class className="IcbTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="dataTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
@@ -867,9 +866,6 @@
         <class className="PeopleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
-                <relationship kind="action" name="beepUser:" candidateClass="UIButton"/>
-                <relationship kind="action" name="joinGroup:" candidateClass="UIButton"/>
-                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
