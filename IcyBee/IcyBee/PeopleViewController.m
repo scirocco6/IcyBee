@@ -190,6 +190,15 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewDidLoad {
+  if ([[UIScreen mainScreen] bounds].size.height == 568)
+    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background-568h@2x.png"]];
+  else
+    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];
+  
+  [super viewDidLoad];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
   [myTableView setHidden:YES];
   [activity startAnimating];

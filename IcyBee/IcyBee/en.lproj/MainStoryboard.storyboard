@@ -12,9 +12,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="mpC-uY-jzF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="mpC-uY-jzF">
                                 <rect key="frame" x="0.0" y="33" width="320" height="378"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="230" sectionHeaderHeight="22" sectionFooterHeight="22" id="pfK-M5-tBy">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
@@ -182,6 +182,7 @@
                     <tabBarItem key="tabBarItem" title="People" image="jar.png" id="bdU-F9-oT4"/>
                     <connections>
                         <outlet property="activity" destination="uGf-yA-Mf7" id="ygG-OY-Li6"/>
+                        <outlet property="backgroundImageView" destination="mpC-uY-jzF" id="K6k-8G-fgo"/>
                         <outlet property="myTableView" destination="pfK-M5-tBy" id="wV0-gp-asr"/>
                         <outlet property="peopleTableView" destination="pfK-M5-tBy" id="xEI-RB-hoH"/>
                     </connections>
@@ -198,9 +199,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="cJt-R3-0MX">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="cJt-R3-0MX">
                                 <rect key="frame" x="0.0" y="33" width="320" height="378"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" id="h4C-xK-MX8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -215,7 +216,7 @@
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="BcA-oR-Xgu">
                                         <rect key="frame" x="0.0" y="345" width="320" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                         <accessibility key="accessibilityConfiguration" label="hmm"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -285,6 +286,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Group Chat" image="bee.png" id="7"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="cJt-R3-0MX" id="tlc-CZ-0v6"/>
                         <outlet property="dataTableView" destination="XmI-eg-sJT" id="LSY-OL-hys"/>
                         <outlet property="inputTextField" destination="BcA-oR-Xgu" id="SkM-iL-K61"/>
                         <outlet property="navBar" destination="Stx-gT-5bs" id="J2e-Tu-zHf"/>
@@ -310,9 +312,9 @@
                                     <navigationItem title="Private Messages" id="n0V-rt-iZr"/>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="jyH-LQ-aHt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="jyH-LQ-aHt">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="eWP-fp-ENH">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
@@ -372,6 +374,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Private" image="flower.png" id="6"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="jyH-LQ-aHt" id="16q-Z3-Axg"/>
                         <outlet property="dataTableView" destination="eWP-fp-ENH" id="9cJ-g3-sPa"/>
                         <outlet property="navBar" destination="n0V-rt-iZr" id="Tgb-Yz-qgo"/>
                     </connections>
@@ -395,9 +398,9 @@
                                     <navigationItem title="Urls" id="3Jq-zK-Gae"/>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="5v0-65-igP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="5v0-65-igP">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="aVq-Ia-Qb5">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
@@ -458,6 +461,7 @@
                     <tabBarItem key="tabBarItem" title="URLs" image="comb.png" id="aDt-g2-0Rv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="backgroundImageView" destination="5v0-65-igP" id="sTP-u5-sRV"/>
                         <outlet property="dataTableView" destination="aVq-Ia-Qb5" id="HfO-HB-ezs"/>
                         <outlet property="navBar" destination="3Jq-zK-Gae" id="uXh-jK-HHQ"/>
                     </connections>
@@ -487,7 +491,6 @@
                 <tabBarController id="4" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ks4-jW-2Ml"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5">
                         <rect key="frame" x="0.0" y="431" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -513,9 +516,9 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="Channel@2x.png" id="6dp-34-nmm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="6dp-34-nmm">
                                 <rect key="frame" x="0.0" y="33" width="320" height="378"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="121" sectionHeaderHeight="22" sectionFooterHeight="22" id="fZb-XI-YEH">
                                 <rect key="frame" x="0.0" y="44" width="320" height="367"/>
@@ -610,6 +613,7 @@
                     <tabBarItem key="tabBarItem" title="Groups" image="hive.png" id="WP5-Yi-GKE"/>
                     <connections>
                         <outlet property="activity" destination="fcs-he-w8o" id="wht-MZ-Akd"/>
+                        <outlet property="backgroundImageView" destination="6dp-34-nmm" id="BZt-aA-l6e"/>
                         <outlet property="channelTableView" destination="fZb-XI-YEH" id="KQT-cP-SRN"/>
                         <outlet property="myTableView" destination="fZb-XI-YEH" id="LYm-y4-UsG"/>
                     </connections>
@@ -639,7 +643,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Channel@2x.png" width="640" height="960"/>
         <image name="bee.png" width="30" height="30"/>
         <image name="comb.png" width="30" height="30"/>
         <image name="flower.png" width="30" height="30"/>
@@ -668,6 +671,7 @@
             <relationships>
                 <relationship kind="action" name="newGroup"/>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="channelTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
             </relationships>
@@ -685,7 +689,7 @@
         <class className="IcbTableViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/IcbTableViewController.h"/>
             <relationships>
-                <relationship kind="action" name="messageUser:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="dataTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="navBar" candidateClass="UINavigationItem"/>
             </relationships>
@@ -694,6 +698,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PeopleViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="backgroundImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
                 <relationship kind="outlet" name="peopleTableView" candidateClass="UITableView"/>
             </relationships>

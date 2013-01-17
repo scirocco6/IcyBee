@@ -14,6 +14,7 @@
   IBOutlet UITableView *myTableView;
 }
 
+@property (nonatomic, strong) IBOutlet  UIImageView     *backgroundImageView;
 @property (nonatomic, strong) IBOutlet  UITableView     *peopleTableView;
 
 - (void) fetchRecords;
