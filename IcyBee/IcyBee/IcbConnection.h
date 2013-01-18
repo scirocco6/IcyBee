@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <sys/socket.h>
+#import <netinet/in.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <CFNetwork/CFHost.h>
 #import <CFNetwork/CFSocketStream.h>
@@ -39,6 +41,7 @@
 @property int                                         lastUrlMessage;
 
 + (IcbConnection *)	sharedInstance;
++ (BOOL) hasConnectivity;
 - (void) connect;
 - (void) handlePacket;
 - (void) assemblePacketOfType:(char) packetType, ...;

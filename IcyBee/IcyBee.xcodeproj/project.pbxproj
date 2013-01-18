@@ -48,6 +48,7 @@
 		4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */; };
 		4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAE554316227379009E0F40 /* BrowserViewController.m */; };
 		4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FAE554416227379009E0F40 /* BrowserViewController.xib */; };
+		4FB13DCB16A8811200378AF9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB13DCA16A8811200378AF9 /* SystemConfiguration.framework */; };
 		4FC68CF116A7938600641D49 /* background-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC68CEE16A7938600641D49 /* background-568h@2x.png */; };
 		4FC68CF216A7938600641D49 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC68CEF16A7938600641D49 /* background.png */; };
 		4FC68CF316A7938600641D49 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC68CF016A7938600641D49 /* background@2x.png */; };
@@ -137,6 +138,7 @@
 		4FAE554216227379009E0F40 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		4FAE554316227379009E0F40 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		4FAE554416227379009E0F40 /* BrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
+		4FB13DCA16A8811200378AF9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4FC68CEE16A7938600641D49 /* background-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-568h@2x.png"; sourceTree = "<group>"; };
 		4FC68CEF16A7938600641D49 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		4FC68CF016A7938600641D49 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB13DCB16A8811200378AF9 /* SystemConfiguration.framework in Frameworks */,
 				4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */,
 				4F42D1C114A989BD00FEB062 /* UIKit.framework in Frameworks */,
 				4F42D1C314A989BD00FEB062 /* Foundation.framework in Frameworks */,
@@ -217,6 +220,7 @@
 		4F42D1B114A989BD00FEB062 = {
 			isa = PBXGroup;
 			children = (
+				4FB13DCA16A8811200378AF9 /* SystemConfiguration.framework */,
 				4F42D1C614A989BD00FEB062 /* IcyBee */,
 				4F42D1EF14A989BD00FEB062 /* IcyBeeTests */,
 				4F42D1BF14A989BD00FEB062 /* Frameworks */,

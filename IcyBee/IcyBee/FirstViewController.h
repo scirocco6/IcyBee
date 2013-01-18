@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController <UITextFieldDelegate> {
+@interface FirstViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
   IBOutlet UITextField		*Nickname;
   IBOutlet UITextField		*Password;
   IBOutlet UITextField		*ConfirmPassword;

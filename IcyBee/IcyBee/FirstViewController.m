@@ -11,7 +11,24 @@
 
 @implementation FirstViewController
 
--(void) connect {
+- (void) preConnect{
+  if (![IcbConnection hasConnectivity]) {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Unavailable"
+                                                    message:@"Icy Bee needs to be connected to the internet to function.  Please connect to a network and click, \"retry\""
+                                                   delegate:self
+                                          cancelButtonTitle:@"retry"
+                                          otherButtonTitles:nil];
+    [alert show];
+  }
+  else if ([[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"])
+    [self connect];
+  else {
+    [scrollView setHidden:NO];
+    [DefaultGroup  setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"]];
+  }
+}
+
+- (void) connect {
   [[IcbConnection sharedInstance] connect];
   [[self navigationController] performSegueWithIdentifier:@"goTabBar" sender:self];
 }
@@ -21,33 +38,26 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
-    // Custom initialization
-  }
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+      [[self backgroundImageView] setImage: [UIImage imageNamed:@"background-568h@2x.png"]];
+    else
+      [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];  }
   return self;
 }
 
-- (void)viewDidLoad {
-  if ([[UIScreen mainScreen] bounds].size.height == 568)
-    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background-568h@2x.png"]];
-  else
-    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];
-  
-  [super viewDidLoad];
-}
-
-- (void) viewWillAppear:(BOOL)animated {  
-  if ([[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"])
-    [self connect];
-  else {
-    [scrollView setHidden:NO];
-    [DefaultGroup  setText:[[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"]];
-  }
+- (void) viewWillAppear:(BOOL)animated {
+  [self preConnect];
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  [self preConnect];
 }
 
 #pragma mark - Form controls
