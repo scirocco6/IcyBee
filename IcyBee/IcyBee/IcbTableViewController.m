@@ -183,13 +183,13 @@ NSString const * htmlEnd = @"</body></html>";
                                      "%@",
                                      htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
   }
-  else if ([[entry type] compare:@"o"] == NSOrderedSame) { // server responce from a comand
+  else if ([[entry type] compare:@"o"] == NSOrderedSame) { // server responce from a command
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span><i style='color: #FFF0F0'>%@</i></span>"
                                      "%@",
                                      htmlBegin, [entry text], htmlEnd] baseURL:nil];
   }
-  else if ([[entry type] compare:@"d"] == NSOrderedSame) { // server responce from a comand
+  else if ([[entry type] compare:@"d"] == NSOrderedSame) { // server responce from a command
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#FFAAAA; margin-right:5px;'>&lt%@&gt</span>"
                                      "<span>%@</span>"
