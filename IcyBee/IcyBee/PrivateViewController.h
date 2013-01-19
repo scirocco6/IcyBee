@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "IcbTableViewController.h"
 
-@interface PrivateViewController : IcbTableViewController  {
-}
+@interface PrivateViewController : IcbTableViewController;
 
 @end

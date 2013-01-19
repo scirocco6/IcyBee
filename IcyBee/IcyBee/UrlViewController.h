@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "IcbTableViewController.h"
 
-@interface UrlViewController : IcbTableViewController  {
-}
-
+@interface UrlViewController : IcbTableViewController;
 @end
