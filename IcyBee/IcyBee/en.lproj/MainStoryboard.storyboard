@@ -789,7 +789,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="4" kind="modal" identifier="goTabBar" modalTransitionStyle="crossDissolve" id="4AK-Ak-55L"/>
+                        <segue destination="4" kind="modal" identifier="goTabBar" animates="NO" id="4AK-Ak-55L"/>
                         <segue destination="U1X-Mv-Qv3" kind="relationship" relationship="rootViewController" id="MiV-0b-SJy"/>
                     </connections>
                 </navigationController>
