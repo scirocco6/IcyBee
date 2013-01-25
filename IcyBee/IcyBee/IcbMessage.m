@@ -47,7 +47,7 @@
   ChatMessage *message = (ChatMessage *)[[[IcbConnection sharedInstance] managedObjectContext] existingObjectWithID:[self objectID] error:&error];
   [message setHeight:frame.size.height + 1];
   
-  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells)];
+  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.1 ];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
