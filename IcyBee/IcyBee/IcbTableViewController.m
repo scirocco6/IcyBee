@@ -165,11 +165,7 @@ NSString const * htmlEnd = @"</body></html>";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   ChatMessage *entry = [self messageForIndex: [indexPath row]];
-  
-  if ([entry height]) 
-    return [entry height];
-  else
-    return 0.0f; // this will get resized once the webview loads and a height is computed
+  return [entry height];
 }
 
 - (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

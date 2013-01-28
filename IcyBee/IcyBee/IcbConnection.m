@@ -503,7 +503,7 @@
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
   [event setText:text];
-  [event setHeight:21.0f];
+  [event setHeight:0.1f];
   [event setGroupIndex:lastGroupMessage++];
   
   if (type == 'c' || type == 'k')
