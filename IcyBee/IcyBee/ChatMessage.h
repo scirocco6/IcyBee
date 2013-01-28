@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSString  *text;
 @property (nonatomic)         CGFloat   height;
 @property (nonatomic)         BOOL      url;
+@property (nonatomic)         BOOL      needsSize;
 @property (nonatomic)         int       groupIndex;
 @property (nonatomic)         int       privateIndex;
 @property (nonatomic)         int       urlIndex;

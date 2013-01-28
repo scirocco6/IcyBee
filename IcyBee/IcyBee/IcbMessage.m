@@ -43,11 +43,16 @@
   cellFrame.size.height = frame.size.height + 1;
   [self setFrame: cellFrame];
   
+  if(![self needsSize])
+    return;
+  
   NSError *error; // prolly should check this error condition sometime
   ChatMessage *message = (ChatMessage *)[[[IcbConnection sharedInstance] managedObjectContext] existingObjectWithID:[self objectID] error:&error];
   [message setHeight:frame.size.height + 1];
+  [message setNeedsSize:NO];
   
-  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.1 ];
+  [[[IcbConnection sharedInstance] managedObjectContext] save:&error]; // not fatal if this fails, just inefficient since we will resize again
+  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

@@ -65,7 +65,7 @@ NSString const * htmlEnd = @"</body></html>";
 - (void) reJiggerCells {
   [dataTableView beginUpdates];
   [dataTableView endUpdates];
-  
+
   [self scrollToBottom];
 }
 
@@ -165,6 +165,7 @@ NSString const * htmlEnd = @"</body></html>";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   ChatMessage *entry = [self messageForIndex: [indexPath row]];
+
   return [entry height];
 }
 
@@ -201,7 +202,8 @@ NSString const * htmlEnd = @"</body></html>";
   }
   
   [cell setObjectID:[entry objectID]];
-  [[[cell message] scrollView] setScrollEnabled:NO];
+  [cell setNeedsSize:[entry needsSize]];
+//  [[[cell message] scrollView] setScrollEnabled:NO];
   [[cell messageButton] setTag:  [indexPath row]];
   [cell setIcbTableController:self];
   

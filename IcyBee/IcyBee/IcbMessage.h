@@ -14,5 +14,6 @@
 @property (nonatomic, strong) IBOutlet UIWebView              *message;
 @property (nonatomic, strong) IBOutlet UIButton               *messageButton;
 @property (nonatomic, strong)          NSManagedObjectID      *objectID;
+@property (nonatomic)                  BOOL                   needsSize;
 @property (nonatomic, strong)          IcbTableViewController *icbTableController;
 @end

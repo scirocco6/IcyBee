@@ -20,4 +20,5 @@
 @dynamic groupIndex;
 @dynamic privateIndex;
 @dynamic urlIndex;
+@dynamic needsSize;
 @end
