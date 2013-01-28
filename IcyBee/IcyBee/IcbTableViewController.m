@@ -173,6 +173,22 @@ NSString const * htmlEnd = @"</body></html>";
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
   ChatMessage *entry = [self messageForIndex:[indexPath row]];
 
+  [cell setObjectID:[entry objectID]];
+  [cell setNeedsSize:[entry needsSize]];
+  [[cell messageButton] setTag: [indexPath row]];
+  [cell setIcbTableController:self];
+  
+  if (![entry needsSize]) { // if we know the correct size then size the webview correctly
+    CGRect frame = [[cell message] frame];
+
+    frame.size.height = [entry height];
+    [[cell message] setFrame: frame];
+    
+    CGRect cellFrame = [cell frame];
+    cellFrame.size.height = frame.size.height + 1;
+    [cell setFrame: cellFrame];
+  }
+  
   if ([[entry type] compare:@"c"] == NSOrderedSame) { // private message
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
                                      "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
@@ -200,12 +216,6 @@ NSString const * htmlEnd = @"</body></html>";
                                      "%@",
                                      htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
   }
-  
-  [cell setObjectID:[entry objectID]];
-  [cell setNeedsSize:[entry needsSize]];
-//  [[[cell message] scrollView] setScrollEnabled:NO];
-  [[cell messageButton] setTag:  [indexPath row]];
-  [cell setIcbTableController:self];
   
   return cell;
 }
