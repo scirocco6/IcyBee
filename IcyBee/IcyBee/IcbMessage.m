@@ -13,12 +13,12 @@
 @implementation IcbMessage
 @synthesize icbTableController;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+- (id) initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
   if (self) {
     // Initialization code
   }
-  return self;
+  return(self);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
