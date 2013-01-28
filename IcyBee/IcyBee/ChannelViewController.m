@@ -8,7 +8,6 @@
 
 #import "Constants.h"
 #import "ChannelViewController.h"
-#import "ChannelMessage.h"
 #import "IcbConnection.h"
 
 
