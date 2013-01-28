@@ -50,9 +50,7 @@
   ChatMessage *message = (ChatMessage *)[[[IcbConnection sharedInstance] managedObjectContext] existingObjectWithID:[self objectID] error:&error];
   [message setHeight:frame.size.height + 1];
   [message setNeedsSize:NO];
-  
-  NSLog(@"resizing %d", [message groupIndex]);
-  
+    
   [[[IcbConnection sharedInstance] managedObjectContext] save:&error]; // not fatal if this fails, just inefficient since we will resize again
   [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
 }
