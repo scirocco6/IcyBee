@@ -203,7 +203,7 @@ NSString const * htmlEnd = @"</body></html>";
   }
   else if ([[entry type] compare:@"d"] == NSOrderedSame) { // server responce from a command
     [[cell message] loadHTMLString: [NSString stringWithFormat:@"%@"
-                                     "<span style='color:#FFAAAA; margin-right:5px;'>&lt%@&gt</span>"
+                                     "<span style='color:#FFAAAA; margin-right:5px;'>[=%@=]</span>"
                                      "<span>%@</span>"
                                      "%@",
                                      htmlBegin, [entry sender], [entry text], htmlEnd] baseURL:nil];
