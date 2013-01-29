@@ -13,7 +13,10 @@
 
 @implementation FirstViewController
 
-- (void) preConnect{
+- (void) preConnect {
+  [spinnyThing setHidden:YES];
+  [messageLabel setHidden:YES];
+  
   if (![IcbConnection hasConnectivity]) {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Network Unavailable"
                                                     message:@"Icy Bee needs to be connected to the internet to function.  Please connect to a network and click, \"retry\""
@@ -31,6 +34,7 @@
 }
 
 - (void) connect {
+  [scrollView setHidden:YES];
   [spinnyThing setHidden:NO];
   [messageLabel setText:@"connecting"];
   [messageLabel setHidden:NO];

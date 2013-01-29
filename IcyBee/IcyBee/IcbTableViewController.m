@@ -115,7 +115,6 @@ NSString const * htmlEnd = @"</body></html>";
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
   NSString *inputText = [[alertView textFieldAtIndex:0] text];
   
-  NSLog(@"Input length == %i", [inputText length]);
   return [inputText length] == 0 ? NO : YES;
 }
 

@@ -154,10 +154,6 @@
     
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-  [self connect];
-}
-
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {    
   switch(eventCode) {
     case NSStreamEventErrorOccurred: {
@@ -596,6 +592,32 @@
   }
   if(authenticated)
     [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+  
+  return [inputText length] == 0 ? NO : YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if([title isEqualToString:@"Change User"]) {
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"nick_preference"];
+    [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"pass_preference"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [front performSelector:@selector(preConnect)];
+    return;
+  }
+  else if([title isEqualToString:@"Login"]) {
+    currentPassword = [[alertView textFieldAtIndex:0] text];
+    [[NSUserDefaults standardUserDefaults] setObject:currentPassword forKey:@"pass_preference"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+  }
+  [self connect];
 }
 
 @end
