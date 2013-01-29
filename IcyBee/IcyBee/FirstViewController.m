@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "FirstViewController.h"
 #import "IcbConnection.h"
 
@@ -35,17 +37,23 @@
 
 #pragma mark - View lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-  if (self) {
-    if ([[UIScreen mainScreen] bounds].size.height == 568)
-      [[self backgroundImageView] setImage: [UIImage imageNamed:@"background-568h@2x.png"]];
-    else
-      [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];  }
-  return self;
-}
-
-- (void) viewWillAppear:(BOOL)animated {
+-(void) viewDidLoad {
+  [super viewDidLoad];
+  
+  CALayer *layer = [joinButton layer];
+  layer.backgroundColor = [[UIColor clearColor] CGColor];
+  layer.borderColor = [[UIColor darkGrayColor] CGColor];
+  layer.cornerRadius = 8.0f;
+  layer.borderWidth = 1.0f;
+  
+  [joinButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
+  [joinButton setTitle:@"JOIN" forState:UIControlStateHighlighted];
+  
+  if ([[UIScreen mainScreen] bounds].size.height == 568)
+    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background-568h@2x.png"]];
+  else
+    [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];
+  
   [self preConnect];
 }
 

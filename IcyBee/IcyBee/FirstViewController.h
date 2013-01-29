@@ -18,6 +18,7 @@
   IBOutlet UILabel        *ConfirmPasswordLabel;
   IBOutlet UILabel        *DefaultGroupLabel;
   IBOutlet UIScrollView   *scrollView;
+  IBOutlet UIButton       *joinButton;
 }
 -(IBAction) joinButtonPressed;
 
