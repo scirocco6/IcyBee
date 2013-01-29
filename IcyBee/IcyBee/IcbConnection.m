@@ -79,9 +79,9 @@
 }
 
 - (void) deleteChatEntries { // delete all entries in the ChatMessage table
-  lastGroupMessage = 0;
-  lastPrivateMessage = 0;
-  lastUrlMessage = 0;
+  lastGroupMessage    = 0;
+  lastPrivateMessage  = 0;
+  lastUrlMessage      = 0;
 
   NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
   
@@ -122,22 +122,14 @@
   currentNickname = [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"];
   currentPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_preference"];
   
-  #ifdef DEBUG
-    NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
-    NSLog(@"port   setting is %i", [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue]);
-    NSLog(@"channel is %@", currentChannel);
-    NSLog(@"Nickname is %@", currentNickname);
-  #endif
-  
   CFHostRef host = CFHostCreateWithName(kCFAllocatorDefault, (__bridge_retained CFStringRef) [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
 	CFStreamCreatePairWithSocketToCFHost(kCFAllocatorDefault, host, [[[NSUserDefaults standardUserDefaults] stringForKey:@"port_preference"] intValue], &myReadStream, &myWriteStream);
   
-  if (!CFReadStreamSetProperty(myReadStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP)) {
+  if (!CFReadStreamSetProperty(myReadStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP))
     NSLog(@"Could not set VoIP mode to read stream");
-  }
-  if (!CFWriteStreamSetProperty(myWriteStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP)) {
+  
+  if (!CFWriteStreamSetProperty(myWriteStream, kCFStreamNetworkServiceType, kCFStreamNetworkServiceTypeVoIP))
     NSLog(@"Could not set VoIP mode to write stream");
-  }
 	
   inputStream     = (__bridge NSInputStream *)    myReadStream;
   outputStream    = (__bridge NSOutputStream *)   myWriteStream;
@@ -177,10 +169,6 @@
              
       switch (loggedIn) {
         case NO: {
-          #ifdef DEBUG
-            NSLog(@"sending login...");
-          #endif
-
           [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", currentPassword, nil];
           [self sendPacket];
 
