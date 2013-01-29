@@ -482,6 +482,17 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" animating="YES" style="whiteLarge" id="bRv-ci-t09" userLabel="spinny thing" colorLabel="IBBuiltInLabel-Red">
+                                <rect key="frame" x="141" y="212" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <color key="color" red="1" green="0.63170391479999999" blue="0.95449045720000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="connecting" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="31x-kx-BvN">
+                                <rect key="frame" x="20" y="257" width="276" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="CourierNewPSMT" family="Courier New" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="g1B-hK-RtA" customClass="UIScrollView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -636,7 +647,9 @@
                         <outlet property="PasswordLabel" destination="NFa-zT-3R2" id="l1Y-lE-QgT"/>
                         <outlet property="backgroundImageView" destination="VBx-Gy-3gr" id="mLc-bk-ILl"/>
                         <outlet property="joinButton" destination="k4t-Zz-J4U" id="lQN-TU-34U"/>
+                        <outlet property="messageLabel" destination="31x-kx-BvN" id="gut-Ba-AZ6"/>
                         <outlet property="scrollView" destination="g1B-hK-RtA" id="sNl-Bs-3VM"/>
+                        <outlet property="spinnyThing" destination="bRv-ci-t09" id="aCY-gx-L75"/>
                         <outlet property="view" destination="Tmg-th-emg" id="EeH-ud-l23"/>
                     </connections>
                 </viewController>

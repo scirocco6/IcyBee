@@ -31,8 +31,23 @@
 }
 
 - (void) connect {
+  [spinnyThing setHidden:NO];
+  [messageLabel setText:@"connecting"];
+  [messageLabel setHidden:NO];
+  
+  [[IcbConnection sharedInstance] setFront:self];
   [[IcbConnection sharedInstance] connect];
+}
+
+- (void) connected {
+  [spinnyThing setHidden:YES];
+  [messageLabel setHidden:YES];
+  
   [[self navigationController] performSegueWithIdentifier:@"goTabBar" sender:self];
+}
+
+- (void) setStatus:(NSString *) message {
+  [messageLabel setText:message];
 }
 
 #pragma mark - View lifecycle

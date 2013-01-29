@@ -68,14 +68,20 @@
   lastGroupMessage = 0;
   lastPrivateMessage = 0;
   lastUrlMessage = 0;
+  firstTime = YES;
   
   return self;
 }
 
 - (void) setDisconected {
-  loggedIn  = NO;
-  snarfing  = NO;
-  whoing    = NO;
+  [inputStream close];
+  [outputStream close];
+  
+  loggedIn      = NO;
+  authenticated = NO;
+  snarfing      = NO;
+  whoing        = NO;
+  
 }
 
 - (void) deleteChatEntries { // delete all entries in the ChatMessage table
@@ -357,24 +363,35 @@
     case 'c': // a personal message from another user to me
     case 'd': // a status message
     case 'f': { // an important message
-      [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
-
       if (*readBuffer == 'd') {
-        NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
-        if (range.location != NSNotFound) {
-          NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
-          range = [substring rangeOfString:@" "];
-          if (range.location == NSNotFound) {
-            currentChannel = substring;
+        if ([[parameters objectAtIndex:0] isEqualToString:@"Register"]) {
+          if([[parameters objectAtIndex:1] hasPrefix:@"Nick registered"]) {
+            authenticated = YES;
+            if(firstTime) {
+              firstTime = NO;
+              [front performSelector:@selector(connected)];
+              break;
+            }
           }
-          else {
-            currentChannel = [substring substringToIndex:range.location];
-          }
-          [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
-        }
-      }
+        } // if
+        else {
+          [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
+          
+          NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
+          if (range.location != NSNotFound) {
+            NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
+            range = [substring rangeOfString:@" "];
+            if (range.location == NSNotFound)
+              currentChannel = substring;
+            else
+              currentChannel = [substring substringToIndex:range.location];
+          } // if
+        } // else
+      } // if
+      if(authenticated)
+        [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
       break;
-    }
+    } // case
     
     case 'k': { //beep
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:@"Beep!"];
@@ -382,6 +399,23 @@
     }
       
     case 'e': { // an error message
+      NSLog(@"ERROR '%@'", [parameters objectAtIndex:0]);
+      if ([[parameters objectAtIndex:0] hasPrefix:@"Password Incorrect"] || [[parameters objectAtIndex:0] hasPrefix:@"Authorization failure"]) {
+        [self setDisconected];
+        [front performSelector:@selector(setStatus:) withObject:@"connection failed"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
+                                                        message:[NSString stringWithFormat:@"Please enter the password for user %@", currentNickname]
+                                                       delegate:self
+                                              cancelButtonTitle:@"Change User"
+                                              otherButtonTitles:@"Login", nil];
+        [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [alert show];
+        
+        
+        break;
+      }
+      
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
                                                       message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
                                                      delegate:nil 
@@ -462,7 +496,7 @@
             }
           }
         } // case 'w'
-          
+
         default:
           break;
       } // switch
@@ -541,7 +575,7 @@
 - (void) addPerson:(NSString *) nickname group:(NSString *) group idle:(NSNumber *) idle signon:(NSNumber *) signon account:(NSString *) account {
   People *event = (People *)[NSEntityDescription insertNewObjectForEntityForName:@"People" inManagedObjectContext:managedObjectContext];  
   [event setNickname: nickname];
-  [event setGroup: whoChannel];
+  [event setGroup:    whoChannel];
   [event setIdle:     idle];
   [event setSignon:   signon];
   [event setAccount:  account];
@@ -560,7 +594,8 @@
                                           otherButtonTitles:nil];
     [alert show];        
   }
-  [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+  if(authenticated)
+    [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
 }
 
 @end

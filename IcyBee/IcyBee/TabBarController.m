@@ -11,12 +11,12 @@
 
 @implementation TabBarController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (id) initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if(self) {
+    // Custom initialization
+  }
+  return self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,11 +31,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
+//  [[self view] setHidden:YES];
   [self setSelectedIndex:2]; //start on the channel view
 }
-
-
-
 
 - (void)viewDidUnload {
     [super viewDidUnload];
@@ -46,7 +44,6 @@
 #pragma mark - UITabBarDelegate
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
-  NSLog(@"item selected");
 
 }
 @end

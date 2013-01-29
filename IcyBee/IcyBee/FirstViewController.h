@@ -9,18 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @interface FirstViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
-  IBOutlet UITextField		*Nickname;
-  IBOutlet UITextField		*Password;
-  IBOutlet UITextField		*ConfirmPassword;
-  IBOutlet UITextField    *DefaultGroup;
-  IBOutlet UILabel        *NicknameLabel;
-  IBOutlet UILabel        *PasswordLabel;
-  IBOutlet UILabel        *ConfirmPasswordLabel;
-  IBOutlet UILabel        *DefaultGroupLabel;
-  IBOutlet UIScrollView   *scrollView;
-  IBOutlet UIButton       *joinButton;
+  IBOutlet UITextField              *Nickname;
+  IBOutlet UITextField              *Password;
+  IBOutlet UITextField              *ConfirmPassword;
+  IBOutlet UITextField              *DefaultGroup;
+  IBOutlet UILabel                  *NicknameLabel;
+  IBOutlet UILabel                  *PasswordLabel;
+  IBOutlet UILabel                  *ConfirmPasswordLabel;
+  IBOutlet UILabel                  *DefaultGroupLabel;
+  IBOutlet UIScrollView             *scrollView;
+  IBOutlet UIButton                 *joinButton;
+  IBOutlet UIActivityIndicatorView  *spinnyThing;
+  IBOutlet UILabel                  *messageLabel;
 }
 -(IBAction) joinButtonPressed;
+- (void) setStatus:(NSString *) message;
 
 @property (nonatomic, strong) IBOutlet  UIImageView     *backgroundImageView;
 

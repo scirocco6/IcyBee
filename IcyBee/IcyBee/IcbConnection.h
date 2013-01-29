@@ -22,7 +22,7 @@
   NSInputStream           *inputStream;
   NSOutputStream          *outputStream;
   NSManagedObjectContext  *managedObjectContext;
-  Boolean                 loggedIn, snarfing, whoing;
+  Boolean                 loggedIn, firstTime, authenticated, snarfing, whoing;
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
@@ -32,6 +32,7 @@
 
 @property (nonatomic, retain) UIApplication           *application;
 @property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
+@property (nonatomic, retain) UILabel                 *connectionLabel;
 @property (retain)            UIViewController        *front;
 @property (nonatomic, retain) NSString                *currentChannel;
 @property (nonatomic, retain) NSString                *currentNickname;
