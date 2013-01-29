@@ -120,6 +120,7 @@
   
   currentChannel  = [[NSUserDefaults standardUserDefaults] stringForKey:@"channel_preference"];
   currentNickname = [[NSUserDefaults standardUserDefaults] stringForKey:@"nick_preference"];
+  currentPassword = [[NSUserDefaults standardUserDefaults] stringForKey:@"pass_preference"];
   
   #ifdef DEBUG
     NSLog(@"server setting is %@", [[NSUserDefaults standardUserDefaults] stringForKey:@"server_preference"]);
@@ -180,7 +181,7 @@
             NSLog(@"sending login...");
           #endif
 
-          [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", nil];
+          [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", currentPassword, nil];
           [self sendPacket];
 
           break;

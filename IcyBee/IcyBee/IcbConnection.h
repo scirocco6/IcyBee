@@ -27,7 +27,7 @@
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
   UIViewController        *front;
-  NSString                *currentChannel, *currentNickname, *whoChannel;
+  NSString                *currentChannel, *currentNickname, *currentPassword, *whoChannel;
 }
 
 @property (nonatomic, retain) UIApplication           *application;
