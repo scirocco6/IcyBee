@@ -92,7 +92,7 @@
 			<key>Key</key>
 			<string>channel_preference</string>
 			<key>DefaultValue</key>
-			<string>wombats</string>
+			<string>IcyBee</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
