@@ -360,7 +360,11 @@
     case 'd': // a status message
     case 'f': { // an important message
       if (*readBuffer == 'd') {
-        if ([[parameters objectAtIndex:0] isEqualToString:@"Register"]) {
+        if ([[parameters objectAtIndex:0] isEqualToString:@"No-Pass"] && [[parameters objectAtIndex:1] hasPrefix:@"Your nickname does not have a password"]) {
+          [front performSelector:@selector(setStatus:) withObject:@"creating account"];
+          [self sendPrivateMessage:[NSString stringWithFormat:@"server p %@", currentPassword]];
+        }
+        else if ([[parameters objectAtIndex:0] isEqualToString:@"Register"]) {
           if([[parameters objectAtIndex:1] hasPrefix:@"Nick registered"]) {
             authenticated = YES;
             if(firstTime) {
