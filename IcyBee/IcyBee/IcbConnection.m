@@ -335,10 +335,6 @@
   if (!loggedIn) {
     if (*readBuffer == 'a') {
       loggedIn = YES;
-//      [application endIgnoringInteractionEvents];
-      #ifdef DEBUG
-        NSLog(@"Login successful");
-      #endif
     }
     else if (*readBuffer == 'e') {
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
@@ -370,13 +366,11 @@
             if(firstTime) {
               firstTime = NO;
               [front performSelector:@selector(connected)];
-              break;
+              return;
             }
           }
         } // if
-        else {
-          [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
-          
+        else {          
           NSRange range = [[parameters objectAtIndex:1] rangeOfString:@"You are now in group "];
           if (range.location != NSNotFound) {
             NSString *substring = [[parameters objectAtIndex:1] substringFromIndex:range.location+21];
@@ -390,6 +384,9 @@
       } // if
       if(authenticated)
         [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+
+      [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
+
       break;
     } // case
     
