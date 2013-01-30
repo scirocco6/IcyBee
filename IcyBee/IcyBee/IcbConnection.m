@@ -217,8 +217,6 @@
 
 - (void) processInput:(NSString *) line {
   if([line characterAtIndex:0] == '/') {
-    NSLog(@"Command detected: '%@'", line);
-    
     switch ([line characterAtIndex:1]) {
       case 'm':
         [self sendPrivateMessage:[line substringFromIndex:3]];
@@ -271,8 +269,6 @@
 }
 
 - (void) sendOpenMessage:(NSString *) message {
-  NSLog(@"Sending open message %@", message);
-  
   [self assemblePacketOfType:'b', message, nil];
   [self sendPacket];
 }
@@ -290,15 +286,11 @@
 }
 
 - (void) sendPrivateMessage:(NSString *) message {
-  NSLog(@"sending private message %@", message);
-  
   [self assemblePacketOfType:'h', @"m", message, nil];
   [self sendPacket];
 }
 
 - (void) sendBeep:(NSString *) user {
-  NSLog(@"sending beep to %@", user);
-  
   [self assemblePacketOfType:'h', @"beep", user, nil];
   [self sendPacket];
 }
@@ -321,10 +313,6 @@
 }
 
 -(void) sendPacket {
-#ifdef DEBUG
-  NSLog(@"Sending packet of type %c", *writeBuffer);
-#endif
-  
   char icbLength = strlen((char *) writeBuffer) + 1;
     
   [outputStream write:(const uint8_t *) &icbLength maxLength:(unsigned int) 1];
@@ -337,7 +325,7 @@
       loggedIn = YES;
     }
     else if (*readBuffer == 'e') {
-      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error" 
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error"
                                                       message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
                                                      delegate:nil 
                                             cancelButtonTitle:@"OK"
@@ -396,7 +384,6 @@
     }
       
     case 'e': { // an error message
-      NSLog(@"ERROR '%@'", [parameters objectAtIndex:0]);
       if ([[parameters objectAtIndex:0] hasPrefix:@"Password Incorrect"] || [[parameters objectAtIndex:0] hasPrefix:@"Authorization failure"]) {
         [self setDisconected];
         [front performSelector:@selector(setStatus:) withObject:@"connection failed"];
