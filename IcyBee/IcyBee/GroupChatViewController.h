@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IcbTableViewController.h"
 
-@interface ChannelViewController : IcbTableViewController <UITextFieldDelegate>  {
+@interface GroupChatViewController : IcbTableViewController <UITextFieldDelegate>  {
   IBOutlet UIScrollView   *scrollView;
 }
 

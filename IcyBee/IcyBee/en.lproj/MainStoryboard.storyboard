@@ -191,10 +191,10 @@
             </objects>
             <point key="canvasLocation" x="-2178" y="-932"/>
         </scene>
-        <!--Channel View Controller - Channel-->
+        <!--Group Chat View Controller - Channel-->
         <scene sceneID="11">
             <objects>
-                <viewController title="Channel" id="2" customClass="ChannelViewController" sceneMemberID="viewController">
+                <viewController title="Channel" id="2" customClass="GroupChatViewController" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="A2N-b1-RWA">
                         <rect key="frame" x="0.0" y="20" width="320" height="411"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

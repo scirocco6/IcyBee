@@ -7,11 +7,11 @@
 //
 
 #import "Constants.h"
-#import "ChannelViewController.h"
+#import "GroupChatViewController.h"
 #import "IcbConnection.h"
 
 
-@implementation ChannelViewController
+@implementation GroupChatViewController
 @synthesize inputTextField;
 
 - (void) updateView {

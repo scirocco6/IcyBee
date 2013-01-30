@@ -20,7 +20,7 @@
 		4F42D1CD14A989BD00FEB062 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1CC14A989BD00FEB062 /* main.m */; };
 		4F42D1D114A989BD00FEB062 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D014A989BD00FEB062 /* AppDelegate.m */; };
 		4F42D1D414A989BD00FEB062 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */; };
-		4F42D1D714A989BD00FEB062 /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D614A989BD00FEB062 /* ChannelViewController.m */; };
+		4F42D1D714A989BD00FEB062 /* GroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1D614A989BD00FEB062 /* GroupChatViewController.m */; };
 		4F42D1DE14A989BD00FEB062 /* PrivateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */; };
 		4F42D1EA14A989BD00FEB062 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1E914A989BD00FEB062 /* SenTestingKit.framework */; };
 		4F42D1EB14A989BD00FEB062 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F42D1C014A989BD00FEB062 /* UIKit.framework */; };
@@ -97,8 +97,8 @@
 		4F42D1CF14A989BD00FEB062 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F42D1D014A989BD00FEB062 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4F42D1D314A989BD00FEB062 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		4F42D1D514A989BD00FEB062 /* ChannelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelViewController.h; sourceTree = "<group>"; };
-		4F42D1D614A989BD00FEB062 /* ChannelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelViewController.m; sourceTree = "<group>"; };
+		4F42D1D514A989BD00FEB062 /* GroupChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupChatViewController.h; sourceTree = "<group>"; };
+		4F42D1D614A989BD00FEB062 /* GroupChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupChatViewController.m; sourceTree = "<group>"; };
 		4F42D1DC14A989BD00FEB062 /* PrivateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateViewController.h; sourceTree = "<group>"; };
 		4F42D1DD14A989BD00FEB062 /* PrivateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrivateViewController.m; sourceTree = "<group>"; };
 		4F42D1E814A989BD00FEB062 /* IcyBeeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IcyBeeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,8 +317,8 @@
 		4F6B967F15AA27540044EC6E /* Group Chat View */ = {
 			isa = PBXGroup;
 			children = (
-				4F42D1D514A989BD00FEB062 /* ChannelViewController.h */,
-				4F42D1D614A989BD00FEB062 /* ChannelViewController.m */,
+				4F42D1D514A989BD00FEB062 /* GroupChatViewController.h */,
+				4F42D1D614A989BD00FEB062 /* GroupChatViewController.m */,
 			);
 			name = "Group Chat View";
 			sourceTree = "<group>";
@@ -523,7 +523,7 @@
 			files = (
 				4F42D1CD14A989BD00FEB062 /* main.m in Sources */,
 				4F42D1D114A989BD00FEB062 /* AppDelegate.m in Sources */,
-				4F42D1D714A989BD00FEB062 /* ChannelViewController.m in Sources */,
+				4F42D1D714A989BD00FEB062 /* GroupChatViewController.m in Sources */,
 				4F42D1DE14A989BD00FEB062 /* PrivateViewController.m in Sources */,
 				4F42D20414A9964A00FEB062 /* UrlViewController.m in Sources */,
 				4F42D20714A9982000FEB062 /* PeopleViewController.m in Sources */,
@@ -641,7 +641,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IcyBee/IcyBee-Prefix.pch";
 				INFOPLIST_FILE = "IcyBee/IcyBee-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -654,7 +654,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IcyBee/IcyBee-Prefix.pch";
 				INFOPLIST_FILE = "IcyBee/IcyBee-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
