@@ -273,18 +273,6 @@
   [self sendPacket];
 }
 
-- (void) sendSixTheTime {
-  if (loggedIn) {
-    NSDate *date = [NSDate date];
-  
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc]init];
-    [dateFormat setDateFormat:@"HH:mm:ss zzz"];
-    NSString *dateString = [dateFormat stringFromDate:date];
-  
-    [self sendPrivateMessage:[NSString stringWithFormat:@"six %@", dateString]];
-  }
-}
-
 - (void) sendPrivateMessage:(NSString *) message {
   [self assemblePacketOfType:'h', @"m", message, nil];
   [self sendPacket];
