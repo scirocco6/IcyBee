@@ -22,7 +22,7 @@
   NSInputStream           *inputStream;
   NSOutputStream          *outputStream;
   NSManagedObjectContext  *managedObjectContext;
-  Boolean                 loggedIn, firstTime, authenticated, snarfing, whoing;
+  Boolean                 dropping, loggedIn, firstTime, authenticated, snarfing, whoing;
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
@@ -58,7 +58,6 @@
 - (void) sendBeep:(NSString *) user;
 - (void) sendNop;
 - (void) sendPrivateMessage:(NSString *) message;
-- (void) sendSixTheTime;
 - (void) deleteAllTables;
 - (void) deleteWhoEntries;
 - (void) deletePeopleEntries;

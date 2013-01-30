@@ -69,6 +69,7 @@
   lastPrivateMessage = 0;
   lastUrlMessage = 0;
   firstTime = YES;
+  dropping = NO;
   
   return self;
 }
@@ -171,7 +172,12 @@
              
       switch (loggedIn) {
         case NO: {
-          [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", currentPassword, nil];
+          if(dropping) {
+            int rnum = arc4random() % 9999999;
+            [self assemblePacketOfType:'a', [NSString stringWithFormat:@"icy%d", rnum], [NSString stringWithFormat:@"icy%d", rnum], @"__hiddenIcyDrop", @"login", nil];
+          }
+          else
+            [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", currentPassword, nil];
           [self sendPacket];
 
           break;
@@ -308,11 +314,34 @@
 }
 
 -(void) handlePacket {
+  // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
+  NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
+  
   if (!loggedIn) {
     if (*readBuffer == 'a') {
+      if (dropping) {
+        [self sendPrivateMessage:[NSString stringWithFormat:@"server drop %@ %@", currentNickname, currentPassword]];
+        sleep(6);
+        [front performSelector:@selector(setStatus:) withObject:@"conecting"];
+        dropping = NO;
+        [self setDisconected];
+        [self connect];
+        
+        return;
+      }
       loggedIn = YES;
     }
     else if (*readBuffer == 'e') {
+      if([[parameters objectAtIndex:0] hasPrefix:@"Nickname already in use"]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Nickname in use"
+                                                        message:[NSString stringWithFormat:@"%@ is already logged in elsewhere.", currentNickname]
+                                                       delegate:self
+                                              cancelButtonTitle:@"Change User"
+                                              otherButtonTitles:@"Drop Other", nil];
+        [alert show];
+        
+        return;
+      }
       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Server Error"
                                                       message:[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] 
                                                      delegate:nil 
@@ -322,10 +351,7 @@
     }
     return;
   }
-        
-  // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
-  NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
-     
+  
   switch (*readBuffer) {                    
     case 'b': // an open message to the channel I am in
     case 'c': // a personal message from another user to me
@@ -372,7 +398,10 @@
     }
       
     case 'e': { // an error message
-      if ([[parameters objectAtIndex:0] hasPrefix:@"Password Incorrect"] || [[parameters objectAtIndex:0] hasPrefix:@"Authorization failure"]) {
+      if ([[parameters objectAtIndex:0] hasPrefix:@"Password Incorrect"] ||
+          [[parameters objectAtIndex:0] hasPrefix:@"Authorization failure"] ||
+          [[parameters objectAtIndex:0] hasPrefix:@"Authentication failure"]) {
+        dropping = NO;
         [self setDisconected];
         [front performSelector:@selector(setStatus:) withObject:@"connection failed"];
         
@@ -573,9 +602,10 @@
 #pragma mark - UIAlertViewDelegate
 
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
-  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+  if([alertView alertViewStyle] != UIAlertViewStylePlainTextInput)
+    return YES;
   
-  return [inputText length] == 0 ? NO : YES;
+  return [[[alertView textFieldAtIndex:0] text] length] == 0 ? NO : YES;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -593,6 +623,11 @@
     [[NSUserDefaults standardUserDefaults] setObject:currentPassword forKey:@"pass_preference"];
     [[NSUserDefaults standardUserDefaults] synchronize];
   }
+  else if([title isEqualToString:@"Drop Other"]) {
+    [front performSelector:@selector(setStatus:) withObject:@"dropping other login"];
+    dropping = YES;
+  }
+  
   [self connect];
 }
 
