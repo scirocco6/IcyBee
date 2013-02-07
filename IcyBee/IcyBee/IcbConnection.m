@@ -9,6 +9,21 @@
 #import "AppDelegate.h"
 #import "IcbConnection.h"
 
+NSString const * htmlBegin = @""
+"<html>"
+"<head>"
+"<style type=\"text/css\">"
+"body {margin: 0; padding: 0; font-family: \"helvetica\"; font-size: 15;}"
+"span {color:white}"
+"A:link {text-decoration: underline; color: yellow}"
+"A:visited {text-decoration: underline; color: blue;}"
+"A:active {text-decoration: underline; color: red;}"
+"</style>"
+"</head>"
+"<body>";
+
+NSString const * htmlEnd = @"</body></html>";
+
 @implementation IcbConnection
 @synthesize application, front, managedObjectContext, currentChannel, currentNickname, lastGroupMessage, lastPrivateMessage, lastUrlMessage;
 
@@ -314,7 +329,7 @@
 }
 
 -(void) handlePacket {
-  // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \0
+  // create a temporary string, read the buffer into it, then parse it.  Parameters are seperated by \001
   NSArray  *parameters = [[[NSString alloc] initWithBytes:(char *) (readBuffer + 1) length:(length - 1) encoding:NSASCIIStringEncoding] componentsSeparatedByString:@"\001"];
   
   if (!loggedIn) {
@@ -392,8 +407,8 @@
       break;
     } // case
     
-    case 'k': { //beep
-      [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:@"Beep!"];
+    case 'k': { //beep the server sends an extra /0 on beeps.  remove it
+      [self addToChatFromSender:[[parameters objectAtIndex:0] substringToIndex:[[parameters objectAtIndex:0] length] -  1] type:*readBuffer text:@"Beep!"];
       break;
     }
       
@@ -445,7 +460,7 @@
               NSString *reply = [parameters objectAtIndex:1];
               if (whoing &&
                   ! ([reply length] == 1) &&
-                  ! (reply == @"-----------------------------------------------------------------------------")) {
+                  ! ([reply isEqual: @"-----------------------------------------------------------------------------"])) {
                 if ([reply hasPrefix:@"Total:"])
                   whoing = NO;
                 else if ([reply hasPrefix:@"Group:"]) {
@@ -521,18 +536,54 @@
                             range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
 }
 
-- (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {  
+- (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
+  NSLog(@"sender:'%@' text:'%@'", sender, text);
+  NSLog(@"sender = %i, text = %i", [sender length], [text length]);
+  
   ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];
   [event setTimeStamp: [NSDate date]];
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
   [event setSender:sender];   
-  [event setText:text];
   [event setHeight:21.0f];
   [event setNeedsSize:YES];
   [event setGroupIndex:lastGroupMessage++];
   
-  if (type == 'c' || type == 'k')
-    [event setPrivateIndex:lastPrivateMessage++];
+  switch (type) {
+    case 'c': // privte message
+    case 'k': // beep message
+      [event setPrivateIndex:lastPrivateMessage++];
+      
+      [event setText: [NSString stringWithFormat:@"%@"
+                       "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
+                       "<span><i style='color: #00FF00'>%@</i></span>"
+                       "%@",
+                       htmlBegin, sender, text, htmlEnd]];
+      break;
+      
+    case 'o': // server response from a command
+      [event setText: [NSString stringWithFormat:@"%@"
+                       "<span><i style='color: #FFF0F0'>%@</i></span>"
+                       "%@",
+                       htmlBegin, text, htmlEnd]];
+      break;
+      
+    case 'd':
+      [event setText: [NSString stringWithFormat:@"%@"
+                       "<span style='color:#FFAAAA; margin-right:5px;'>[=%@=]</span>"
+                       "<span>%@</span>"
+                       "%@",
+                       htmlBegin, sender, text, htmlEnd]];
+      break;
+      
+    default:
+      [event setText: [NSString stringWithFormat:@"%@"
+                       "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
+                       "<span>%@</span>"
+                       "%@",
+                       htmlBegin, sender, text, htmlEnd]];
+      break;
+  }
+
   
   if ((type == 'b' || type == 'c') && [self hasUrl: text]) {
     [event setUrl:YES];
