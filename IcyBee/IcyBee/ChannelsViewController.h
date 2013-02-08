@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
   NSMutableArray *groupArray;
   IBOutlet UIActivityIndicatorView *activity;
   IBOutlet UITableView *myTableView;

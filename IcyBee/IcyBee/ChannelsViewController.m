@@ -60,11 +60,6 @@
   [myTableView setHidden:NO];
 }
 
-
--(IBAction) newGroup {
-  NSLog(@"New group button pressed");
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
@@ -113,6 +108,35 @@
   [[cell groupTopic]      setText: [entry topic]];
   
   return cell;
+}
+
+-(IBAction) newGroup {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"New Group"
+                                                  message:nil
+                                                 delegate:self
+                                        cancelButtonTitle:@"Cancel"
+                                        otherButtonTitles:@"Join", nil];
+  [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
+  [alert show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+  
+  return [inputText length] == 0 ? NO : YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  NSString *inputText = [[alertView textFieldAtIndex:0] text];
+
+  if((![title isEqualToString:@"Join"]) || ([inputText length] == 0))
+    return
+    
+  [[IcbConnection sharedInstance] joinGroup:inputText];
+  [[self tabBarController] setSelectedIndex:2];
 }
 
 @end
