@@ -530,7 +530,13 @@ NSString const * htmlEnd = @"</body></html>";
 - (BOOL) hasUrl:(NSString *) message {
   NSError *error = NULL;
 
-  return [[NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:&error]
+  //
+  // the general concensus is that having to cast this to NSTextCheckingTypes is a bug
+  // and it may eventually get fixed.  trying pulling the cast at a later date and see if the
+  //warning is still there.
+  //
+  NSDataDetector *thisDetector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes) NSTextCheckingTypeLink error:&error];
+  return [thisDetector
           numberOfMatchesInString:message
                           options:0
                             range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
@@ -549,7 +555,7 @@ NSString const * htmlEnd = @"</body></html>";
   [event setGroupIndex:lastGroupMessage++];
   
   switch (type) {
-    case 'c': // privte message
+    case 'c': // private message
     case 'k': // beep message
       [event setPrivateIndex:lastPrivateMessage++];
       
