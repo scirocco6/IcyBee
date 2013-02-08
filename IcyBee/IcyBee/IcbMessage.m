@@ -30,7 +30,7 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  if(![self needsSize])
+  if ((!([[IcbConnection sharedInstance] front] == [self icbTableController])) || (![self needsSize]))
     return;
   
   CGRect frame = [webView frame];
@@ -49,10 +49,13 @@
   NSError *error; // prolly should check this error condition sometime
   ChatMessage *message = (ChatMessage *)[[[IcbConnection sharedInstance] managedObjectContext] existingObjectWithID:[self objectID] error:&error];
   [message setHeight:frame.size.height + 1];
+  
   [message setNeedsSize:NO];
     
   [[[IcbConnection sharedInstance] managedObjectContext] save:&error]; // not fatal if this fails, just inefficient since we will resize again
-  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
+//  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
+  [[self icbTableController] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
+  
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

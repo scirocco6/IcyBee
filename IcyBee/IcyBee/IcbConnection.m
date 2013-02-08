@@ -543,9 +543,6 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
-  NSLog(@"sender:'%@' text:'%@'", sender, text);
-  NSLog(@"sender = %i, text = %i", [sender length], [text length]);
-  
   ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];
   [event setTimeStamp: [NSDate date]];
   [event setType: [[NSString alloc] initWithBytes:&type length:1 encoding:NSASCIIStringEncoding]];
