@@ -105,8 +105,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if([title isEqualToString:@"Send"])
+  if([title isEqualToString:@"Send"]) {
     [[IcbConnection sharedInstance] sendPrivateMessage:[NSString stringWithFormat:@"%@ %@", [alertView title], [[alertView textFieldAtIndex:0] text]]];
+    [[IcbConnection sharedInstance] addToChatFromSender:[[IcbConnection sharedInstance] currentNickname] type:'c' text:[[alertView textFieldAtIndex:0] text]];
+  }
 }
 
 #pragma mark - Table view data source
