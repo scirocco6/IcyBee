@@ -157,15 +157,15 @@ NSString const * htmlEnd = @"</body></html>";
   [inputStream  setDelegate:self];
   [outputStream setDelegate:self];
   
-  [inputStream  setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
-  [outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
+//  [inputStream  setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
+//  [outputStream setProperty:NSStreamNetworkServiceTypeVoIP forKey:NSStreamNetworkServiceType] ;
     
   [inputStream  scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
   [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
   
   [inputStream  open];
   [outputStream open];
-    
+  
 }
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)eventCode {    

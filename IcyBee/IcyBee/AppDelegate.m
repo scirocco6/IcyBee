@@ -65,11 +65,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application { // This is where you can do your X Minutes, Where X must be >= 10.
-  BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
-  if (backgroundAccepted) {
-    NSLog(@"VOIP backgrounding accepted");
+//  BOOL backgroundAccepted = [[UIApplication sharedApplication] setKeepAliveTimeout:600 handler:^{ [self backgroundHandler]; }];
+//  if (backgroundAccepted) {
+//    NSLog(@"VOIP backgrounding accepted");
     [[IcbConnection sharedInstance] setInBackground:YES];
-  }
+//  }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -96,18 +96,17 @@
        
        abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
        */
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-      abort();
+//      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//      abort();
     } 
   }
 }
 
-// if the iOS device allows background execution,
-// this Handler will be called
-- (void)backgroundHandler {
-  NSLog(@"### -->VOIP backgrounding callback");
+// if the iOS device allows background execution, this Handler will be called
+//- (void)backgroundHandler {
+//  NSLog(@"### -->VOIP backgrounding callback");
 //  [[IcbConnection sharedInstance] sendSixTheTime];
-}
+//}
 
 
 #pragma mark - Core Data stack
@@ -164,8 +163,8 @@
      //Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
     if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
       // This should never ever happen
-      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-      abort();
+//      NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//      abort();
     }
   }
   
