@@ -190,7 +190,7 @@ NSString const * htmlEnd = @"</body></html>";
             [self assemblePacketOfType:'a', [NSString stringWithFormat:@"icy%d", rnum], [NSString stringWithFormat:@"icy%d", rnum], @"__hiddenIcyDrop", @"login", nil];
           }
           else
-            [self assemblePacketOfType:'a', currentNickname, currentNickname, currentChannel, @"login", currentPassword, nil];
+            [self assemblePacketOfType:'a', @"IcyBee", currentNickname, currentChannel, @"login", currentPassword, nil];
           [self sendPacket];
 
           break;
