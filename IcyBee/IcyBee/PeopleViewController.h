@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbConnection.h"
 
-@interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
+
+@interface PeopleViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, IcbDisplayDelegate> {
   NSMutableArray *peopleArray;
   IBOutlet UIActivityIndicatorView *activity;
   IBOutlet UITableView *myTableView;

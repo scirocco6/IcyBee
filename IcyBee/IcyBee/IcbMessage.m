@@ -30,7 +30,7 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  if ((!([[IcbConnection sharedInstance] front] == [self icbTableController])) || (![self needsSize]))
+  if ((!([[IcbConnection sharedInstance] displayDelegate] == [self icbTableController])) || (![self needsSize]))
     return;
   
   CGRect frame = [webView frame];

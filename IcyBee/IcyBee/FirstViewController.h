@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbConnection.h"
 
-@interface FirstViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate> {
+@interface FirstViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, IcbConnectionDelegate> {
   IBOutlet UITextField              *Nickname;
   IBOutlet UITextField              *Password;
   IBOutlet UITextField              *ConfirmPassword;

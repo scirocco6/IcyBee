@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "IcbConnection.h"
 
-@interface IcbTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
+@interface IcbTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate, IcbDisplayDelegate> {
   NSMutableArray      *dataArray;
   BOOL                shouldScrollToBottom;
   char                viewType;

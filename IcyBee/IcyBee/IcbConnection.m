@@ -25,7 +25,7 @@ NSString const * htmlBegin = @""
 NSString const * htmlEnd = @"</body></html>";
 
 @implementation IcbConnection
-@synthesize application, front, managedObjectContext, currentChannel, currentNickname, lastGroupMessage, lastPrivateMessage, lastUrlMessage;
+@synthesize application, managedObjectContext, currentChannel, currentNickname, lastGroupMessage, lastPrivateMessage, lastUrlMessage, connectionDelegate, displayDelegate;
 
 + (IcbConnection *)sharedInstance {
 	static IcbConnection *sharedInstance;
@@ -51,28 +51,22 @@ NSString const * htmlEnd = @"</body></html>";
   if(reachability == NULL)
     return NO;
 
-  //NetworkStatus retVal = NotReachable;
   SCNetworkReachabilityFlags flags;
   if (SCNetworkReachabilityGetFlags(reachability, &flags)) {
-    if ((flags & kSCNetworkReachabilityFlagsReachable) == 0) { // if target host is not reachable
+    if ((flags & kSCNetworkReachabilityFlagsReachable) == 0)  // if target host is not reachable
       return NO;
-    }
       
-    if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0) { // if target host is reachable and no connection is required then we'll assume (for now) that your on Wi-Fi
+    if ((flags & kSCNetworkReachabilityFlagsConnectionRequired) == 0)  // if target host is reachable and no connection is required then we'll assume (for now) that your on Wi-Fi
       return YES;
-    }
       
     if ((((flags & kSCNetworkReachabilityFlagsConnectionOnDemand ) != 0) || (flags & kSCNetworkReachabilityFlagsConnectionOnTraffic) != 0)) {
       // ... and the connection is on-demand (or on-traffic) if the calling application is using the CFSocketStream or higher APIs
-      if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0) { // ... and no [user] intervention is needed
+      if ((flags & kSCNetworkReachabilityFlagsInterventionRequired) == 0)  // ... and no [user] intervention is needed
         return YES;
-      }
     }
       
-    if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) {
-      // ... but WWAN connections are OK if the calling application is using the CFNetwork (CFSocketStream?) APIs.
+    if ((flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN) // ... but WWAN connections are OK if the calling application is using the CFNetwork (CFSocketStream?) APIs.
       return YES;
-    }
   }
   return NO;
 }
@@ -335,7 +329,7 @@ NSString const * htmlEnd = @"</body></html>";
       if (dropping) {
         [self sendPrivateMessage:[NSString stringWithFormat:@"server drop %@ %@", currentNickname, currentPassword]];
         sleep(6);
-        [front performSelector:@selector(setStatus:) withObject:@"conecting"];
+        [connectionDelegate setStatus:@"conecting"];
         dropping = NO;
         [self setDisconected];
         [self connect];
@@ -372,7 +366,7 @@ NSString const * htmlEnd = @"</body></html>";
     case 'f': { // an important message
       if (*readBuffer == 'd') {
         if ([[parameters objectAtIndex:0] isEqualToString:@"No-Pass"] && [[parameters objectAtIndex:1] hasPrefix:@"Your nickname does not have a password"]) {
-          [front performSelector:@selector(setStatus:) withObject:@"creating account"];
+          [connectionDelegate setStatus:@"creating account"];
           [self sendPrivateMessage:[NSString stringWithFormat:@"server p %@", currentPassword]];
         }
         else if ([[parameters objectAtIndex:0] isEqualToString:@"Register"]) {
@@ -380,7 +374,7 @@ NSString const * htmlEnd = @"</body></html>";
             authenticated = YES;
             if(firstTime) {
               firstTime = NO;
-              [front performSelector:@selector(connected)];
+              [connectionDelegate connected];
               return;
             }
           }
@@ -398,7 +392,7 @@ NSString const * htmlEnd = @"</body></html>";
         } // else
       } // if
       if(authenticated)
-        [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+        [displayDelegate updateView]; // have the delegate up date itself
 
       [self addToChatFromSender:[parameters objectAtIndex:0] type:*readBuffer text:[parameters objectAtIndex:1]];
 
@@ -416,7 +410,7 @@ NSString const * htmlEnd = @"</body></html>";
           [[parameters objectAtIndex:0] hasPrefix:@"Authentication failure"]) {
         dropping = NO;
         [self setDisconected];
-        [front performSelector:@selector(setStatus:) withObject:@"connection failed"];
+        [connectionDelegate setStatus:@"connection failed"];
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed"
                                                         message:[NSString stringWithFormat:@"Please enter the password for user %@", currentNickname]
@@ -648,7 +642,7 @@ NSString const * htmlEnd = @"</body></html>";
     [alert show];        
   }
   if(authenticated)
-    [front performSelector:@selector(updateView)]; // notify the frontmost view to update itself
+    [displayDelegate updateView]; // notify the frontmost view to update itself
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -668,7 +662,7 @@ NSString const * htmlEnd = @"</body></html>";
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"pass_preference"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    [front performSelector:@selector(preConnect)];
+    [connectionDelegate preConnect];
     return;
   }
   else if([title isEqualToString:@"Login"]) {
@@ -677,7 +671,7 @@ NSString const * htmlEnd = @"</body></html>";
     [[NSUserDefaults standardUserDefaults] synchronize];
   }
   else if([title isEqualToString:@"Drop Other"]) {
-    [front performSelector:@selector(setStatus:) withObject:@"dropping other login"];
+    [connectionDelegate setStatus:@"dropping other login"];
     dropping = YES;
   }
   

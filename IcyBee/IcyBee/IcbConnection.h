@@ -16,6 +16,18 @@
 #import "Group.h"
 #import "People.h"
 
+@class IcbConnection;
+
+@protocol IcbDisplayDelegate <NSObject>
+- (void) updateView;
+@end
+
+@protocol IcbConnectionDelegate <NSObject>
+- (void) preConnect;
+- (void) setStatus:(NSString *) text;
+- (void) connected;
+@end
+
 @interface IcbConnection : NSObject <NSStreamDelegate, UIAlertViewDelegate> {
 	CFReadStreamRef         myReadStream;
 	CFWriteStreamRef        myWriteStream;
@@ -26,20 +38,20 @@
   int                     length, count;
   uint8_t                 readBuffer[256];
   uint8_t                 writeBuffer[256];
-  UIViewController        *front;
   NSString                *currentChannel, *currentNickname, *currentPassword, *whoChannel;
 }
 
-@property (nonatomic, retain) UIApplication           *application;
-@property (nonatomic, retain) NSManagedObjectContext  *managedObjectContext;
-@property (nonatomic, retain) UILabel                 *connectionLabel;
-@property (retain)            UIViewController        *front;
-@property (nonatomic, retain) NSString                *currentChannel;
-@property (nonatomic, retain) NSString                *currentNickname;
-@property BOOL                                        inBackground;
-@property int                                         lastGroupMessage;
-@property int                                         lastPrivateMessage;
-@property int                                         lastUrlMessage;
+@property (nonatomic)         id <IcbDisplayDelegate>     displayDelegate;
+@property (nonatomic)         id <IcbConnectionDelegate>  connectionDelegate;
+@property (nonatomic)         UIApplication               *application;
+@property (nonatomic)         NSManagedObjectContext      *managedObjectContext;
+@property (nonatomic)         UILabel                     *connectionLabel;
+@property (nonatomic)         NSString                    *currentChannel;
+@property (nonatomic)         NSString                    *currentNickname;
+@property BOOL                                            inBackground;
+@property int                                             lastGroupMessage;
+@property int                                             lastPrivateMessage;
+@property int                                             lastUrlMessage;
 
 + (IcbConnection *)	sharedInstance;
 + (BOOL) hasConnectivity;

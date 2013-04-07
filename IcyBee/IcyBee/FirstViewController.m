@@ -39,7 +39,7 @@
   [messageLabel setText:@"connecting"];
   [messageLabel setHidden:NO];
   
-  [[IcbConnection sharedInstance] setFront:self];
+  [[IcbConnection sharedInstance] setConnectionDelegate:self];
   [[IcbConnection sharedInstance] connect];
 }
 

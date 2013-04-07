@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IcbConnection.h"
 
-@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
+@interface ChannelsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, IcbDisplayDelegate> {
   NSMutableArray *groupArray;
   IBOutlet UIActivityIndicatorView *activity;
   IBOutlet UITableView *myTableView;

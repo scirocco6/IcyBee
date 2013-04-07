@@ -203,7 +203,7 @@
   [myTableView setHidden:YES];
   [activity startAnimating];
   
-  [[IcbConnection sharedInstance] setFront:self]; // tell the icb connection that we are the frontmost window and should get updates
+  [[IcbConnection sharedInstance] setDisplayDelegate:self]; // tell the icb connection that we are the frontmost window and should get updates
   [[IcbConnection sharedInstance] globalWhoList];
   [super viewWillAppear:animated];
 }
