@@ -54,6 +54,14 @@
   [self scrollToBottom];
 }
 
+- (BOOL) isFront {
+  return ([[IcbConnection sharedInstance] displayDelegate] == self);
+}
+
+- (void) popBrowser {
+  [self presentViewController:[BrowserViewController sharedInstance] animated:YES completion:NULL];
+}
+
 - (void) scrollToBottom {
   if(shouldScrollToBottom == NO)
     return;
@@ -64,10 +72,6 @@
     [dataTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:lastRowNumber inSection:0]
                          atScrollPosition:UITableViewScrollPositionBottom
                                  animated:YES];
-}
-
-- (void) popBrowser {
-  [self presentViewController:[BrowserViewController sharedInstance] animated:YES completion:NULL];
 }
 
 - (void)scrollViewDidScroll: (UIScrollView *)myScrollView {
@@ -159,10 +163,10 @@
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
   ChatMessage *entry = [self messageForIndex:[indexPath row]];
 
+  [cell setMessageDelegate:self];
   [cell setObjectID:[entry objectID]];
   [cell setNeedsSize:[entry needsSize]];
   [[cell messageButton] setTag: [indexPath row]];
-  [cell setIcbTableController:self];
   
   if (![entry needsSize]) { // if we know the correct size then size the webview correctly
     CGRect frame = [[cell message] frame];

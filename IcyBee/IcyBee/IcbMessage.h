@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "UrlViewController.h"
+
+@class IcbMessage;
+
+@protocol IcbMessageDelegate <NSObject>
+- (BOOL) isFront;
+- (void) reJiggerCells;
+- (void) popBrowser;
+@end
 
 @interface IcbMessage : UITableViewCell <UIWebViewDelegate>
+@property (nonatomic)         id       <IcbMessageDelegate>   messageDelegate;
 @property (nonatomic, strong) IBOutlet UIWebView              *message;
 @property (nonatomic, strong) IBOutlet UIButton               *messageButton;
 @property (nonatomic, strong)          NSManagedObjectID      *objectID;
 @property (nonatomic)                  BOOL                   needsSize;
-@property (nonatomic, strong)          IcbTableViewController *icbTableController;
 @end

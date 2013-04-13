@@ -11,7 +11,7 @@
 #import "BrowserViewController.h"
 
 @implementation IcbMessage
-@synthesize icbTableController;
+@synthesize messageDelegate;
 
 - (id) initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -30,7 +30,7 @@
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  if ((!([[IcbConnection sharedInstance] displayDelegate] == [self icbTableController])) || (![self needsSize]))
+  if ((![messageDelegate isFront]) || (![self needsSize]))
     return;
   
   CGRect frame = [webView frame];
@@ -53,16 +53,14 @@
   [message setNeedsSize:NO];
     
   [[[IcbConnection sharedInstance] managedObjectContext] save:&error]; // not fatal if this fails, just inefficient since we will resize again
-//  [[[IcbConnection sharedInstance] front] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
-  [[self icbTableController] performSelector:@selector(reJiggerCells) withObject:nil afterDelay:0.0];
-  
+  [messageDelegate reJiggerCells];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
   if (navigationType == UIWebViewNavigationTypeOther)
     return YES;
   else
-    [[self icbTableController] popBrowser];
+    [messageDelegate popBrowser];
     [[BrowserViewController sharedInstance] post:request];
     return NO;
 }
