@@ -207,7 +207,8 @@ NSString const * htmlEnd = @"</body></html>";
         case YES:{
           // ask for length packets minus those we already have
           // read this into the readBuffer offset by how many bytes we have already read
-          int len = [(NSInputStream *)stream read:readBuffer + count maxLength:length - count]; 
+          // downcast is safe, max packet size is 255
+          int len = (int) [(NSInputStream *)stream read:readBuffer + count maxLength:length - count];
           if (len) {
             count += len;
             if(count == length) {

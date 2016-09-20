@@ -16,7 +16,8 @@
 @property (nonatomic, retain) NSDate    *timeStamp;
 @property (nonatomic, retain) NSString  *sender;
 @property (nonatomic, retain) NSString  *text;
-@property (nonatomic)         CGFloat   height;
+//@property (nonatomic)         CGFloat   height;
+@property (nonatomic)         float     height;
 @property (nonatomic)         BOOL      url;
 @property (nonatomic)         BOOL      needsSize;
 @property (nonatomic)         int       groupIndex;

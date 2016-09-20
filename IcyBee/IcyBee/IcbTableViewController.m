@@ -154,14 +154,14 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  ChatMessage *entry = [self messageForIndex: [indexPath row]];
+  ChatMessage *entry = [self messageForIndex: (int) [indexPath row]];
 
   return [entry height];
 }
 
 - (IcbMessage *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
-  ChatMessage *entry = [self messageForIndex:[indexPath row]];
+  ChatMessage *entry = [self messageForIndex: (int) [indexPath row]];
 
   [cell setMessageDelegate:self];
   [cell setObjectID:[entry objectID]];
