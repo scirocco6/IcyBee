@@ -97,7 +97,7 @@
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
   NSString *inputText = [[alertView textFieldAtIndex:0] text];
 
-  NSLog(@"Input length == %i", [inputText length]);
+  NSLog(@"Input length == %lu", (unsigned long)[inputText length]);
   return [inputText length] == 0 ? NO : YES;
 }
 
@@ -130,7 +130,7 @@
   [dateFormatter setLocale:[NSLocale currentLocale]];
   NSString *signonString  = [dateFormatter stringFromDate:signonDate];
 
-  int seconds  = [[entry idle] integerValue];
+  int seconds  = (int) [[entry idle] integerValue];
   int days     = seconds / (24 * 60 * 60);
   seconds     -= days * 24 * 60 * 60;
   int hours    = seconds / (60 * 60);

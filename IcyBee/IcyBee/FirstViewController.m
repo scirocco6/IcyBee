@@ -58,7 +58,16 @@
 
 -(void) viewDidLoad {
   [super viewDidLoad];
-  
+
+// hide the status bar so we don't scroll over it in the welcome screen
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+    // iOS 7.0 or later
+    [self setNeedsStatusBarAppearanceUpdate];
+#else
+    // less than 7
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+#endif
+    
   CALayer *layer = [joinButton layer];
   layer.backgroundColor = [[UIColor clearColor] CGColor];
   layer.borderColor = [[UIColor darkGrayColor] CGColor];
@@ -74,6 +83,10 @@
     [[self backgroundImageView] setImage: [UIImage imageNamed:@"background.png"]];
   
   [self preConnect];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)viewDidUnload {

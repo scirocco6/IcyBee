@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
-#ifndef IcyBee_Constants_h
-#define IcyBee_Constants_h
-
-  NSString const *htmlStart;
-  NSString const *htmlFinish;
-
-#endif
+//#ifndef IcyBee_Constants_h
+//#define IcyBee_Constants_h
+//
+//  NSString const *htmlStart;
+//  NSString const *htmlFinish;
+//
+//#endif
