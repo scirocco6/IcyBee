@@ -440,6 +440,11 @@
 			attributes = {
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "The Home for Obsolete Technology";
+				TargetAttributes = {
+					4F42D1BB14A989BD00FEB062 = {
+						DevelopmentTeam = SP5J495KSD;
+					};
+				};
 			};
 			buildConfigurationList = 4F42D1B614A989BD00FEB062 /* Build configuration list for PBXProject "IcyBee" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -672,6 +677,7 @@
 		4F42D1FB14A989BD00FEB062 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = SP5J495KSD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IcyBee/IcyBee-Prefix.pch";
 				INFOPLIST_FILE = "IcyBee/IcyBee-Info.plist";
@@ -688,6 +694,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = SP5J495KSD;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "IcyBee/IcyBee-Prefix.pch";
 				INFOPLIST_FILE = "IcyBee/IcyBee-Info.plist";
