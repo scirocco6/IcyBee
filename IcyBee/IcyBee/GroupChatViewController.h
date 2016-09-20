@@ -13,7 +13,7 @@
   IBOutlet UIScrollView   *scrollView;
 }
 
-@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
+//@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
 - (void) keyboardWillShow:(NSNotification *) notification;
