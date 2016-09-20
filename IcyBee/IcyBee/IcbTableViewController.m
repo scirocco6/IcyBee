@@ -88,7 +88,7 @@
 }
 
 - (IBAction) messageUser:(UIButton *) sender {
-  ChatMessage *entry = [self messageForIndex: [sender tag]];
+  ChatMessage *entry = [self messageForIndex: (int) [sender tag]];
   
   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[entry sender]
                                                   message:nil
