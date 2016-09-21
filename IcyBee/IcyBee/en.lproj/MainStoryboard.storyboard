@@ -213,7 +213,7 @@
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="BcA-oR-Xgu">
-                                        <rect key="frame" x="0.0" y="590" width="320" height="31"/>
+                                        <rect key="frame" x="0.0" y="1213" width="320" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <accessibility key="accessibilityConfiguration" label="hmm"/>
@@ -224,19 +224,19 @@
                                         </connections>
                                     </textField>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" id="XmI-eg-sJT">
-                                        <rect key="frame" x="0.0" y="-6" width="320" height="595"/>
+                                        <rect key="frame" x="0.0" y="-6" width="640" height="1218"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <prototypes>
                                             <tableViewCell autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="person" rowHeight="165" id="qZg-Q2-elY" userLabel="icbMessage" customClass="IcbMessage">
-                                                <rect key="frame" x="0.0" y="22" width="320" height="165"/>
+                                                <rect key="frame" x="0.0" y="22" width="640" height="165"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qZg-Q2-elY" id="73b-2f-dKj">
-                                                    <frame key="frameInset" width="320" height="165"/>
+                                                    <frame key="frameInset" width="640" height="165"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <webView opaque="NO" contentMode="scaleToFill" id="8oN-Pd-A1E">
+                                                        <webView opaque="NO" contentMode="scaleToFill" suppressesIncrementalRendering="YES" keyboardDisplayRequiresUserAction="NO" id="8oN-Pd-A1E">
                                                             <frame key="frameInset" minX="5" width="310" height="165"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" red="0.27939321875238121" green="0.58494100765306123" blue="0.35129164860615292" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
