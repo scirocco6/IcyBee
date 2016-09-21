@@ -163,6 +163,9 @@
   IcbMessage *cell = [tableView dequeueReusableCellWithIdentifier:@"person"];
   ChatMessage *entry = [self messageForIndex: (int) [indexPath row]];
 
+  cell.message.scrollView.scrollEnabled = NO;
+  cell.message.scrollView.bounces = NO;
+    
   [cell setMessageDelegate:self];
   [cell setObjectID:[entry objectID]];
   [cell setNeedsSize:[entry needsSize]];
