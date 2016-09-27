@@ -227,7 +227,7 @@
                                                     <subviews>
                                                         <webView opaque="NO" contentMode="scaleToFill" suppressesIncrementalRendering="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oN-Pd-A1E">
                                                             <color key="backgroundColor" red="0.27939321875238121" green="0.58494100765306123" blue="0.35129164860615292" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="qZg-Q2-elY" id="fOn-4d-5ga"/>
                                                             </connections>
@@ -361,7 +361,7 @@
                                                     <frame key="frameInset" minX="5" width="310" height="165"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.27939321880000001" green="0.58494100770000002" blue="0.35129164860000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="2gm-Dk-3xB" id="DrS-td-zsx"/>
                                                     </connections>
@@ -455,7 +455,7 @@
                                                     <frame key="frameInset" minX="5" width="310" height="165"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.27939321880000001" green="0.58494100770000002" blue="0.35129164860000001" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="o0u-8u-qdR" id="1er-Hz-QGs"/>
                                                     </connections>
