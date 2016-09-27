@@ -337,20 +337,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="XJd-VQ-Ncy">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="XJd-VQ-Ncy">
                                 <items>
                                     <navigationItem title="Private Messages" id="n0V-rt-iZr"/>
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jyH-LQ-aHt">
-                                <frame key="frameInset" minY="44"/>
+                                <frame key="frameInset" minY="44" maxY="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eWP-fp-ENH">
-                                <frame key="frameInset" minY="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eWP-fp-ENH">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <prototypes>
@@ -402,6 +398,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="XJd-VQ-Ncy" firstAttribute="leading" secondItem="pw5-lA-ZOi" secondAttribute="leading" id="DL0-Ak-3oh"/>
+                            <constraint firstAttribute="trailing" secondItem="XJd-VQ-Ncy" secondAttribute="trailing" id="KPv-JC-bPb"/>
+                            <constraint firstItem="XJd-VQ-Ncy" firstAttribute="top" secondItem="pw5-lA-ZOi" secondAttribute="top" id="Lsj-uf-Rfb"/>
+                            <constraint firstItem="eWP-fp-ENH" firstAttribute="leading" secondItem="pw5-lA-ZOi" secondAttribute="leading" id="V4t-Ad-ZWo"/>
+                            <constraint firstItem="eWP-fp-ENH" firstAttribute="top" secondItem="XJd-VQ-Ncy" secondAttribute="bottom" id="iLi-xX-NIc"/>
+                            <constraint firstItem="QcS-RK-dea" firstAttribute="top" secondItem="eWP-fp-ENH" secondAttribute="bottom" id="lZ5-RS-MCc"/>
+                            <constraint firstAttribute="trailing" secondItem="eWP-fp-ENH" secondAttribute="trailing" id="mpK-n5-fj2"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Private" image="flower.png" id="6"/>
                     <connections>
@@ -412,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1004" y="-607"/>
+            <point key="canvasLocation" x="-1004.5" y="-607.5"/>
         </scene>
         <!--URLs-->
         <scene sceneID="Q6x-E8-VYk">
