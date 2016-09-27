@@ -431,20 +431,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="cye-eF-x0A">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="cye-eF-x0A">
                                 <items>
                                     <navigationItem title="Urls" id="3Jq-zK-Gae"/>
                                 </items>
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5v0-65-igP">
-                                <frame key="frameInset" minY="44"/>
+                                <frame key="frameInset" minY="44" maxY="49"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aVq-Ia-Qb5">
-                                <frame key="frameInset" minY="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="165" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aVq-Ia-Qb5">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <prototypes>
@@ -496,6 +492,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cye-eF-x0A" secondAttribute="trailing" id="Ddx-Mq-EL5"/>
+                            <constraint firstItem="cye-eF-x0A" firstAttribute="leading" secondItem="E1n-jL-W63" secondAttribute="leading" id="VHp-bd-6oj"/>
+                            <constraint firstItem="aVq-Ia-Qb5" firstAttribute="top" secondItem="cye-eF-x0A" secondAttribute="bottom" id="a6a-TX-ZI1"/>
+                            <constraint firstItem="rPV-jt-vk7" firstAttribute="top" secondItem="aVq-Ia-Qb5" secondAttribute="bottom" id="nJ9-gY-xb4"/>
+                            <constraint firstItem="aVq-Ia-Qb5" firstAttribute="leading" secondItem="E1n-jL-W63" secondAttribute="leading" id="q8K-fi-mYn"/>
+                            <constraint firstItem="cye-eF-x0A" firstAttribute="top" secondItem="E1n-jL-W63" secondAttribute="top" id="vUw-00-OjK"/>
+                            <constraint firstAttribute="trailing" secondItem="aVq-Ia-Qb5" secondAttribute="trailing" id="yjc-rO-FEf"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="URLs" image="comb.png" id="aDt-g2-0Rv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -507,7 +512,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-hq-ad9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-430" y="-605"/>
+            <point key="canvasLocation" x="-430.5" y="-605.5"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="N7J-DQ-BOs">
