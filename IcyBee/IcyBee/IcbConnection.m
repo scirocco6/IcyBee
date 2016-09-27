@@ -551,7 +551,7 @@ NSString const * htmlEnd = @"</body></html>";
       
       [event setText: [NSString stringWithFormat:@"%@"
                        "<span style='color:#00FF00; margin-right:5px;'>&lt&#42;%@&#42;&gt</span>"
-                       "<span><i style='color: #00FF00'>%@</i></span>"
+                       "<span><i style='color: #00FF00; word-wrap: break-word;'>%@</i></span>"
                        "%@",
                        htmlBegin, sender, text, htmlEnd]];
       break;
@@ -566,7 +566,7 @@ NSString const * htmlEnd = @"</body></html>";
     case 'd':
       [event setText: [NSString stringWithFormat:@"%@"
                        "<span style='color:#FFAAAA; margin-right:5px;'>[=%@=]</span>"
-                       "<span>%@</span>"
+                       "<span style='word-wrap: break-word;'>%@</span>"
                        "%@",
                        htmlBegin, sender, text, htmlEnd]];
       break;
@@ -574,7 +574,7 @@ NSString const * htmlEnd = @"</body></html>";
     default:
       [event setText: [NSString stringWithFormat:@"%@"
                        "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
-                       "<span>%@</span>"
+                       "<span style='word-wrap: break-word;'>%@</span>"
                        "%@",
                        htmlBegin, sender, text, htmlEnd]];
       break;
