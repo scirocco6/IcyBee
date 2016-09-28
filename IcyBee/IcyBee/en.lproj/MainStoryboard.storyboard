@@ -278,26 +278,29 @@
                                             <outlet property="delegate" destination="2" id="K5D-1f-v4R"/>
                                         </connections>
                                     </tableView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-oR-Xgu">
+                                        <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <accessibility key="accessibilityConfiguration" label="hmm"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2" id="F9b-MQ-A4R"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.44947871703178044" green="0.52854839206687165" blue="0.85235969387755106" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="XmI-eg-sJT" secondAttribute="trailing" id="0NQ-6o-aBe"/>
                                     <constraint firstItem="XmI-eg-sJT" firstAttribute="leading" secondItem="Fe0-Je-vuD" secondAttribute="leading" id="7W8-4o-fig"/>
                                     <constraint firstItem="XmI-eg-sJT" firstAttribute="top" secondItem="Fe0-Je-vuD" secondAttribute="top" id="Drs-CO-Soi"/>
-                                    <constraint firstAttribute="bottom" secondItem="XmI-eg-sJT" secondAttribute="bottom" id="eQm-uN-OpW"/>
-                                    <constraint firstItem="XmI-eg-sJT" firstAttribute="centerY" secondItem="Fe0-Je-vuD" secondAttribute="centerY" id="px0-GY-EVP"/>
+                                    <constraint firstAttribute="bottom" secondItem="BcA-oR-Xgu" secondAttribute="bottom" constant="48" id="Jp7-nH-tTx"/>
+                                    <constraint firstAttribute="trailing" secondItem="BcA-oR-Xgu" secondAttribute="trailing" id="Kav-hD-lGy"/>
+                                    <constraint firstItem="BcA-oR-Xgu" firstAttribute="leading" secondItem="Fe0-Je-vuD" secondAttribute="leading" id="eBy-PZ-CpK"/>
+                                    <constraint firstAttribute="bottom" secondItem="XmI-eg-sJT" secondAttribute="bottom" constant="79" id="eQm-uN-OpW"/>
+                                    <constraint firstItem="XmI-eg-sJT" firstAttribute="centerY" secondItem="Fe0-Je-vuD" secondAttribute="centerY" constant="-39.5" id="px0-GY-EVP"/>
                                     <constraint firstItem="XmI-eg-sJT" firstAttribute="centerX" secondItem="Fe0-Je-vuD" secondAttribute="centerX" id="wsK-wq-fNr"/>
                                 </constraints>
                             </scrollView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-oR-Xgu">
-                                <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                <accessibility key="accessibilityConfiguration" label="hmm"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="F9b-MQ-A4R"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -306,15 +309,12 @@
                             <constraint firstItem="Fe0-Je-vuD" firstAttribute="leading" secondItem="A2N-b1-RWA" secondAttribute="leading" id="N8x-ao-WX0"/>
                             <constraint firstItem="h4C-xK-MX8" firstAttribute="top" secondItem="A2N-b1-RWA" secondAttribute="top" id="NBF-bB-2xZ"/>
                             <constraint firstItem="h4C-xK-MX8" firstAttribute="trailing" secondItem="Fe0-Je-vuD" secondAttribute="trailing" id="Pw9-ar-I1G"/>
-                            <constraint firstItem="BcA-oR-Xgu" firstAttribute="leading" secondItem="A2N-b1-RWA" secondAttribute="leading" id="Rou-ui-Rrs"/>
                             <constraint firstItem="cJt-R3-0MX" firstAttribute="top" secondItem="A2N-b1-RWA" secondAttribute="top" id="dlj-id-HUi"/>
-                            <constraint firstAttribute="trailing" secondItem="BcA-oR-Xgu" secondAttribute="trailing" id="htQ-RD-Ehb"/>
                             <constraint firstItem="Fe0-Je-vuD" firstAttribute="top" secondItem="h4C-xK-MX8" secondAttribute="bottom" id="mpW-4u-CeO"/>
                             <constraint firstItem="h4C-xK-MX8" firstAttribute="leading" secondItem="Fe0-Je-vuD" secondAttribute="leading" id="n6c-eY-FhJ"/>
                             <constraint firstAttribute="bottom" secondItem="cJt-R3-0MX" secondAttribute="bottom" id="oJe-67-8MY"/>
                             <constraint firstItem="cJt-R3-0MX" firstAttribute="leading" secondItem="A2N-b1-RWA" secondAttribute="leading" id="pEH-g8-D3B"/>
-                            <constraint firstItem="BcA-oR-Xgu" firstAttribute="top" secondItem="Fe0-Je-vuD" secondAttribute="bottom" id="pwR-Py-zvW"/>
-                            <constraint firstItem="uSi-JD-kJw" firstAttribute="top" secondItem="BcA-oR-Xgu" secondAttribute="bottom" id="sSi-35-Y3w"/>
+                            <constraint firstAttribute="bottom" secondItem="Fe0-Je-vuD" secondAttribute="bottom" id="xAF-fb-kms"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Group Chat" image="bee.png" id="NlV-U9-v8K"/>
@@ -767,10 +767,10 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.41000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="group" rowHeight="121" id="5ca-5e-UYZ" customClass="Channel">
-                                        <rect key="frame" x="0.0" y="22" width="375" height="121"/>
+                                        <rect key="frame" x="0.0" y="22" width="1000" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5ca-5e-UYZ" id="l0s-pt-PQA">
-                                            <frame key="frameInset" width="375" height="121"/>
+                                            <frame key="frameInset" width="1000" height="121"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="R9x-fN-RYI">

@@ -24,6 +24,7 @@
 - (void) viewDidLoad {
   viewType = 'c';
   [super viewDidLoad];
+  [self setAutomaticallyAdjustsScrollViewInsets:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -51,17 +52,15 @@
   CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
   CGRect aRect = self.view.frame;
-  
+
   aRect.size.height -= keyboardSize.height;
   if (!CGRectContainsPoint(aRect, inputTextField.frame.origin) ) {
-    CGPoint scrollPoint;
-    if ([[UIScreen mainScreen] bounds].size.height == 568)
-      scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - inputTextField.frame.size.height + 70));
-    else
-      scrollPoint = CGPointMake(0.0, inputTextField.frame.origin.y - (keyboardSize.height - (inputTextField.frame.size.height + 18)));
-    [scrollView setContentOffset:scrollPoint animated:YES];
+      UIEdgeInsets contentInsets = UIEdgeInsetsMake(scrollView.contentInset.top, 0.0, keyboardSize.height, 0.0);
+      scrollView.contentInset = contentInsets;
+      scrollView.scrollIndicatorInsets = contentInsets;
   }
 }
+
 
 - (void) keyboardDidHide:(NSNotification *) notification {
   [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
