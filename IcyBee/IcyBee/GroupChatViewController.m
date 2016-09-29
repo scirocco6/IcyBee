@@ -63,7 +63,9 @@
 
 
 - (void) keyboardDidHide:(NSNotification *) notification {
-  [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+  UIEdgeInsets contentInsets = UIEdgeInsetsMake(scrollView.contentInset.top, 0.0, 0.0, 0.0);
+  scrollView.contentInset = contentInsets;
+  scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
