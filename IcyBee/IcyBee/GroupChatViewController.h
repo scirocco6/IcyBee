@@ -17,6 +17,6 @@
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
 - (void) keyboardWillShow:(NSNotification *) notification;
-- (void) keyboardDidHide:(NSNotification *) notification;
+- (void) keyboardWillHide:(NSNotification *) notification;
 
 @end
