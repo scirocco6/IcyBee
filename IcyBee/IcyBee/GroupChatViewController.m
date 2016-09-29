@@ -29,7 +29,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:)  name:UIKeyboardDidHideNotification  object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
   
   [super viewWillAppear:animated];
 }
@@ -61,7 +61,7 @@
 }
 
 
-- (void) keyboardDidHide:(NSNotification *) notification {
+- (void) keyboardWillHide:(NSNotification *) notification {
   UIEdgeInsets contentInsets = UIEdgeInsetsMake(scrollView.contentInset.top, 0.0, 0.0, 0.0);
   scrollView.contentInset = contentInsets;
   scrollView.scrollIndicatorInsets = contentInsets;
