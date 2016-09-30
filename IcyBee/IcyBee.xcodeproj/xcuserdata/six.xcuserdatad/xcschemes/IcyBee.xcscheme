@@ -96,7 +96,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "IcyBee_0.01"
+      customArchiveName = "IcyBee_1.1"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
