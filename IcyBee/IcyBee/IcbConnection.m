@@ -530,6 +530,22 @@ NSString const * htmlEnd = @"</body></html>";
                                              range:NSMakeRange(0, [message length])];
 }
 
+- (bool) imageIsSafe:(NSString *) text {
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:@"NSF[A-Z]" options:0 error: nil];
+    if ([regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])])
+        return NO;
+    
+    regex = [NSRegularExpression regularExpressionWithPattern:@"not\\ssafe" options:NSRegularExpressionCaseInsensitive error: nil];
+    if ([regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])])
+        return NO;
+
+    regex = [NSRegularExpression regularExpressionWithPattern:@"unsafe" options:NSRegularExpressionCaseInsensitive error: nil];
+    if ([regex firstMatchInString:text options:0 range:NSMakeRange(0, [text length])])
+        return NO;
+    
+    return YES;
+}
+
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
   ChatMessage *event = (ChatMessage *)[NSEntityDescription insertNewObjectForEntityForName:@"ChatMessage" inManagedObjectContext:managedObjectContext];
   [event setTimeStamp: [NSDate date]];
@@ -546,12 +562,12 @@ NSString const * htmlEnd = @"</body></html>";
             [event setUrlIndex:lastUrlMessage++];
             NSArray *imageExtensions = @[@"png", @"jpg", @"gif"];
             NSMutableString *newString = [[NSMutableString alloc] initWithString:@""];
-            int start = 0;
+            NSUInteger start = 0;
             
             for (NSTextCheckingResult *result in messageURLs) {
                 NSURL *url = [result URL];
                 NSString *extension = [url pathExtension];
-                if ([imageExtensions containsObject:[extension lowercaseString]]) {
+                if ([imageExtensions containsObject:[extension lowercaseString]] && [self imageIsSafe: text]) {
                     NSRange beforeRange = NSMakeRange(start, result.range.location - start);
                     NSString *beforeString = [text substringWithRange:beforeRange];
                     [newString appendString: beforeString];
