@@ -132,11 +132,10 @@
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
   NSString *inputText = [[alertView textFieldAtIndex:0] text];
 
-  if((![title isEqualToString:@"Join"]) || ([inputText length] == 0))
-    return
-    
-  [[IcbConnection sharedInstance] joinGroup:inputText];
-  [[self tabBarController] setSelectedIndex:2];
+  if(([title isEqualToString:@"Join"]) && ([inputText length] != 0)) {
+    [[IcbConnection sharedInstance] joinGroup:inputText];
+    [[self tabBarController] setSelectedIndex:2];
+  }
 }
 
 @end
