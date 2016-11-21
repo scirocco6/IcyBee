@@ -520,19 +520,14 @@ NSString const * htmlEnd = @"</body></html>";
   }
 }
 
-- (BOOL) hasUrl:(NSString *) message {
+- (NSArray *) urls:(NSString *) message {
   NSError *error = NULL;
 
-  //
-  // the general concensus is that having to cast this to NSTextCheckingTypes is a bug
-  // and it may eventually get fixed.  trying pulling the cast at a later date and see if the
-  //warning is still there.
-  //
   NSDataDetector *thisDetector = [NSDataDetector dataDetectorWithTypes:(NSTextCheckingTypes) NSTextCheckingTypeLink error:&error];
-  return [thisDetector
-          numberOfMatchesInString:message
-                          options:0
-                            range:NSMakeRange(0, [message length])] > 0 ? YES : NO;
+    
+  return [thisDetector matchesInString:message
+                                           options:0
+                                             range:NSMakeRange(0, [message length])];
 }
 
 - (void) addToChatFromSender:(NSString *) sender type:(char) type text:(NSString *) text {
@@ -544,6 +539,39 @@ NSString const * htmlEnd = @"</body></html>";
   [event setNeedsSize:YES];
   [event setGroupIndex:lastGroupMessage++];
   
+    if (type == 'b' || type == 'c') {
+        NSArray* messageURLs = [self urls: text];
+        if ([messageURLs count]) {
+            [event setUrl:YES];
+            [event setUrlIndex:lastUrlMessage++];
+            NSArray *imageExtensions = @[@"png", @"jpg", @"gif"];
+            NSMutableString *newString = [[NSMutableString alloc] initWithString:@""];
+            int start = 0;
+            
+            for (NSTextCheckingResult *result in messageURLs) {
+                NSURL *url = [result URL];
+                NSString *extension = [url pathExtension];
+                if ([imageExtensions containsObject:[extension lowercaseString]]) {
+                    NSRange beforeRange = NSMakeRange(start, result.range.location - start);
+                    NSString *beforeString = [text substringWithRange:beforeRange];
+                    [newString appendString: beforeString];
+                    
+                    NSString *imageString = [[NSString alloc] initWithFormat: @"<para><img src=\"%@\" width=\"100%%\"></img></para>", url.absoluteString];
+                    [newString appendString: imageString];
+                    
+                    start = result.range.location + result.range.length;
+                }
+            }
+            NSRange finalRange = NSMakeRange(start, [text length] - start);
+            NSString *finalString = [text substringWithRange:finalRange];
+            [newString appendString:finalString];
+            
+            text = newString;
+        }
+    }
+    else
+        [event setUrl:NO];
+    
   switch (type) {
     case 'c': // private message
     case 'k': // beep message
@@ -580,13 +608,7 @@ NSString const * htmlEnd = @"</body></html>";
       break;
   }
 
-  
-  if ((type == 'b' || type == 'c') && [self hasUrl: text]) {
-    [event setUrl:YES];
-    [event setUrlIndex:lastUrlMessage++];
-  }
-  else
-    [event setUrl:NO];
+
   
   [self saveManagedObjectContext];
 

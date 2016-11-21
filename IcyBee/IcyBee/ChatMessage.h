@@ -19,6 +19,7 @@
 //@property (nonatomic)         CGFloat   height;
 @property (nonatomic)         float     height;
 @property (nonatomic)         BOOL      url;
+@property (nonatomic)         BOOL      image;
 @property (nonatomic)         BOOL      needsSize;
 @property (nonatomic)         int       groupIndex;
 @property (nonatomic)         int       privateIndex;

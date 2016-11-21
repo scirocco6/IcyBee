@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16C41b" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="ChatMessage" representedClassName="ChatMessage" syncable="YES">
-        <attribute name="groupIndex" optional="YES" attributeType="Integer 32" syncable="YES"/>
-        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0" syncable="YES"/>
-        <attribute name="needsSize" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="privateIndex" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="groupIndex" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="needsSize" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="privateIndex" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeStamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="urlIndex" optional="YES" attributeType="Integer 32" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="urlIndex" optional="YES" attributeType="Integer 32" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="moderator" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,12 +21,12 @@
     <entity name="People" representedClassName="People" syncable="YES">
         <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="group" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="idle" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="idle" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="signon" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="signon" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="ChatMessage" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="Group" positionX="-335" positionY="-45" width="128" height="90"/>
         <element name="People" positionX="-351" positionY="144" width="128" height="105"/>
     </elements>
