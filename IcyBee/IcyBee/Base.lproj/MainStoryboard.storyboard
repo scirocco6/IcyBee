@@ -794,7 +794,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Groups" id="VLU-ZU-9CN">
-                                        <barButtonItem key="rightBarButtonItem" title="New" id="95Q-AC-9k9">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="95Q-AC-9k9">
+                                            <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <connections>
                                                 <action selector="newGroup" destination="tsb-5H-UUk" id="zYJ-kj-blW"/>
                                             </connections>
