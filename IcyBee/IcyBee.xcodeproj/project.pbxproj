@@ -452,6 +452,9 @@
 							};
 						};
 					};
+					4F42D1E714A989BD00FEB062 = {
+						DevelopmentTeam = SP5J495KSD;
+					};
 				};
 			};
 			buildConfigurationList = 4F42D1B614A989BD00FEB062 /* Build configuration list for PBXProject "IcyBee" */;
@@ -741,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IcyBee.app/IcyBee";
+				DEVELOPMENT_TEAM = SP5J495KSD;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
