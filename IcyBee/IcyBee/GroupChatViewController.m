@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 The Home for Obsolete Technology. All rights reserved.
 //
 
-#import "Constants.h"
 #import "GroupChatViewController.h"
 #import "IcbConnection.h"
 

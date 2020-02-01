@@ -53,7 +53,6 @@
 		4FC68CF216A7938600641D49 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC68CEF16A7938600641D49 /* background.png */; };
 		4FC68CF316A7938600641D49 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FC68CF016A7938600641D49 /* background@2x.png */; };
 		4FE1251D15ABD50300BECE75 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1251C15ABD50300BECE75 /* Person.m */; };
-		4FE1655916214A0300CD0479 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1655816214A0300CD0479 /* Constants.m */; };
 		4FF29099169FDEDB007F0BB8 /* hive.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF29097169FDEDB007F0BB8 /* hive.png */; };
 		4FF2909A169FDEDB007F0BB8 /* hive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF29098169FDEDB007F0BB8 /* hive@2x.png */; };
 		4FF2909E169FF6FA007F0BB8 /* jar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FF2909C169FF6FA007F0BB8 /* jar.png */; };
@@ -142,8 +141,6 @@
 		4FC68CF016A7938600641D49 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		4FE1251B15ABD50300BECE75 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4FE1251C15ABD50300BECE75 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		4FE16557162148B300CD0479 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		4FE1655816214A0300CD0479 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		4FEE4B6F23E3A5F300A5C306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		4FF29097169FDEDB007F0BB8 /* hive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hive.png; sourceTree = "<group>"; };
 		4FF29098169FDEDB007F0BB8 /* hive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hive@2x.png"; sourceTree = "<group>"; };
@@ -254,8 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				4F42D1D214A989BD00FEB062 /* MainStoryboard.storyboard */,
-				4FE16557162148B300CD0479 /* Constants.h */,
-				4FE1655816214A0300CD0479 /* Constants.m */,
 				4F42D1CC14A989BD00FEB062 /* main.m */,
 				4F42D1CF14A989BD00FEB062 /* AppDelegate.h */,
 				4F42D1D014A989BD00FEB062 /* AppDelegate.m */,
@@ -556,7 +551,6 @@
 				4FE1251D15ABD50300BECE75 /* Person.m in Sources */,
 				4F320BEA15ABE3E0001B7C44 /* People.m in Sources */,
 				4F46BEE9161CFBC7008B0282 /* IcbMessage.m in Sources */,
-				4FE1655916214A0300CD0479 /* Constants.m in Sources */,
 				4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */,
 				4F03126C1624A8C600ABDED1 /* IcbTableViewController.m in Sources */,
 			);
