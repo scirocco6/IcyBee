@@ -425,7 +425,7 @@ NSString const * htmlEnd = @"</body></html>";
     } // case
     
     case 'k': { //beep the server sends an extra /0 on beeps.  remove it
-        AudioServicesPlayAlertSound(1117);
+      AudioServicesPlayAlertSound(1117);
       [self addToChatFromSender:[[parameters objectAtIndex:0] substringToIndex:[[parameters objectAtIndex:0] length] -  1] type:*readBuffer text:@"Beep!"];
       break;
     }
