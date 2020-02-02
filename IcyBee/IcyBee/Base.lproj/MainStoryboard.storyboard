@@ -350,7 +350,7 @@
                             <constraint firstAttribute="bottom" secondItem="Fe0-Je-vuD" secondAttribute="bottom" id="xAF-fb-kms"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Group Chat" image="bee.png" id="NlV-U9-v8K"/>
+                    <tabBarItem key="tabBarItem" title="Chat" image="bee.png" id="NlV-U9-v8K"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="cJt-R3-0MX" id="tlc-CZ-0v6"/>
                         <outlet property="dataTableView" destination="XmI-eg-sJT" id="LSY-OL-hys"/>
@@ -451,7 +451,7 @@
                             <constraint firstAttribute="bottom" secondItem="jyH-LQ-aHt" secondAttribute="bottom" id="pK9-QT-FXN"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Private" image="flower.png" id="6"/>
+                    <tabBarItem key="tabBarItem" title="Messages" image="flower.png" id="6"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="jyH-LQ-aHt" id="16q-Z3-Axg"/>
                         <outlet property="dataTableView" destination="eWP-fp-ENH" id="9cJ-g3-sPa"/>
@@ -907,7 +907,7 @@
                             <constraint firstItem="74V-Q8-WK3" firstAttribute="leading" secondItem="X7L-LG-IR1" secondAttribute="leading" id="q8t-YY-Rbj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Groups" image="hive.png" id="WP5-Yi-GKE"/>
+                    <tabBarItem key="tabBarItem" title="Channels" image="hive.png" id="WP5-Yi-GKE"/>
                     <connections>
                         <outlet property="activity" destination="fcs-he-w8o" id="wht-MZ-Akd"/>
                         <outlet property="backgroundImageView" destination="6dp-34-nmm" id="BZt-aA-l6e"/>

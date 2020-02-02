@@ -15,7 +15,8 @@
 
 - (void) updateView {
   [[self navBar] setTitle:[[IcbConnection sharedInstance] currentChannel]];
-  
+  [[self tabBarItem] setTitle:[[IcbConnection sharedInstance] currentChannel]];
+
   [super updateView];
 }
 
@@ -29,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-  
+        
   [super viewWillAppear:animated];
 }
 
