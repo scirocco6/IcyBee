@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "IcbConnection.h"
 
+int const maxMessageLength = 250;
+
 NSString const * htmlBegin = @""
 "<html>"
 "<head>"
@@ -247,7 +249,7 @@ NSString const * htmlEnd = @"</body></html>";
   else {
     [self sendOpenMessage:line];
   }
-  
+
   [self addToChatFromSender:currentNickname type:'b' text:line];
 }
 
@@ -283,13 +285,35 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (void) sendOpenMessage:(NSString *) message {
+  NSString* remains = nil;
+    
+  if (message.length > maxMessageLength) {
+    remains = [message substringFromIndex:maxMessageLength + 1];
+    message = [message substringToIndex:maxMessageLength];
+  }
+    
   [self assemblePacketOfType:'b', message, nil];
   [self sendPacket];
+    
+  if (remains != nil) {
+    [self sendOpenMessage:remains];
+  }
 }
 
 - (void) sendPrivateMessage:(NSString *) message {
+  NSString* remains = nil;
+      
+  if (message.length > maxMessageLength) {
+    remains = [message substringFromIndex:maxMessageLength + 1];
+    message = [message substringToIndex:maxMessageLength];
+  }
+    
   [self assemblePacketOfType:'h', @"m", message, nil];
   [self sendPacket];
+    
+  if (remains != nil) {
+    [self sendOpenMessage:remains];
+  }
 }
 
 - (void) sendBeep:(NSString *) user {
