@@ -14,7 +14,7 @@
 @synthesize inputTextField;
 
 - (void) updateView {
-  [[self navBar] setTitle:[[IcbConnection sharedInstance] currentChannel]];
+  [[self navBar]     setTitle:[[IcbConnection sharedInstance] currentChannel]];
   [[self tabBarItem] setTitle:[[IcbConnection sharedInstance] currentChannel]];
 
   [super updateView];
