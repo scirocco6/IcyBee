@@ -45,6 +45,7 @@
 		4F7EB0F1169FD26D003B511F /* bee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7EB0EF169FD26D003B511F /* bee@2x.png */; };
 		4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8AE25E14C406D100F2F7C2 /* CoreData.framework */; };
 		4F99C7D5161CEF7F00F86192 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */; };
+		4FA4468923E6809000148D7E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA4468823E6809000148D7E /* AudioToolbox.framework */; };
 		4FAE554516227379009E0F40 /* BrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAE554316227379009E0F40 /* BrowserViewController.m */; };
 		4FAE554616227379009E0F40 /* BrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4FAE554416227379009E0F40 /* BrowserViewController.xib */; };
 		4FB13DCB16A8811200378AF9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB13DCA16A8811200378AF9 /* SystemConfiguration.framework */; };
@@ -131,6 +132,7 @@
 		4F7EB0EF169FD26D003B511F /* bee@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bee@2x.png"; sourceTree = "<group>"; };
 		4F8AE25E14C406D100F2F7C2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		4F99C7D4161CEF7F00F86192 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		4FA4468823E6809000148D7E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4FAE554216227379009E0F40 /* BrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserViewController.h; sourceTree = "<group>"; };
 		4FAE554316227379009E0F40 /* BrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserViewController.m; sourceTree = "<group>"; };
 		4FAE554416227379009E0F40 /* BrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserViewController.xib; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA4468923E6809000148D7E /* AudioToolbox.framework in Frameworks */,
 				4FF67FD016B7439E00776B8F /* QuartzCore.framework in Frameworks */,
 				4FB13DCB16A8811200378AF9 /* SystemConfiguration.framework in Frameworks */,
 				4F8AE25F14C406D100F2F7C2 /* CoreData.framework in Frameworks */,
@@ -235,6 +238,7 @@
 		4F42D1BF14A989BD00FEB062 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4FA4468823E6809000148D7E /* AudioToolbox.framework */,
 				4FF67FCF16B7439E00776B8F /* QuartzCore.framework */,
 				4FB13DCA16A8811200378AF9 /* SystemConfiguration.framework */,
 				4F42D1C014A989BD00FEB062 /* UIKit.framework */,
