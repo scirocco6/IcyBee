@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "IcbConnection.h"
 
+int const maxMessageLength = 250;
+
 NSString const * htmlBegin = @""
 "<html>"
 "<head>"
@@ -247,7 +249,7 @@ NSString const * htmlEnd = @"</body></html>";
   else {
     [self sendOpenMessage:line];
   }
-  
+
   [self addToChatFromSender:currentNickname type:'b' text:line];
 }
 
@@ -283,13 +285,35 @@ NSString const * htmlEnd = @"</body></html>";
 }
 
 - (void) sendOpenMessage:(NSString *) message {
+  NSString* remains = nil;
+    
+  if (message.length > maxMessageLength) {
+    remains = [message substringFromIndex:maxMessageLength + 1];
+    message = [message substringToIndex:maxMessageLength];
+  }
+    
   [self assemblePacketOfType:'b', message, nil];
   [self sendPacket];
+    
+  if (remains != nil) {
+    [self sendOpenMessage:remains];
+  }
 }
 
 - (void) sendPrivateMessage:(NSString *) message {
+  NSString* remains = nil;
+      
+  if (message.length > maxMessageLength) {
+    remains = [message substringFromIndex:maxMessageLength + 1];
+    message = [message substringToIndex:maxMessageLength];
+  }
+    
   [self assemblePacketOfType:'h', @"m", message, nil];
   [self sendPacket];
+    
+  if (remains != nil) {
+    [self sendOpenMessage:remains];
+  }
 }
 
 - (void) sendBeep:(NSString *) user {
@@ -401,6 +425,7 @@ NSString const * htmlEnd = @"</body></html>";
     } // case
     
     case 'k': { //beep the server sends an extra /0 on beeps.  remove it
+      AudioServicesPlayAlertSound(1117);
       [self addToChatFromSender:[[parameters objectAtIndex:0] substringToIndex:[[parameters objectAtIndex:0] length] -  1] type:*readBuffer text:@"Beep!"];
       break;
     }
@@ -609,7 +634,7 @@ NSString const * htmlEnd = @"</body></html>";
       
     case 'd':
       [event setText: [NSString stringWithFormat:@"%@"
-                       "<span style='color:#FFAAAA; margin-right:5px;'>[=%@=]</span>"
+                       "<span style='color:#FFFFAA; margin-right:5px;'>[=%@=]</span>"
                        "<span style='word-wrap: break-word;'>%@</span>"
                        "%@",
                        htmlBegin, sender, text, htmlEnd]];
@@ -617,7 +642,7 @@ NSString const * htmlEnd = @"</body></html>";
       
     default:
       [event setText: [NSString stringWithFormat:@"%@"
-                       "<span style='color:#FF00FF; margin-right:5px;'>&lt%@&gt</span>"
+                       "<span style='color:#AAFFFF; margin-right:5px;'>&lt%@&gt</span>"
                        "<span style='word-wrap: break-word;'>%@</span>"
                        "%@",
                        htmlBegin, sender, text, htmlEnd]];

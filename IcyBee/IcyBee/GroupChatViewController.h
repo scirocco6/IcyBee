@@ -16,7 +16,7 @@
 //@property (nonatomic, strong) IBOutlet  UINavigationItem  *navBar;
 @property (nonatomic, strong) IBOutlet  UITextField       *inputTextField;
 
-- (void) keyboardWillShow:(NSNotification *) notification;
+- (void) keyboardWillChangeFrame:(NSNotification *) notification;
 - (void) keyboardWillHide:(NSNotification *) notification;
 
 @end
